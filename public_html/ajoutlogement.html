@@ -35,7 +35,7 @@
       <label>Description : </label>
         <br/>
         <textarea name="texte" rows="10" cols="80">saisissez la description du logement</textarea>
-    </form>
+
 
 <!--la partie pour ajouter un logement a louer sur le site -->
 
@@ -43,12 +43,14 @@
       <h3> Fonctionnalités </h3>
       <p>
           Veuillez indiquer les fonctionnalités du logement :<br />
-          <input type="radio" name="fonc" value="Salle de bain" id="salledebain" /> <label for="salledebain">Salle de bain</label><br />
-          <input type="radio" name="fonc" value="Wifi" id="wifi" /> <label for="wifi">Wifi</label><br />
-          <input type="radio" name="fonc" value="Cuisine" id="cuisine" /> <label for="cuisine">Cuisine</label><br />
+          <input type="checkbox" name="fonc" value="Salle de bain" id="salledebain" /> <label for="salledebain">Salle de bain</label><br />
+          <input type="checkbox" name="fonc" value="Wifi" id="wifi" /> <label for="wifi">Wifi</label><br />
+          <input type="checkbox" name="fonc" value="Cuisine" id="cuisine" /> <label for="cuisine">Cuisine</label><br />
       </p>
 
       <input type="submit" class="bouton" name="Enregistrer_Logement" value ="Enregistrer"/>
     </section>
+
+      </form>
   </body>
 </html>
