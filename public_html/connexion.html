@@ -1,27 +1,30 @@
 <!--DOCTYPE HTML-->
 <HTML>
   <head>
-      <meta charset= "UTF-8"/>
-      <title> Connexion </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <title> Connexion </title>
   </head>
-
+  <header>
+    <img src="images/logo.png" alt="logo du site" />
+    <h1> FreeToGo </h1>
+  </header>
   <body>
-    <form>
-      <h1> FreeToGo </h1>
-      <hr/>
+    <form action="connexion.php">
       <fieldset>
         <legend> Connexion </legend>
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="champLogin" size= "10"/>
+        <input type="text" name="nom" placeholder="Nom" size= "10"/>
         <br/>
         <label> Mot de passe: </label>
         <br/>
+        <!-- Pourquoi le mot de passe ne ferait que 8 caracteres maximum ?? -->
         <input type="password" name="mdp" size="10" maxlength="8"/>
         <br/>
         <br/>
-        <input type="submit" name="action" value= "Se connecter" />
+        <input type="submit" name="connexion" value= "Se connecter" />
 
       </fieldset>
     </form>
@@ -30,24 +33,24 @@
     <hr/>
     <br/>
 
-    <form>
+    <form action="inscription.php">
       <fieldset>
         <legend> Inscription </legend>
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="NomUtilisateur" size= "10"/>
+        <input type="text" name="nom" size= "10"/>
         <br/>
         <label> Adresse e-mail: </label>
         <br/>
-        <input type="text" name="AdresseMail" size= "10"/>
+        <input type="text" name="mail" size= "10"/>
         <br/>
         <label> Mot de passe: </label>
         <br/>
         <input type="password" name="mdp" size="10" maxlength="8"/>
         <br/>
         <br/>
-        <input type="submit" name="action" value= "S'inscrire" />
+        <input type="submit" name="inscription" value= "S'inscrire" />
         <br/>
       </fieldset>
     </form>

@@ -1,0 +1,43 @@
+.container {
+  display: flex; /* Permet de mettre le bloc recherche et profil l'un à coté de l'autre */
+  border-style: solid;
+
+}
+#recherche {
+  margin-right: 0%; /* Espace le bloc recherche du bloc profil */
+  border-right-style: solid;
+  padding : 1%; /* Pour que le cadre ne soit pas collé au texte */
+  width: 70%;
+  padding-top: 0%; /* Il y a deja la border du h2 donc pas besoin de rajouter */
+  flex-grow: 1; /* Le bloc profil rempli son espace (sinon il y a des retours à la ligne inutils) */
+}
+#profil {
+  flex-grow: 1; /* Le bloc profil rempli son espace (sinon il y a des retours à la ligne inutils) */
+  border-style: none;
+  padding : 1%; /* Pour que le cadre ne soit pas collé au texte */
+  padding-top: 0%; /* Il y a deja la border du h2 donc pas besoin de rajouter */
+}
+
+/* voir https://www.w3schools.com/Css/css_table.asp pour les styles de tableau*/
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: 5%;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+/* Pour mettre les deux blocs de recherche côte à côte */
+#col_droite {
+  display:inline-block;
+}
+#col_gauche {
+  display: inline-block;
+  width: 30%;
+}
+
+input {
+  margin-left: 1%;
+}
