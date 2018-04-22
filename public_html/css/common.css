@@ -1,10 +1,14 @@
 body {
   margin-left: 5%;
   margin-right: 2%;
+  background: #FAFFD1;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 400;
 }
 header {
   text-align: center;
   margin-bottom: 3%;
+  background: #2EFE9A;
 }
 h1{
   display: inline;
@@ -16,4 +20,60 @@ img {
 .boutton {
   margin: 2%;
   padding: 1%;
+}
+
+.container {
+	width: 80%;
+	margin: auto;
+}
+
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: left;
+	 padding: 5px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 20px;
+  position: relative;
+}
+
+nav a {
+  color: #042c4d;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 300ms;
+}
+
+nav a:hover::before {
+  width: 100%;
 }
