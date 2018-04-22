@@ -62,7 +62,7 @@
 </table>
 -->
 <br/>
-<a href"ajoutLogement.php" id="lienAjoutLogement">Ajouter un logement</a>
+  <input href="ajoutlogement.php" type="submit" class="bouton" name="lienAjoutLogement" value="Ajouter un logement"/>
 </section>
 
 <!-- la partie pour voir les réservations -->

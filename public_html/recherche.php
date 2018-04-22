@@ -34,7 +34,7 @@
           <label>Prix max</label>
           <input type="text" name="prixMax" placeholder="Prix max"/>
         </div>
-        <input type="submit" name="rechercher" class="boutton" value="Rechercher" />
+        <input type="submit" name="rechercher" class="bouton" value="Rechercher" />
       </form>
     </div>
     <div id="profil">
@@ -43,14 +43,14 @@
       <img id="imageProfil" src="images/profil_default.png" alt="image de profil" />
       <!-- Le boutton inscription ne devrait apparaitre que si l'utilisateur n'est pas connecté avec du php -->
       <form action="inscription.php">
-        <input type="submit" value="inscription" class="boutton"/>
+        <input type="submit" value="Inscription" class="bouton"/>
       </form>
       <form action="profil.php">
-        <input type="submit" value="Voir Profil" class="boutton"/>
+        <input type="submit" value="Voir Profil" class="bouton"/>
       </form>
       <!-- Le boutton déconnection ne devrait apparaitre que si l'utilisateur est connecté avec du php -->
       <form action="deconnexion.php">
-        <input type="submit" value="Déconnexion" class="boutton"/>
+        <input type="submit" value="Déconnexion" class="bouton"/>
       </form>
     </div>
   </div>

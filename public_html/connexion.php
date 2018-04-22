@@ -20,7 +20,7 @@
         <label> Mot de passe: </label>
         <br/>
         <!-- Pourquoi le mot de passe ne ferait que 8 caracteres maximum ?? -->
-        <input type="password" name="mdp" size="10" maxlength="8"/>
+        <input type="password" name="mdp" placeholder="Mot de passe" size="10" maxlength="8"/>
         <br/>
         <br/>
         <input type="submit" name="connexion" value= "Se connecter" />
@@ -38,15 +38,15 @@
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="nom" size= "10"/>
+        <input type="text" name="nom" placeholder="Nom" size= "10"/>
         <br/>
         <label> Adresse e-mail: </label>
         <br/>
-        <input type="text" name="mail" size= "10"/>
+        <input type="text" name="mail" placeholder="Mail" size= "10"/>
         <br/>
         <label> Mot de passe: </label>
         <br/>
-        <input type="password" name="mdp" size="10" maxlength="8"/>
+        <input type="password" name="mdp"  placeholder="Mot de passe" size="10" maxlength="8"/>
         <br/>
         <br/>
         <input type="submit" name="inscription" value= "S'inscrire" />
