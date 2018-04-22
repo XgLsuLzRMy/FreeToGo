@@ -3,21 +3,12 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" >
     <title> Connexion </title>
   </head>
-  <header>
-    <div class="container">
-      <img src="images/logo.png" alt="logo du site" class="logo" />
-      <h1 class="logo"></h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="profil.html">Profil</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
   <body>
+    <?php include('include/header.html'); ?>
+
     <form action="connexion.php">
       <fieldset>
         <legend> Connexion </legend>

@@ -3,21 +3,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="css/common.css">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" >
   <title>FreeToGo</title>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <img src="images/logo.png" alt="logo du site" class="logo" />
-      <h1 class="logo"></h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="profil.html">Profil</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <?php include('include/header.html'); ?>
+
 
   <!--la partie pour modifier le profil de l'utilisateur -->
 
@@ -71,7 +62,7 @@
 </table>
 -->
 <br/>
-<a href"ajoutLogement.html" id="lienAjoutLogement">Ajouter un logement</a>
+<a href"ajoutLogement.php" id="lienAjoutLogement">Ajouter un logement</a>
 </section>
 
 <!-- la partie pour voir les réservations -->
