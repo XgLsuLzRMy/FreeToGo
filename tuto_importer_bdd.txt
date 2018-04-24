@@ -1,0 +1,16 @@
+# se connecter en tant que root pour avoir les droits de creer une base de donnees
+mysql -u root -p
+# entrer pasword
+# creer une base de donnee vide
+create database freetogo;
+# donner les droits a l'utilisateur de modifier la base de donnees
+# A la place de lucas il faut mettre le nom de l'utilisateur
+grant ALL on freetogo.* to 'lucas'@'localhost'
+quit;
+# Verifier que le freetogo.sql est dans le dossier courant
+# Importer le freetogo.sql
+mysql freetogo < freetogo.sql
+# Ouvrir mysql
+mysql
+use freetogo
+show tables;
