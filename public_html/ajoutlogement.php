@@ -35,7 +35,27 @@
     <label>Description : </label>
     <br/>
     <textarea name="texte" rows="10" cols="80" placeholder="saisissez la description du logement"></textarea>
-
+    
+<!-- SE CONNECTER A LA BASE DE DONNEES ET AFFICHER DES RESULTATS -->
+    <?php
+      //ouverture de la connexion
+      $nomserveur='localhost'; //nom du seveur
+      $nombd='freetogo'; //nom de la base de données
+      $login='root'; //login de l'utilisateur
+      $mdp=''; // mot de passe
+      $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login, $mdp);
+      $reponse = $bd->query('SELECT * FROM client'); //on selectionne la table Client
+      $donnees = $reponse->fetch();
+      while ($donnees = $reponse->fetch()) //on affiche toutes les instances de Client
+      {
+    ?>
+    <p>
+    <strong>Client</strong> : <?php echo $donnees['nom']; ?><br />
+    Ladresse est : <?php echo $donnees['adresse']; ?> !<br />
+    </p>
+    <?php
+      }
+    ?>
 
     <!--la partie pour ajouter un logement a louer sur le site -->
 

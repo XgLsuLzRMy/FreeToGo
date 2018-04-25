@@ -23,7 +23,7 @@
         <input type="password" name="mdp" placeholder="Mot de passe" size="10" maxlength="8"/>
         <br/>
         <br/>
-        <input type="submit" name="connexion" value= "Se connecter" />
+        <input type="submit" class="bouton" name="connexion" value= "Se connecter" />
 
       </fieldset>
     </form>
@@ -49,7 +49,7 @@
         <input type="password" name="mdp"  placeholder="Mot de passe" size="10" maxlength="8"/>
         <br/>
         <br/>
-        <input type="submit" name="inscription" value= "S'inscrire" />
+        <input type="submit" class="bouton" name="inscription" value= "S'inscrire" />
         <br/>
       </fieldset>
     </form>

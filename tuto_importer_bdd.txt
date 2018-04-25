@@ -14,3 +14,17 @@ mysql freetogo < freetogo.sql
 mysql
 use freetogo
 show tables;
+
+
+
+
+#voir les versions php-mysql installer
+dpkg --get-selections | grep php | grep mysql
+
+
+#installer php
+sudo apt-get install php7.0-mysql
+
+#changer le mot de passe de root
+mysqladmin -u root -p password 'nouveauMotDePasse'
+
