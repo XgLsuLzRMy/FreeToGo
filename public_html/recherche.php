@@ -13,7 +13,7 @@
   <div id="container">
     <div id="recherche">
       <h2>Recherche de logements</h2>
-      <form action="">
+      <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
         <div id="col_gauche">
           <label>Lieu</label>
           <input type="text" name="lieu" placeholder="Ville où se situe le logement"/>

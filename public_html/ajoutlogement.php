@@ -42,7 +42,7 @@
       echo "<p>La liste des clients : </p>";
       $nomserveur='localhost'; //nom du seveur
       $nombd='freetogo'; //nom de la base de données
-      $login='lucas'; //login de l'utilisateur
+      $login='userfreetogo'; //login de l'utilisateur
       $mdp=''; // mot de passe
       $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
       $reponse = $bd->query('SELECT * FROM client'); //on selectionne la table Client
