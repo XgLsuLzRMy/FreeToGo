@@ -13,7 +13,7 @@
   <div id="container">
     <div id="recherche">
       <h2>Recherche de logements</h2>
-      <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
+      <form action="php/resultatRecherche.php" method="post">
         <div id="col_gauche">
           <label>Lieu</label>
           <input type="text" name="lieu" placeholder="Ville où se situe le logement"/>
@@ -72,7 +72,7 @@
       <td>Prix 1€</td>
       <td>Mr/MMe 1</td>
       <td>
-        <form action="pageLogement1.html"><input type="submit" value="voir" />
+        <form action="pageLogement1.html"><input type="submit" value="voir" >
         </form>
       </td>
     </tr>
@@ -83,7 +83,7 @@
       <td>Prix 2€</td>
       <td>Mr/MMe 2</td>
       <td>
-        <form action="pageLogement2.html"><input type="submit" value="voir" />
+        <form action="pageLogement2.html"><input type="submit" value="voir" >
         </form>
       </td>
     </tr>
