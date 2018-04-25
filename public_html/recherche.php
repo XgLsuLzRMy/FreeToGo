@@ -42,7 +42,7 @@
       <h2>Nom Prenom</h2>
       <img id="imageProfil" src="images/profil_default.png" alt="image de profil" />
       <!-- Le boutton inscription ne devrait apparaitre que si l'utilisateur n'est pas connecté avec du php -->
-      <form action="inscription.php">
+      <form action="connexion.php">
         <input type="submit" value="Inscription" class="bouton"/>
       </form>
       <form action="profil.php">

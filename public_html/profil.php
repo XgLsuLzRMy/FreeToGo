@@ -63,7 +63,7 @@
 -->
 <br/>
 <form action="ajoutlogement.php">
-  <input type="submit" value="Ajouter un logement" name="lienAjoutLogement" class="bouton"/>
+  <input type="submit" class="bouton" name="lienAjoutLogement" value="Ajouter un logement"/>
 </form>
 </section>
 
