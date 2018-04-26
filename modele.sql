@@ -1,7 +1,11 @@
 CREATE TABLE IF NOT EXISTS `client` (
 	`idClient` int(11) NOT NULL,
-	`nom` varchar(30) DEFAULT NULL,
-	`adresse` varchar(30) DEFAULT NULL,
+	`nom` varchar(30) NOT NULL,
+	`prenom` varchar(30) NOT NULL,
+	`adresse` varchar(30) NOT NULL,
+	`description` varchar(240) DEFAULT NULL,
+	`age` int NOT NULL,
+	`photoProfil` varchar(30) NOT NULL,
 	`pays` varchar(30) DEFAULT NULL,
 	`telephone` varchar(30) DEFAULT NULL,
 	PRIMARY KEY (`idClient`)
@@ -19,8 +23,12 @@ CREATE TABLE IF NOT EXISTS `hote` (
 
 CREATE TABLE IF NOT EXISTS `logement` (
 	`idLogement` int(11) NOT NULL,
+	`prix` int(11) NOT NULL,
 	`idHote` int(11) DEFAULT NULL,
+	`effectif` int(11) DEFAULT NULL,
 	`adresse` varchar(30) DEFAULT NULL,
+	`photo` varchar(30) NOT NULL,
+	`description` varchar(240) DEFAULT NULL,
 	`ville` varchar(30) DEFAULT NULL,
 	`pays` varchar(30) DEFAULT NULL,
 	`wifi` BOOL DEFAULT FALSE,
