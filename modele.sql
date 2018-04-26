@@ -44,5 +44,14 @@ CREATE TABLE IF NOT EXISTS `session` (
 	`login` varchar(30) NOT NULL,
 	`mdp` int(11) NOT NULL,
 	`idClient` int(11) DEFAULT NULL,
+	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
 	PRIMARY KEY (`login`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `commentaire` (
+	`idCommentaire` int(11) NOT NULL,
+	`comment` varchar(500) NOT NULL,
+	`idClient` int(11) NOT NULL,
+	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
+	PRIMARY KEY (`idCommentaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
