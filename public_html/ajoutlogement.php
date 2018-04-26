@@ -26,8 +26,14 @@
     <label>Nombre de personnes : </label>
     <input type="number" name="nbPersonne" id="nbPersonne" value="1" min="1" max="30">
     <br/>
-    <label>Localisation : </label>
-    <input type="text" name="localisation" id="localisation" placeholder="saisissez la localisation"/>
+    <label>Pays : </label>
+    <input type="text" name="pays" id="pays" placeholder="saisissez le pays"/>
+    <br/>
+    <label>Ville : </label>
+    <input type="text" name="ville" id="ville" placeholder="saisissez la ville"/>
+    <br/>
+    <label>Adresse : </label>
+    <input type="text" name="adresse" id="adresse" placeholder="saisissez la adresse"/>
     <br/>
     <label> Prix (pour une nuit) : </label>
     <input type="text" name="prixNuit" id="prixNuit" placeholder="saisissez le prix pour une nuit"/>
@@ -40,12 +46,12 @@
     // SE CONNECTER A LA BASE DE DONNEES ET AFFICHER DES RESULTATS
       //ouverture de la connexion
       echo "<p>La liste des clients : </p>";
-      $nomserveur='localhost'; //nom du seveur
-      $nombd='freetogo'; //nom de la base de données
-      $login='userfreetogo'; //login de l'utilisateur
-      $mdp=''; // mot de passe
+      $nomserveur='gm6.insa-rouen.fr'; //nom du seveur
+      $nombd='jcatelain'; //nom de la base de données
+      $login='jcatelain'; //login de l'utilisateur
+      $mdp='100695'; // mot de passe
       $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
-      $reponse = $bd->query('SELECT * FROM client'); //on selectionne la table Client
+      $reponse = $bd->query('SELECT * FROM Employe'); //on selectionne la table Client
       $donnees = $reponse->fetch();
 
       while ($donnees = $reponse->fetch()) //on affiche toutes les instances de Client
