@@ -11,8 +11,8 @@
 <body>
   <?php include('include/header.html'); ?>
   <?php
-    if (isset($_SESSION["login"])){
-      echo "<p>".$_SESSION["login"]."</p>";
+    if (isset($_SESSION["idClient"])){
+      echo "<p>".$_SESSION["idClient"]."</p>";
     }else{
       echo "<p>pas de session</p>";
     }

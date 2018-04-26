@@ -1,11 +1,12 @@
 CREATE TABLE IF NOT EXISTS `client` (
 	`idClient` int(11) NOT NULL,
 	`nom` varchar(30) NOT NULL,
-	`prenom` varchar(30) NOT NULL,
-	`adresse` varchar(30) NOT NULL,
+	`mail` varchar(30) NOT NULL,
+	`prenom` varchar(30) DEFAULT NULL,
+	`adresse` varchar(30) DEFAULT NULL,
 	`description` varchar(240) DEFAULT NULL,
-	`age` int(11) NOT NULL,
-	`photoProfil` varchar(30) NOT NULL,
+	`age` int(11) DEFAULT NULL,
+	`photoProfil` varchar(30) DEFAULT NULL,
 	`pays` varchar(30) DEFAULT NULL,
 	`telephone` varchar(30) DEFAULT NULL,
 	PRIMARY KEY (`idClient`)
@@ -14,11 +15,11 @@ CREATE TABLE IF NOT EXISTS `client` (
 CREATE TABLE IF NOT EXISTS `logement` (
 	`idLogement` int(11) NOT NULL,
 	`prix` int(11) NOT NULL,
-	`idClient` int(11) DEFAULT NULL,
+	`idClient` int(11) NOT NULL,
+	`nomLogement` varchar(30) NOT NULL,
 	`effectif` int(11) DEFAULT NULL,
-	`nomLogement` varchar(30),
 	`adresse` varchar(30) DEFAULT NULL,
-	`photo` varchar(30) NOT NULL,
+	`photo` varchar(30) DEFAULT NULL,
 	`description` varchar(240) DEFAULT NULL,
 	`ville` varchar(30) DEFAULT NULL,
 	`pays` varchar(30) DEFAULT NULL,
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `reserver` (
 
 CREATE TABLE IF NOT EXISTS `session` (
 	`login` varchar(30) NOT NULL,
-	`mdp` int(11) NOT NULL,
+	`mdp` varchar(30) NOT NULL,
 	`idClient` int(11) DEFAULT NULL,
 	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
 	PRIMARY KEY (`login`)
@@ -52,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 	`idCommentaire` int(11) NOT NULL,
 	`comment` varchar(500) NOT NULL,
 	`idClient` int(11) NOT NULL,
+	`idLogement` int(11) NOT NULL,
 	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
 	PRIMARY KEY (`idCommentaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
