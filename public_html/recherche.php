@@ -1,4 +1,5 @@
 <!doctype html>
+<?php require("connexion.inc.php") ?>
 <html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,7 +10,13 @@
 </head>
 <body>
   <?php include('include/header.html'); ?>
-
+  <?php
+    if (isset($_SESSION["login"])){
+      echo "<p>".$_SESSION["login"]."</p>";
+    }else{
+      echo "<p>pas de session</p>";
+    }
+   ?>
   <div id="container">
     <div id="recherche">
       <h2>Recherche de logements</h2>
@@ -49,8 +56,8 @@
         <input type="submit" value="Voir Profil" class="bouton"/>
       </form>
       <!-- Le boutton déconnection ne devrait apparaitre que si l'utilisateur est connecté avec du php -->
-      <form action="deconnexion.php">
-        <input type="submit" value="Déconnexion" class="bouton"/>
+      <form action="connexion.inc.php" method="post">
+        <input type="submit" name="deconnexion" value="Déconnexion" class="bouton"/>
       </form>
     </div>
   </div>
@@ -72,7 +79,7 @@
       while ($donnees = $reponse->fetch()) //on affiche toutes les instances de Client
       {
 
-        $reponse2 = $bd->query('SELECT * FROM hote where idHote="'.(string)$donnees["idHote"].'"');
+        $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees["idClient"].'"');
         $nom = $reponse2->fetch();
         $nom = $nom["nom"];
         echo "

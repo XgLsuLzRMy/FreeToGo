@@ -1,4 +1,4 @@
-<!--DOCTYPE HTML-->
+<?php require("connexion.inc.php") ?>
 <HTML>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -23,7 +23,7 @@
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="nom" placeholder="Nom" size= "10"/>
+        <input type="text" name="login" placeholder="Nom" size= "10"/>
         <br/>
         <label> Mot de passe: </label>
         <br/>
@@ -46,7 +46,7 @@
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="nom" placeholder="Nom" size= "10"/>
+        <input type="text" name="login" placeholder="Nom" size= "10"/>
         <br/>
         <label> Adresse e-mail: </label>
         <br/>

@@ -4,27 +4,17 @@ CREATE TABLE IF NOT EXISTS `client` (
 	`prenom` varchar(30) NOT NULL,
 	`adresse` varchar(30) NOT NULL,
 	`description` varchar(240) DEFAULT NULL,
-	`age` int NOT NULL,
+	`age` int(11) NOT NULL,
 	`photoProfil` varchar(30) NOT NULL,
 	`pays` varchar(30) DEFAULT NULL,
 	`telephone` varchar(30) DEFAULT NULL,
 	PRIMARY KEY (`idClient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `hote` (
-	`idHote` int(11) NOT NULL,
-	`nom` varchar(30) DEFAULT NULL,
-	`adresse` varchar(30) DEFAULT NULL,
-	`pays` varchar(30) DEFAULT NULL,
-	`telephone` varchar(30) DEFAULT NULL,
-	PRIMARY KEY (`idHote`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 CREATE TABLE IF NOT EXISTS `logement` (
 	`idLogement` int(11) NOT NULL,
 	`prix` int(11) NOT NULL,
-	`idHote` int(11) DEFAULT NULL,
+	`idClient` int(11) DEFAULT NULL,
 	`effectif` int(11) DEFAULT NULL,
 	`adresse` varchar(30) DEFAULT NULL,
 	`photo` varchar(30) NOT NULL,
@@ -34,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `logement` (
 	`wifi` BOOL DEFAULT FALSE,
 	`cuisine` BOOL DEFAULT FALSE,
 	`salledebain` BOOL DEFAULT FALSE,
-	FOREIGN KEY (`idHote`) REFERENCES hote(`idHote`),
+	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
 	PRIMARY KEY (`idLogement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -47,4 +37,11 @@ CREATE TABLE IF NOT EXISTS `reserver` (
 	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
 	FOREIGN KEY (`idLogement`) REFERENCES logement(`idLogement`),
 	PRIMARY KEY (`numeroReservation`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `session` (
+	`login` varchar(30) NOT NULL,
+	`mdp` int(11) NOT NULL,
+	`idClient` int(11) DEFAULT NULL,
+	PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
