@@ -8,8 +8,16 @@
   </head>
   <body>
     <?php include('include/header.html'); ?>
-
-    <form action="connexion.php">
+    <?php
+      if (isset($_POST["connexion"])){
+        echo "<p>connexion</p>";
+      }elseif (isset($_POST["inscription"])){
+        echo "<p>inscription</p>";
+      }else {
+        echo "<p>Un des boutons n'a pas encore été appuyé</p>";
+      }
+    ?>
+    <form action="connexion.php" method="post">
       <fieldset>
         <legend> Connexion </legend>
         <br/>
@@ -32,7 +40,7 @@
     <hr/>
     <br/>
 
-    <form action="inscription.php">
+    <form action="connexion.php" method="post">
       <fieldset>
         <legend> Inscription </legend>
         <br/>

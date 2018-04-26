@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="css/common.css">
@@ -13,7 +13,7 @@
   <div id="container">
     <div id="recherche">
       <h2>Recherche de logements</h2>
-      <form action="php/resultatRecherche.php" method="post">
+      <form action="recherche.php" method="post">
         <div id="col_gauche">
           <label>Lieu</label>
           <input type="text" name="lieu" placeholder="Ville où se situe le logement"/>
@@ -55,39 +55,53 @@
     </div>
   </div>
   <h2>Affichage des logements</h2>
-  <table>
-    <tr>
-      <th></th>
-      <th>Nom du logement</th>
-      <th>Localisation</th>
-      <th>Prix</th>
-      <th>nom du propriétaire</th>
-      <th>Voir</th>
-    </tr>
-    <!-- La partie ci dessous sera génrée par du php -->
-    <tr>
-      <td>1</td>
-      <td>Logement 1</td>
-      <td>Localisation 1</td>
-      <td>Prix 1€</td>
-      <td>Mr/MMe 1</td>
-      <td>
-        <form action="pageLogement1.html"><input type="submit" value="voir" >
+  <?php
+  if (isset($_POST["rechercher"])){
+    if(!empty($_POST["lieu"])){
+      echo "<p>Ville recherchée : ".$_POST["lieu"]."</p>";
+      $nomserveur='localhost'; //nom du seveur
+      $nombd='freetogo'; //nom de la base de données
+      $login='userfreetogo'; //login de l'utilisateur
+      $mdp=''; // mot de passe
+
+      $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
+      $reponse = $bd->query('SELECT * FROM logement where ville="'.(string)$_POST["lieu"].'"');
+
+      $num = 1;
+      echo"<table>";
+      while ($donnees = $reponse->fetch()) //on affiche toutes les instances de Client
+      {
+
+        $reponse2 = $bd->query('SELECT * FROM hote where idHote="'.(string)$donnees["idHote"].'"');
+        $nom = $reponse2->fetch();
+        $nom = $nom["nom"];
+        echo "
+        <tr>
+        <th></th>
+        <th>Nom du logement</th>
+        <th>Localisation</th>
+        <th>Prix</th>
+        <th>nom du propriétaire</th>
+        <th>Voir</th>
+        </tr>
+        <tr>
+        <td>".$num."</td>
+        <td>Logement ".$donnees["idLogement"]."</td>
+        <td>".$donnees["ville"]."</td>
+        <td>Prix €</td>
+        <td>Mr/MMe ".(string)$nom."</td>
+        <td>
+        <form>
         </form>
-      </td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Logement 2</td>
-      <td>Localisation 2</td>
-      <td>Prix 2€</td>
-      <td>Mr/MMe 2</td>
-      <td>
-        <form action="pageLogement2.html"><input type="submit" value="voir" >
-        </form>
-      </td>
-    </tr>
-    <!-- Fin partie générée par php -->
-  </table>
+        </td>
+        </tr>";
+        $num = $num + 1;
+      }
+      echo "</table>";
+    }else{
+      echo "<p>La ville n'a pas été écrite...</p>";
+    }
+  }
+  ?>
 </body>
 </html>
