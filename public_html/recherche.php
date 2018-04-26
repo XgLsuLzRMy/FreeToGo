@@ -91,8 +91,9 @@
         <td>Prix €</td>
         <td>Mr/MMe ".(string)$nom."</td>
         <td>
-        <form>
-        </form>
+
+        <button onclick=\"location.href='pageLogement.php?idLogement=".(string)$donnees["idLogement"]."'\" type=\"button\">VOIR</button>
+
         </td>
         </tr>";
         $num = $num + 1;

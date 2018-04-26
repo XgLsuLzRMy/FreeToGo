@@ -9,14 +9,18 @@
 </head>
 <body>
   <?php include('include/header.html'); ?>
+  <?php
+    if (isset($_GET["idLogement"])){
+      echo "<p>Logement demandé : ".$_GET["idLogement"]."</p>";
 
-  <div id="container">
-    <div id="div_logement" >
+  echo "<div id=\"container\">
+    <div id=\"div_logement\" >
       <h2>Logement</h2>
-      Type de logement :<br/>
-      Type
-      <br/>
-      Nombre de personnes :<br/>
+      Type de logement :<br/>";
+      //Type
+      echo "<br/>";
+      //Nombre de personnes
+      echo ":<br/>
       x nbPersonnes
       <br/>
       Localisation :<br/>
@@ -27,15 +31,15 @@
       <br/>
       Description :<br/>
       Description du logement
-      <img src="images/logement_default.png" style="float:right;" />
+      <img src=\"images/logement_default.png\" style=\"float:right;\" />
     </div>
-    <div id="div_commentaire">
+    <div id=\"div_commentaire\">
       <h2>Commentaires</h2>
-      <div class="commentaire">
+      <div class=\"commentaire\">
         Nom utilisateur 1:
         <p>Blabla</p>
       </div>
-      <div class="commentaire">
+      <div class=\"commentaire\">
         Nom utilisateur 2:
         <p>Blabla</p>
       </div>
@@ -44,13 +48,13 @@
   <div>
     <h2>Fonctionnalités</h2>
     <ul>
-      <li class="checked">Salle de bain</li>
-      <li class="unchecked">Wifi</li>
-      <li class="checked">Cuisine</li>
+      <li class=\"checked\">Salle de bain</li>
+      <li class=\"unchecked\">Wifi</li>
+      <li class=\"checked\">Cuisine</li>
     </ul>
   </div>
   <h2>Profil Propriétaire</h2>
-  <div style="display:flex;">
+  <div style=\"display:flex;\">
     Nom :<br/>
     nom utilisateur
     <br/>
@@ -62,8 +66,11 @@
     <br/>
     Description :<br/>
     Description du propriétaire
-    <img src="images/profil_default.png" style="float:right;margin-left:15%;"/>
-  </div>
-
+    <img src=\"images/profil_default.png\" style=\"float:right;margin-left:15%;\"/>
+  </div>";
+}else{
+  echo "<p> Pas de logement demandé...</p>";
+}
+?>
 </body>
 </html>
