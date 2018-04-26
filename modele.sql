@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `logement` (
 	`prix` int(11) NOT NULL,
 	`idClient` int(11) DEFAULT NULL,
 	`effectif` int(11) DEFAULT NULL,
+	`nomLogement` varchar(30),
 	`adresse` varchar(30) DEFAULT NULL,
 	`photo` varchar(30) NOT NULL,
 	`description` varchar(240) DEFAULT NULL,
