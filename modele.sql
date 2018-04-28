@@ -13,8 +13,9 @@ CREATE TABLE IF NOT EXISTS `client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `logement` (
-	`idLogement` int(11) NOT NULL,
+	`idLogement` int(11) NOT NULL AUTO_INCREMENT,
 	`prix` int(11) NOT NULL,
+	`type` varchar(30) NOT NULL,
 	`idClient` int(11) NOT NULL,
 	`nomLogement` varchar(30) NOT NULL,
 	`effectif` int(11) DEFAULT NULL,

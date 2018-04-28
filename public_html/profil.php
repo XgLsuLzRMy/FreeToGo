@@ -77,7 +77,7 @@ $donnees = $reponse->fetch();
     <?php
 if (isset($_POST['Enregistrer'])) {
 
-    $requete = $bd->prepare('UPDATE Client SET nom = :nom, prenom = :prenom, age = :age, adresse = :adresse, telephone = :telephone, description = :description, photoProfil = :photoProfil WHERE idClient = :idClient');
+    $requete = $bd->prepare('UPDATE client SET nom = :nom, prenom = :prenom, age = :age, adresse = :adresse, telephone = :telephone, description = :description, photoProfil = :photoProfil WHERE idClient = :idClient');
 
     $requete->execute(array(
         'nom' => $_POST['nom'],
@@ -137,7 +137,7 @@ if (isset($_POST['Enregistrer'])) {
 <section>
   <h3> Vos reservations </h3>
   <?php
-      $reponse = $bd->query('SELECT * FROM reservation where idClient="'.(string)$_SESSION['idClient'].'"');
+      $reponse = $bd->query('SELECT * FROM reserver where idClient="'.(string)$_SESSION['idClient'].'"');
       $num = 1;
       echo"<table>";
       while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de logements
@@ -179,7 +179,7 @@ if (isset($_POST['Enregistrer'])) {
 // faire un commentaire :
 
       if (isset($_POST['commenter'])) {
-        $reponse=$bd->query('SELECT * FROM Logment WHERE idLogement ="'.$_SESSION['cache'].'";');
+        $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_SESSION['cache'].'";');
         $donnees = $reponse->fetch();
 
         echo "  <label>Commenter le logement ".$donnes['nomLogement'] ." : </label>
@@ -191,7 +191,7 @@ if (isset($_POST['Enregistrer'])) {
         </form>";
         if (isset($_POST['poster'])) {
 
-          $requete = $bd->prepare('INSERT INTO Commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
+          $requete = $bd->prepare('INSERT INTO commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
 
           $requete->execute(array(
             'commenter' => $_POST['commenter'],

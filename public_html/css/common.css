@@ -118,7 +118,8 @@ nav   a:hover::before {
 
 input[type="text"]{
 	border-radius: 10px;
-	padding: 10px;
+	padding: 10px ;
+
 	font-family: 'Sniglet', cursive;
 	font-size: 1em;
   margin-top:5px;
@@ -128,8 +129,8 @@ input[type="text"]{
 
 
 input[type="password"]{
-	border-radius: 10px;
-	padding: 10px;
+  border-radius: 10px;
+	padding: 10px ;
 	font-family: 'Sniglet', cursive;
 	font-size: 1em;
   margin-top:5px;
