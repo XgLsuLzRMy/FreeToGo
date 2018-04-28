@@ -7,7 +7,6 @@
 
 body {
   background: #FAFFD1;
-  background-image: url("zenbg-1.png"), url("zenbg-2.png");
 	font-family: var(--main-font-family);
 	font-weight: 400;
   margin:0;

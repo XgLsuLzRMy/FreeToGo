@@ -52,7 +52,7 @@ if (isset($_SESSION['idClient'])){
     <br/>
     <label>age : </label>
     <br/>
-    <input type="text" name="age" id="nom" placeholder="<?php echo $donnees['age'];?>"/>
+    <input type="number" name="age" id="nom" placeholder="<?php echo $donnees['age'];?>"/>
     <br/>
     <label>Adresse : </label>
     <br/>
@@ -78,7 +78,7 @@ if (isset($_SESSION['idClient'])){
     <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
     <?php
     if (isset($_POST['Enregistrer'])) {
-      $requete = $bd->prepare('UPDATE client SET `nom` = :nom, `prenom` = :prenom, `age` = :age, `adresse` = :adresse, `telephone` = :telephone, `description` = :description, `photoProfil` = :photoProfil WHERE `idClient` = :idClient');
+      $requete = $bd->prepare('UPDATE client SET nom = :nom, prenom = :prenom, age = :age, adresse = :adresse, telephone = :telephone, description = :description, photoProfil = :photoProfil WHERE idClient = :idClient');
 
         $requete->execute(array(
         'nom' => $_POST['nom'],
@@ -88,7 +88,7 @@ if (isset($_SESSION['idClient'])){
         'telephone' => $_POST['telephone'],
         'description' => $_POST['description'],
         'photoProfil' => $_POST['photoProfil'],
-        'idClient' => $donnees['idClient'],
+        'idClient' => $donnees['idClient']
       )); }
 
       ?>
@@ -199,7 +199,7 @@ if (isset($_SESSION['idClient'])){
           $requete->execute(array(
             'commenter' => $_POST['commenter'],
             'idClient' => $_SESSION['idClient'],
-            'idCommentaire' => $com,
+            'idCommentaire' => $com
           ));
           $reponse2=$bd->query('SELECT idCommentaire FROM commentaire');
           $com = 0;
