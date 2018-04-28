@@ -35,18 +35,11 @@ if ( isset($_POST["connexion"]) ) {
   $login='userfreetogo'; //login de l'utilisateur
   $mdp=''; // mot de passe
   $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
-
-  $reponse = $bd->query('SELECT * FROM client');
-  while ($donnees = $reponse->fetch()){
-
-  }
-  $idNouveauClient = $donnees["idClient"]+1;
-  echo "<p>".$idNouveauClient."</p>";
-  $reponse2 = $bd->query('INSERT INTO client (idClient, nom, mail) VALUES'.'("'.$idNouveauClient.'", "'.$_POST["login"].'", "'.$_POST["mail"].'")');
-  $reponse = $bd->query('SELECT * FROM client where idClient=1');
+  
+  $reponse2 = $bd->query('INSERT INTO client (nom, mail) VALUES'.'("'.$_POST["login"].'", "'.$_POST["mail"].'")');
+  $reponse = $bd->query('SELECT LAST_INSERT_ID();');
   $donnees = $reponse->fetch();
-  echo "<p>".$donnees["nom"]."</p>";
-  $reponse2 = $bd->query('INSERT INTO session (login, mdp, idClient) VALUES'.'("'.$_POST["login"].'", "'.$_POST["mdp"].'", '.$idNouveauClient.')');
+  $reponse2 = $bd->query('INSERT INTO session (login, mdp, idClient) VALUES'.'("'.$_POST["login"].'", "'.$_POST["mdp"].'", '.$donnees["LAST_INSERT_ID()"].')');
 
   //header("Location: ./index.php");
 }

@@ -1,5 +1,11 @@
+DROP TABLE commentaire;
+DROP TABLE session;
+DROP TABLE reserver;
+DROP TABLE logement;
+DROP TABLE client;
+
 CREATE TABLE IF NOT EXISTS `client` (
-	`idClient` int(11) NOT NULL,
+	`idClient` int(11) NOT NULL AUTO_INCREMENT,
 	`nom` varchar(30) NOT NULL,
 	`mail` varchar(30) NOT NULL,
 	`prenom` varchar(30) DEFAULT NULL,
@@ -32,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `logement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `reserver` (
-	`numeroReservation` int(11) NOT NULL,
+	`numeroReservation` int(11) NOT NULL AUTO_INCREMENT,
 	`idClient` int(11) DEFAULT NULL,
 	`idLogement` int(11) DEFAULT NULL,
 	`dateDebut` date DEFAULT NULL,
@@ -51,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `commentaire` (
-	`idCommentaire` int(11) NOT NULL,
+	`idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
 	`comment` varchar(500) NOT NULL,
 	`idClient` int(11) NOT NULL,
 	`idLogement` int(11) NOT NULL,
