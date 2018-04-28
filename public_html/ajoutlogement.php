@@ -13,8 +13,8 @@
 <div class="main">
   <!--la partie pour décrire les informations du logement -->
 
-  <form action=ajoutlogement.php method=post>
-    <h3> Votre logement </h3>
+  <form action=ajoutlogement.php method=post enctype="multipart/form-data">
+    <h2> Votre logement </h2>
     <label>Photo du logement : </label>
     <br/>
     <input type="file" accept="image/jpeg" name="photoLogement" id="photo"/>
@@ -39,18 +39,18 @@
     <input type="text" name="adresse" id="adresse" placeholder="saisissez l'adresse"/>
     <br/>
     <label> Prix (pour une nuit) : </label>
-    <input type="number" name="prixNuit" id="prixNuit" placeholder="saisissez le prix pour une nuit"/>
+    <input type="number" name="prixNuit" id="prixNuit" value="1" min="5"  placeholder="saisissez le prix pour une nuit"/>
     <br/>
     <label>Description : </label>
     <br/>
     <textarea name="description" rows="10" cols="80" placeholder="saisissez la description du logement"></textarea>
 
-    <h3> Fonctionnalités </h3>
+    <h2> Fonctionnalités </h2>
     <p>
       Veuillez indiquer les fonctionnalités du logement :<br />
       <input type="checkbox" name="salledebain"  id="salledebain" /> <label for="salledebain">Salle de bain</label><br />
       <input type="checkbox" name="wifi" id="wifi" /> <label for="wifi">Wifi</label><br />
-      <input type="checkbox" name="cuisine value="Cuisine" id="cuisine" /> <label for="cuisine">Cuisine</label><br />
+      <input type="checkbox" name="cuisine" value="Cuisine" id="cuisine" /> <label for="cuisine">Cuisine</label><br />
     </p>
     <input type="submit" class="bouton" name="Enregistrer_Logement" value ="Enregistrer"/>
 
@@ -64,6 +64,18 @@
       $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
       $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
       $donnees = $reponse->fetch();
+      $name="";
+      if(!empty($_FILES)){
+        //copier l'image chargée dans le dossier image
+        $dossier = './images';
+        $tmp_name = $_FILES['photoLogement']["tmp_name"];
+        $name = $_FILES['photoLogement']['name'];
+        move_uploaded_file($tmp_name, "$dossier/$name");
+      }
+      if($name==""){
+        $name="logement_default.png";
+      }
+
 
       if (isset($_POST['Enregistrer_Logement'])) {
         if (isset($_POST['wifi'])) {
@@ -83,7 +95,7 @@
           'nomLogement' => $_POST['nomLogement'],
           'effectif' => $_POST['nbPersonne'],
           'adresse' => $_POST['adresse'],
-          'photo' => $_POST['photoLogement'],
+          'photo' => "$dossier/$name",
           'description' => $_POST['description'],
           'ville' => $_POST['ville'],
           'pays' => $_POST['pays'],

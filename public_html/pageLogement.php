@@ -11,6 +11,16 @@
   <?php include('include/header.html'); ?>
   <div class="main">
   <?php
+  session_start();
+    //ouverture de la connexion
+    $nomserveur='localhost'; //nom du seveur
+    $nombd='freetogo'; //nom de la base de données
+    $login='userfreetogo'; //login de l'utilisateur
+    $mdp=''; // mot de passe
+    $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
+    $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
+    $donnees = $reponse->fetch();
+
     if (isset($_GET["idLogement"])){
       echo "<p>Logement demandé : ".$_GET["idLogement"]."</p>";
 
@@ -30,7 +40,10 @@
       echo "<br/>
       Description :<br/>";
       //Description du logement
-      echo "<img src=\"images/logement_default.png\" style=\"float:right;\" />
+      if($donnees['photo']==NULL){
+        $photo="/images/logement_default.png";
+      }else{$photo=$donnees['photo'];}
+      echo "<img src=".$photo." style=\"float:right;\" class=\"photo\" />
     </div>
     <div id=\"div_commentaire\">
       <h2>Commentaires</h2>

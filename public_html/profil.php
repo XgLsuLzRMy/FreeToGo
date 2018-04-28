@@ -39,7 +39,7 @@ $donnees = $reponse->fetch();
   <!--la partie pour modifier le profil de l'utilisateur -->
 
   <form action="profil.php" method="post">
-    <h3> Votre profil </h3>
+    <h2> Votre profil </h2>
     <br/>
     <label>Nom : </label>
     <br/>
@@ -96,7 +96,7 @@ if (isset($_POST['Enregistrer'])) {
   <!--la partie pour ajouter un logement a louer sur le site -->
 
   <section>
-    <h3> Vos logements </h3>
+    <h2> Vos logements </h2>
     <br/>
   <?php
       $reponse = $bd->query('SELECT * FROM logement where idClient="'.(string)$_SESSION['idClient'].'"');
@@ -135,7 +135,7 @@ if (isset($_POST['Enregistrer'])) {
 <!-- la partie pour voir les réservations -->
 
 <section>
-  <h3> Vos reservations </h3>
+  <h2> Vos reservations </h2>
   <?php
       $reponse = $bd->query('SELECT * FROM reserver where idClient="'.(string)$_SESSION['idClient'].'"');
       $num = 1;

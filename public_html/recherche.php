@@ -18,6 +18,7 @@
       echo "<p>pas de session</p>";
     }
    ?>
+   
   <div id="container">
     <div id="recherche">
       <h2>Recherche de logements</h2>
