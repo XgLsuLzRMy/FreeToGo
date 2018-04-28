@@ -11,7 +11,7 @@ $_donnes['adresse']='rue budule chouette';
 $_donnes['description']='blabla ...Zzzz';
 //
 
-// connection a la base de donnée 
+// connection a la base de donnée
 $nomserveur='localhost'; //nom du seveur
 $nombd='freetogo'; //nom de la base de données
 $login='userfreetogo'; //login de l'utilisateur
@@ -66,7 +66,7 @@ $donnees = $reponse->fetch();
     <textarea name="description" rows="10" cols="80" placeholder="<?php echo $donnees['description'];?>"></textarea>
     <br/>
     <label>Photo de profil : </label>
-    <br/> 
+    <br/>
     <?php if (empty ($donnees['photoProfil'])){
                echo "<input type=\"file\" name=\"photoProfil\" id=\"photo\"/>"; }
           else {echo "<img src=\"".$donnees['photoProfil']."\"/>";}
@@ -143,7 +143,7 @@ if (isset($_POST['Enregistrer'])) {
       while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de logements
       {
         $reponse2 = $bd->query('SELECT * FROM logement where idLogement="'.(string)$_donnees['idLogement'].'"');
-        $donnees = $reponse2->fetch()
+        $donnees = $reponse2->fetch();
         echo "
         <tr>
         <th></th>
@@ -163,8 +163,12 @@ if (isset($_POST['Enregistrer'])) {
         <td>
         <button onclick=\"location.href='pageLogement.php?idLogement=".(string)$donnees["idLogement"]."'\" type=\"button\">VOIR</button>
         </td>
-        <td> <form action=\"profil.php\" method=\"post\"> <input type= \"button\" class=\"bouton\" name=\"commenter\" value=\"ajouter un commentaire\"/> </td> <input type=\"text\" name=\"cache\" style=\"visible:off\" value=\"".$donnees['idLogement'];."\"/> </form>
-      
+        <td>
+        <form action=\"profil.php\" method=\"post\">
+          <input type= \"button\" class=\"bouton\" name=\"commenter\" value=\"ajouter un commentaire\"/>
+          </td> <input type=\"text\" name=\"cache\" style=\"visible:off\" value=\"".$donnees['idLogement']."\"/>
+        </form>
+
         </tr>";
         $num = $num + 1;
       }
@@ -174,7 +178,7 @@ if (isset($_POST['Enregistrer'])) {
 <?php
 // faire un commentaire :
 
-      if (isset($_POST['commenter'])) { 
+      if (isset($_POST['commenter'])) {
         $reponse=$bd->query('SELECT * FROM Logment WHERE idLogement ="'.$_SESSION['cache'].'";');
         $donnees = $reponse->fetch();
 
@@ -182,23 +186,26 @@ if (isset($_POST['Enregistrer'])) {
         <br/>
         <textarea name=\"description\" rows=\"10\" cols=\"80\" placeholder=\"Ecrire un commentaire\"></textarea>
         <br/>
-        <form action=\"profil.php\" method=\"post\"> <input type=\"submit\" class=\"bouton\" name=\"poster\" value=\"poster le commentaire\"/> </form>"
+        <form action=\"profil.php\" method=\"post\">
+          <input type=\"submit\" class=\"bouton\" name=\"poster\" value=\"poster le commentaire\"/>
+        </form>";
         if (isset($_POST['poster'])) {
 
           $requete = $bd->prepare('INSERT INTO Commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
 
           $requete->execute(array(
-          'commenter' => $_POST['commenter'],
-          'idClient' => $_SESSION['idClient'],
-          $reponse2=$bd->query('SELECT idCommentaire FROM Commentaire');
-          $com = 0
-          while ($donnees2 = $reponse2->fetch()) //tant qu'il y a des lignes de logements
-          {
-           $com = $com + 1 ;
-          }
-          'idCommentaire' => $com,
-    )); }
+            'commenter' => $_POST['commenter'],
+            'idClient' => $_SESSION['idClient'],
+            'idCommentaire' => $com,
+        ));
+        $reponse2=$bd->query('SELECT idCommentaire FROM Commentaire');
+        $com = 0;
+        while ($donnees2 = $reponse2->fetch()) //tant qu'il y a des lignes de logements
+        {
+         $com = $com + 1 ;
+        }
       }
+    }
   ?>
 
 

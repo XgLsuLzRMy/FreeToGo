@@ -14,7 +14,7 @@ grant ALL on freetogo.* to 'lucas'@'localhost'
 quit;
 # Verifier que le freetogo.sql est dans le dossier courant
 # Importer le freetogo.sql
-mysql freetogo < freetogo.sql
+mysql -u userfreetogo freetogo < freetogo.sql
 # Ouvrir mysql
 mysql
 use freetogo
@@ -33,3 +33,5 @@ sudo apt-get install php7.0-mysql
 #changer le mot de passe de root
 mysqladmin -u root -p password 'nouveauMotDePasse'
 
+ou
+update user set authentication_string=password('1111') where user='root';
