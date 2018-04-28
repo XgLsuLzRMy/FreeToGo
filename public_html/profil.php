@@ -34,7 +34,7 @@ $donnees = $reponse->fetch();
 </head>
 <body>
   <?php include('include/header.html'); ?>
-
+<div class="main">
 
   <!--la partie pour modifier le profil de l'utilisateur -->
 
@@ -213,6 +213,7 @@ if (isset($_POST['Enregistrer'])) {
 
 
 </section>
+</div>
 
 </body>
 </html>

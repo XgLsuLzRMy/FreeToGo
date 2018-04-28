@@ -9,6 +9,7 @@
 </head>
 <body>
   <?php include('include/header.html'); ?>
+  <div class="main">
   <?php
     if (isset($_GET["idLogement"])){
       echo "<p>Logement demandé : ".$_GET["idLogement"]."</p>";
@@ -70,5 +71,6 @@
   echo "<p> Pas de logement demandé...</p>";
 }
 ?>
+</div>
 </body>
 </html>

@@ -10,7 +10,7 @@
 
 <body>
   <?php include('include/header.html'); ?>
-
+<div class="main">
   <!--la partie pour décrire les informations du logement -->
 
   <form>
@@ -79,5 +79,6 @@
     </section>
 
   </form>
+</div>
 </body>
 </html>

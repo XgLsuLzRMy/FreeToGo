@@ -10,6 +10,7 @@
 </head>
 <body>
   <?php include('include/header.html'); ?>
+  <div class="main">
   <?php
     if (isset($_SESSION["idClient"])){
       echo "<p>".$_SESSION["idClient"]."</p>";
@@ -111,5 +112,6 @@
     }
   }
   ?>
+</div>
 </body>
 </html>

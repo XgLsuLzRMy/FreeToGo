@@ -1,16 +1,11 @@
 body {
-  margin-left: 5%;
-  margin-right: 2%;
   background: #FAFFD1;
 	font-family: 'Work Sans', sans-serif;
 	font-weight: 400;
+  margin:0;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 3%;
-  background: #2EFE9A;
-}
+
 
 h1{
   display: inline;
@@ -41,40 +36,38 @@ img {
   padding: 1%;
 }
 
-.container {
-	width: 80%;
-	margin: auto;
-}
-
-
-header::after {
-  content: '';
-  display: table;
-  clear: both;
-}
 
 .logo {
-  float: left;
-	 padding: 5px 0;
+  float: center;
+	padding: 5px 0;
+  margin-left: 70px;
+  margin-right: 70px;
 }
 
-nav {
-  float: right;
+
+.navbar {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #44c767;
+  margin-bottom:5px;
 }
 
-nav ul {
+
+.navbar  ul {
   margin: 0;
   padding: 0;
 }
 
-nav li {
+.navbar  li {
   display: inline-block;
   margin-left: 70px;
   padding-top: 20px;
   position: relative;
 }
 
-nav a {
+nav  a {
   color: #042c4d;
   text-decoration: none;
   text-transform: uppercase;
@@ -82,7 +75,7 @@ nav a {
 }
 
 
-nav a::before {
+nav  a::before {
   content: '';
   display: block;
   height: 5px;
@@ -93,7 +86,7 @@ nav a::before {
   transition: all ease-in-out 300ms;
 }
 
-nav a:hover::before {
+nav   a:hover::before {
   width: 100%;
 }
 
@@ -142,4 +135,10 @@ input[type="password"]{
   margin-top:5px;
   margin-bottom:5px;
 	border: solid 2px #2efe9a;
+}
+
+
+.main{
+  margin: 30px;
+  padding: 16px;
 }

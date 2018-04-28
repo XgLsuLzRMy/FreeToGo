@@ -8,6 +8,7 @@
   </head>
   <body>
     <?php include('include/header.html'); ?>
+    <div class="main">
     <?php
       if (isset($_POST["connexion"])){
         echo "<p>connexion</p>";
@@ -61,6 +62,7 @@
         <br/>
       </fieldset>
     </form>
+  </div>
   </body>
 
 
