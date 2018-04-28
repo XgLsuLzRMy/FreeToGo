@@ -35,7 +35,7 @@ if (isset($_SESSION['idClient'])){
 </head>
 <body>
   <?php include('include/header.html'); ?>
-
+  <div class="main">
 
   <!--la partie pour modifier le profil de l'utilisateur -->
 
@@ -78,7 +78,7 @@ if (isset($_SESSION['idClient'])){
     <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
     <?php
     if (isset($_POST['Enregistrer'])) {
-      $requete = $bd->prepare('UPDATE client SET `nom` = "nom", `prenom` = "prenom", `age` = "age", `adresse` = "adresse", `telephone` = "telephone", `description` = "description", `photoProfil` = "photoProfil" WHERE `idClient` = idClient');
+      $requete = $bd->prepare('UPDATE client SET `nom` = :nom, `prenom` = :prenom, `age` = :age, `adresse` = :adresse, `telephone` = :telephone, `description` = :description, `photoProfil` = :photoProfil WHERE `idClient` = :idClient');
 
         $requete->execute(array(
         'nom' => $_POST['nom'],
@@ -182,7 +182,7 @@ if (isset($_SESSION['idClient'])){
       // faire un commentaire :
 
       if (isset($_POST['commenter'])) {
-        $reponse=$bd->query('SELECT * FROM Logment WHERE idLogement ="'.$_SESSION['cache'].'";');
+        $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_SESSION['cache'].'";');
         $donnees = $reponse->fetch();
 
         echo "  <label>Commenter le logement ".$donnes['nomLogement'] ." : </label>
@@ -194,14 +194,14 @@ if (isset($_SESSION['idClient'])){
         </form>";
         if (isset($_POST['poster'])) {
 
-          $requete = $bd->prepare('INSERT INTO Commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
+          $requete = $bd->prepare('INSERT INTO commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
 
           $requete->execute(array(
             'commenter' => $_POST['commenter'],
             'idClient' => $_SESSION['idClient'],
             'idCommentaire' => $com,
           ));
-          $reponse2=$bd->query('SELECT idCommentaire FROM Commentaire');
+          $reponse2=$bd->query('SELECT idCommentaire FROM commentaire');
           $com = 0;
           while ($donnees2 = $reponse2->fetch()) //tant qu'il y a des lignes de logements
           {
@@ -216,6 +216,6 @@ if (isset($_SESSION['idClient'])){
 
 
     </section>
-
+  </div>
   </body>
   </html>
