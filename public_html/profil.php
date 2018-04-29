@@ -3,13 +3,6 @@
 <?php
 session_start();
 
-// pour les tets a suprimer
-$_donnes['nom']='jean';
-$_donnes['prenom']='paul';
-$_donnes['age']='40';
-$_donnes['adresse']='rue budule chouette';
-$_donnes['description']='blabla ...Zzzz';
-//
 
 // connection a la base de donnée
 $nomserveur='localhost'; //nom du seveur
@@ -39,32 +32,36 @@ if (isset($_SESSION['idClient'])){
 
   <!--la partie pour modifier le profil de l'utilisateur -->
 
-  <form action="profil.php" method="post">
+  <form  method="post">
     <h2> Votre profil </h2>
     <br/>
     <label>Nom : </label>
     <br/>
-    <input type="text" name="nom" id="nom" placeholder="<?php echo $donnees['nom'];?>"/>
+    <input type="text" name="nom" id="nom" value="<?php echo $donnees['nom'];?>"/ required>
     <br/>
     <label>Prenom : </label>
     <br/>
-    <input type="text" name="prenom" id="nom" placeholder="<?php echo $donnees['prenom'];?>"/>
+    <input type="text" name="prenom" id="nom" value="<?php echo $donnees['prenom'];?>"/>
     <br/>
     <label>age : </label>
     <br/>
-    <input type="number" name="age" id="nom" placeholder="<?php echo $donnees['age'];?>"/>
+    <input type="number" name="age" id="nom" value="<?php echo $donnees['age'];?>"/>
     <br/>
     <label>Adresse : </label>
     <br/>
-    <input type="text" name="adresse" id="nom" placeholder="<?php echo $donnees['adresse'];?>"/>
+    <input type="text" name="adresse" id="nom" value="<?php echo $donnees['adresse'];?>"/>
     <br/>
     <label>Telephone : </label>
     <br/>
-    <input type="text" name="telephone" id="nom" placeholder="<?php echo $donnees['telephone'];?>"/>
+    <input type="text" name="telephone" id="nom" value="<?php echo $donnees['telephone'];?>"/>
+    <br/>
+    <label>Email : </label>
+    <br/>
+    <input type="text" name="mail" id="nom" value="<?php echo $donnees['mail'];?>"/ required>
     <br/>
     <label>Description : </label>
     <br/>
-    <textarea name="description" rows="10" cols="80" placeholder="<?php echo $donnees['description'];?>"></textarea>
+    <textarea name="description" rows="10" cols="80" value="<?php echo $donnees['description'];?>"></textarea>
     <br/>
     <label>Photo de profil : </label>
     <br/>
@@ -77,19 +74,39 @@ if (isset($_SESSION['idClient'])){
 
     <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
     <?php
-    if (isset($_POST['Enregistrer'])) {
-      $requete = $bd->prepare('UPDATE client SET nom = :nom, prenom = :prenom, age = :age, adresse = :adresse, telephone = :telephone, description = :description, photoProfil = :photoProfil WHERE idClient = :idClient');
 
-        $requete->execute(array(
-        'nom' => $_POST['nom'],
-        'prenom' => $_POST['prenom'],
-        'age' => $_POST['age'],
-        'adresse' => $_POST['adresse'],
-        'telephone' => $_POST['telephone'],
-        'description' => $_POST['description'],
-        'photoProfil' => $_POST['photoProfil'],
+    if (isset($_POST['Enregistrer'])) {
+
+      function calculChamps($champ, $donnees){
+        if (isset($_POST[$champ])) {
+          return $_POST[$champ];
+        }elseif($donnees[$champ]!=NULL){
+          return $donnees[$champ];
+        }else{return NULL;}
+      }
+      $nom = calculChamps('nom');
+      $prenom = calculChamps('prenom');
+      $age = calculChamps('age');
+      $adresse = calculChamps('adresse');
+      $telephone = calculChamps('telephone');
+      $mail = calculChamps('mail');
+      $description = calculChamps('description');
+      $photoProfil = calculChamps('photoProfil');
+
+      $requete = $bd->prepare('UPDATE client SET nom = :nom, prenom = :prenom, age = :age, adresse = :adresse, telephone = :telephone, mail =:mail, description = :description, photoProfil = :photoProfil WHERE idClient = :idClient');
+      $requete->execute(array(
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'age' => $age,
+        'adresse' => $adresse,
+        'telephone' => $telephone,
+        'mail' =>  $mail,
+        'description' => $description,
+        'photoProfil' => $photoProfil,
         'idClient' => $donnees['idClient']
-      )); }
+      ));
+      header("Refresh:0");
+    }
 
       ?>
     </form>

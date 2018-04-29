@@ -21,13 +21,13 @@
     <br/>
     <br/>
     <label> Nom du logement : </label>
-    <input type="text" name="nomLogement" id="type" placeholder="saisissez le nom du logement"/>
+    <input type="text" name="nomLogement" id="type" placeholder="saisissez le nom du logement"/ required>
     <br/>
     <label> Type de logement : </label>
-    <input type="text" name="typeLogement" id="type" placeholder="saisissez le type du logement"/>
+    <input type="text" name="typeLogement" id="type" placeholder="saisissez le type du logement"/ required>
     <br/>
     <label>Nombre de personnes : </label>
-    <input type="number" name="nbPersonne" id="nbPersonne" value="1" min="1" max="30">
+    <input type="number" name="nbPersonne" id="nbPersonne" value="1" min="1" max="30" required>
     <br/>
     <label>Pays : </label>
     <input type="text" name="pays" id="pays" placeholder="saisissez le pays"/>
@@ -39,7 +39,7 @@
     <input type="text" name="adresse" id="adresse" placeholder="saisissez l'adresse"/>
     <br/>
     <label> Prix (pour une nuit) : </label>
-    <input type="number" name="prixNuit" id="prixNuit" value="1" min="5"  placeholder="saisissez le prix pour une nuit"/>
+    <input type="number" name="prixNuit" id="prixNuit" value="1" min="5"  placeholder="saisissez le prix pour une nuit"/ required>
     <br/>
     <label>Description : </label>
     <br/>
