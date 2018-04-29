@@ -77,7 +77,7 @@ if (isset($_SESSION['idClient'])){
 
     if (isset($_POST['Enregistrer'])) {
 
-      function calculChamps($champ, $donnees){
+      function calculChamps($champ){
         if (isset($_POST[$champ])) {
           return $_POST[$champ];
         }elseif($donnees[$champ]!=NULL){
