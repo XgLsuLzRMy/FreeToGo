@@ -147,18 +147,20 @@ input[type="text"], input[type="password"],input[type="number"]{
 
 textarea{
   border-radius: 10px;
-  padding: 10px ;
   font-family: var(--main-font-family);
   font-size: 1em;
   margin-top:5px;
   margin-bottom:5px;
-  border: solid 2px var(--main-vertClair);;
+  border: solid 2px var(--main-vertClair);
+  resize: none;
+  width: 80%;
 }
 
 .login-cadre {
   z-index: 1;
-  background: #FFFFFF;
+
   max-width: 360px;
+   background-image: radial-gradient(circle at center, #FAFFD1, #c9ffc4);
   margin: 0 auto 100px;
   -moz-border-radius:20px;
   -webkit-border-radius:20px;

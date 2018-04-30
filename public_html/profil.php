@@ -31,7 +31,9 @@ if (isset($_SESSION['idClient'])){
   <div class="main">
 
   <!--la partie pour modifier le profil de l'utilisateur -->
-
+<table>
+   <tr>
+     <td>
   <form  method="post">
     <h2> Votre profil </h2>
     <br/>
@@ -63,16 +65,22 @@ if (isset($_SESSION['idClient'])){
     <br/>
     <textarea name="description" rows="10" cols="80" value="<?php echo $donnees['description'];?>"></textarea>
     <br/>
+    <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
+  </td>
+  <td align="top" >
     <label>Photo de profil : </label>
     <br/>
-    <?php if (empty ($donnees['photoProfil'])){
-      echo "<input type=\"file\" name=\"photoProfil\" id=\"photo\"/>";
-    }
-    else {echo "<img src=\"".$donnees['photoProfil']."\"/>";}
+    <?php
+    if($donnees['photoProfil']==NULL){
+      $photo="/images/profil_default.png";
+    }else{$photo=$donnees['photoProfil'];}
+    echo "<input type=\"file\" name=\"photoProfil\" id=\"photo\"/>";
+    echo "<img  class=\"photo\" src=\"".$photo."\"/>";
     ?>
     <br/>
-
-    <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
+  </td>
+  </tr>
+    </table>
     <?php
 
     if (isset($_POST['Enregistrer'])) {
