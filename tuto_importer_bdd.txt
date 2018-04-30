@@ -1,20 +1,36 @@
+#ouvrir un serveur PHP (dans le dossier ou se trouve les php)
+php -S localhost:8000
+
+#puis dans le navigateur
+
+localhost:8000/recherche.php
+
+
 # se connecter en tant que root pour avoir les droits de creer une base de donnees
 mysql -u root -p
 # entrer pasword
+
 # creer une base de donnee vide
 create database freetogo;
+
 # creer l'utilisateur qui correspond au php
 create user 'userfreetogo'@'localhost';
+
 # creer l'utilisateur qui correspond a la session (pour eviter d'ecrire son login et mdp a chaque fois qu'on accede a mysql)
 create user 'lucas'@'localhost';
+
 # donner les droits a l'utilisateur de modifier la base de donnees
 grant all on freetogo.* to 'userfreetogo'@'localhost';
+
 # A la place de lucas il faut mettre le nom de l'utilisateur
 grant ALL on freetogo.* to 'lucas'@'localhost'
 quit;
+
 # Verifier que le freetogo.sql est dans le dossier courant
 # Importer le freetogo.sql
+
 mysql -u userfreetogo freetogo < freetogo.sql
+
 # Ouvrir mysql
 mysql
 use freetogo

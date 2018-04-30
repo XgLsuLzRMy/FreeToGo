@@ -25,6 +25,7 @@ h1{
 
 h2 {
   margin-bottom: 2%;
+  margin-top: 2%;
   color: var(--main-bleuFonce);
   font-weight: normal;
   font-family: var(--main-font-family);
@@ -113,7 +114,7 @@ nav   a:hover::before {
 .bouton {
   margin-top:10px;
   margin-bottom:10px;
-	background-color:var(--main-vertFonce);;
+	background-color:var(--main-vertFonce);
 	-moz-border-radius:20px;
 	-webkit-border-radius:20px;
 	border-radius:20px;
@@ -134,30 +135,7 @@ nav   a:hover::before {
 	top:1px;
 }
 
-
-input[type="text"]{
-	border-radius: 10px;
-	padding: 10px ;
-
-	font-family: var(--main-font-family);
-	font-size: 1em;
-  margin-top:5px;
-  margin-bottom:5px;
-	border: solid 2px var(--main-vertClair);;
-}
-
-
-input[type="password"]{
-  border-radius: 10px;
-	padding: 10px ;
-	font-family: var(--main-font-family);
-	font-size: 1em;
-  margin-top:5px;
-  margin-bottom:5px;
-	border: solid 2px var(--main-vertClair);;
-}
-
-input[type="number"]{
+input[type="text"], input[type="password"],input[type="number"]{
   border-radius: 10px;
 	padding: 10px ;
 	font-family: var(--main-font-family);
@@ -177,6 +155,18 @@ textarea{
   border: solid 2px var(--main-vertClair);;
 }
 
+.login-cadre {
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  -moz-border-radius:20px;
+  -webkit-border-radius:20px;
+  border-radius:20px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
 
 .main{
   margin: 30px;
@@ -190,4 +180,11 @@ textarea{
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+label
+{
+	font-family: var(--main-font-family);
+  color: var(--main-bleuFonce);
+  font-weight: bold;
 }

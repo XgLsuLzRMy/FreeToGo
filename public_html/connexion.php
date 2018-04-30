@@ -18,50 +18,41 @@
         echo "<p>Un des boutons n'a pas encore été appuyé</p>";
       }
     ?>
+     <div class="login-cadre">
     <form action="connexion.php" method="post">
-      <fieldset>
-        <legend> Connexion </legend>
+         <h2>   <center>Connexion </h2> </center>
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="login" placeholder="Nom" size= "10"/>
+        <input type="text" name="login" placeholder="Nom" />
         <br/>
         <label> Mot de passe: </label>
         <br/>
-        <!-- Pourquoi le mot de passe ne ferait que 8 caracteres maximum ?? -->
-        <input type="password" name="mdp" placeholder="Mot de passe" size="10" maxlength="8"/>
-        <br/>
+        <input type="password" name="mdp" placeholder="Mot de passe" />
         <br/>
         <input type="submit" class="bouton" name="connexion" value= "Se connecter" />
-
-      </fieldset>
     </form>
+</div>
 
-    <br/>
-    <hr/>
-    <br/>
-
+   <div class="login-cadre">
     <form action="connexion.php" method="post">
-      <fieldset>
-        <legend> Inscription </legend>
+        <h2>   <center> Inscription </h2> </center>
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="login" placeholder="Nom" size= "10"/>
+        <input type="text" name="login" placeholder="Nom" />
         <br/>
         <label> Adresse e-mail: </label>
         <br/>
-        <input type="text" name="mail" placeholder="Mail" size= "10"/>
+        <input type="text" name="mail" placeholder="Mail" />
         <br/>
         <label> Mot de passe: </label>
         <br/>
-        <input type="password" name="mdp"  placeholder="Mot de passe" size="10" maxlength="8"/>
-        <br/>
+        <input type="password" name="mdp"  placeholder="Mot de passe" />
         <br/>
         <input type="submit" class="bouton" name="inscription" value= "S'inscrire" />
-        <br/>
-      </fieldset>
     </form>
+    </div>
   </div>
   </body>
 
