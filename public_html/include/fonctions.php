@@ -1,0 +1,76 @@
+<?php
+function gererPhoto($donnees, $attribut, $imageParDefaut)
+{
+  if($donnees[$attribut]==NULL){
+    $photo=$imageParDefaut;
+  }else{$photo=$donnees[$attribut];}
+  return $photo;
+}
+
+function seConnecterABD()
+{
+  $nomserveur='localhost'; //nom du seveur
+  $nombd='freetogo'; //nom de la base de données
+  $login='userfreetogo'; //login de l'utilisateur
+  $mdp=''; // mot de passe
+  $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
+  return $bd;
+}
+
+
+
+function afficherTableLogement($reponse,$bd){
+  $num = 1;
+  echo"<table>";
+  while ($donnees = $reponse->fetch())
+  {
+    $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees["idClient"].'"');
+    $donneesClient = $reponse2->fetch();
+    echo "
+    <tr>
+    <th></th>
+    <th>Nom du logement</th>
+    <th>Localisation</th>
+    <th>Prix</th>
+    <th>nom du propriétaire</th>
+    <th>Voir</th>
+    </tr>
+    <tr>
+    <td>".$num."</td>
+    <td>".$donnees["nomLogement"]."</td>
+    <td>".$donnees["ville"]." (".$donnees['pays'].")</td>
+    <td>Prix ".$donnees['prix']." €/nuit</td>
+    <td>Mr/Mme ".$donneesClient["nom"]."</td>
+    <td>
+    <button class=\"bouton\" onclick=\"location.href='pageLogement.php?idLogement=".(string)$donnees["idLogement"]."'\" type=\"button\">VOIR</button>
+    </td>
+    </tr>";
+    $num = $num + 1;
+    echo "</table>";
+  }
+}
+
+
+function afficherNom($donnees){
+    echo "<h2>".$donnees['nom']." ".$donnees['prenom']."</h2>";
+    $photo=gererPhoto($donnees,'photoProfil',"images/profil_default.png");
+    echo '<img id="photoProfil" src="'.$photo.'" alt="image de profil" />';
+}
+
+function ouvrirSession(){
+  session_start();
+  if(!isset($_SESSION['idClient'])){
+     header("Location:connexion.php");
+  }
+}
+
+function calculChamps($champ){
+  if (isset($_POST[$champ])) {
+    return $_POST[$champ];
+  }elseif($donnees[$champ]!=NULL){
+    return $donnees[$champ];
+  }else{return NULL;}
+}
+
+
+?>

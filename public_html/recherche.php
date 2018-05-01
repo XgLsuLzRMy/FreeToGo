@@ -1,5 +1,5 @@
 <!doctype html>
-<?php require("connexion.inc.php") ?>
+<?php require("connexion.inc.php");  ?>
 <html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,7 +9,7 @@
   <title>FreeToGo</title>
 </head>
 <body>
-  <?php include('include/header.html'); ?>
+  <?php include('include/header.html');  require_once('include/fonctions.php'); ?>
   <div class="main">
 
     <div id="container">
@@ -42,49 +42,9 @@
       <div id="profil">
         <!-- Code a remplacer par du php -->
         <?php
+        $bd = seConnecterABD();
 
-        function afficherTableLogement($reponse,$bd){
-          $num = 1;
-          echo"<table>";
-          while ($donnees = $reponse->fetch())
-          {
-            $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees["idClient"].'"');
-            $donneesClient = $reponse2->fetch();
-            echo "
-            <tr>
-            <th></th>
-            <th>Nom du logement</th>
-            <th>Localisation</th>
-            <th>Prix</th>
-            <th>nom du propriétaire</th>
-            <th>Voir</th>
-            </tr>
-            <tr>
-            <td>".$num."</td>
-            <td>".$donnees["nomLogement"]."</td>
-            <td>".$donnees["ville"]." (".$donnees['pays'].")</td>
-            <td>Prix ".$donnees['prix']." €/nuit</td>
-            <td>Mr/Mme ".$donneesClient["nom"]."</td>
-            <td>
-            <button class=\"bouton\" onclick=\"location.href='pageLogement.php?idLogement=".(string)$donnees["idLogement"]."'\" type=\"button\">VOIR</button>
-            </td>
-            </tr>";
-            $num = $num + 1;
-          }
-          echo "</table>";
-        }
-
-        function afficherNom($donnees){
-          echo "<h2>".$donnees['nom']." ".$donnees['prenom']."</h2>";
-          echo '<img id="imageProfil" src="'.$donnees['imageProfil'].'" alt="image de profil" />';
-        }
         if (isset($_SESSION["idClient"])){
-          //ouverture de la connexion
-          $nomserveur='localhost'; //nom du seveur
-          $nombd='freetogo'; //nom de la base de données
-          $login='userfreetogo'; //login de l'utilisateur
-          $mdp=''; // mot de passe
-          $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
           $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION["idClient"].'";');
           $donnees = $reponse->fetch();
           afficherNom($donnees);
@@ -98,7 +58,7 @@
         }else{
           $donnees['nom'] = "Connectez-vous";
           $donnees['prenom'] = "";
-          $donnees['imageProfil']="images/profil_default.png";
+          $donnees['photoProfil']="images/profil_default.png";
           afficherNom($donnees);
           echo '
           <form action="connexion.php">
@@ -113,12 +73,7 @@
     if (isset($_POST["rechercher"])){
       if(!empty($_POST["lieu"])){
         echo "<p>Ville recherchée : ".$_POST["lieu"]."</p>";
-        $nomserveur='localhost'; //nom du seveur
-        $nombd='freetogo'; //nom de la base de données
-        $login='userfreetogo'; //login de l'utilisateur
-        $mdp=''; // mot de passe
-
-        $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
+        $bd = seConnecterABD();
         $reponse = $bd->query('SELECT * FROM logement where ville="'.(string)$_POST["lieu"].'"');
 
         afficherTableLogement($reponse, $bd);

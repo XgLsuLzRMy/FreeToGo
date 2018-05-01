@@ -9,26 +9,18 @@
   <body>
     <?php include('include/header.html'); ?>
     <div class="main">
-    <?php
-      if (isset($_POST["connexion"])){
-        echo "<p>connexion</p>";
-      }elseif (isset($_POST["inscription"])){
-        echo "<p>inscription</p>";
-      }else {
-        echo "<p>Un des boutons n'a pas encore été appuyé</p>";
-      }
-    ?>
+      <br/> 
      <div class="login-cadre">
     <form action="connexion.php" method="post">
          <h2>   <center>Connexion </h2> </center>
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="login" placeholder="Nom" />
+        <input type="text" name="login" placeholder="Nom" /required>
         <br/>
         <label> Mot de passe: </label>
         <br/>
-        <input type="password" name="mdp" placeholder="Mot de passe" />
+        <input type="password" name="mdp" placeholder="Mot de passe" /required>
         <br/>
         <input type="submit" class="bouton" name="connexion" value= "Se connecter" />
     </form>
@@ -40,15 +32,15 @@
         <br/>
         <label> Nom de l'utilisateur: </label>
         <br/>
-        <input type="text" name="login" placeholder="Nom" />
+        <input type="text" name="loginInc" placeholder="Nom" /required>
         <br/>
         <label> Adresse e-mail: </label>
         <br/>
-        <input type="text" name="mail" placeholder="Mail" />
+        <input type="text" name="mailInc" placeholder="Mail" /required>
         <br/>
         <label> Mot de passe: </label>
         <br/>
-        <input type="password" name="mdp"  placeholder="Mot de passe" />
+        <input type="password" name="mdpInc"  placeholder="Mot de passe" /required>
         <br/>
         <input type="submit" class="bouton" name="inscription" value= "S'inscrire" />
     </form>

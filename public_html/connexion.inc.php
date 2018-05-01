@@ -1,15 +1,11 @@
-<?php
+<?php  require_once('include/fonctions.php');
 session_start();
+echo "<div class=\"main\">";
 if ( isset($_POST["connexion"]) ) {
 
   $OK = false;
 
-  $nomserveur='localhost'; //nom du seveur
-  $nombd='freetogo'; //nom de la base de données
-  $login='userfreetogo'; //login de l'utilisateur
-  $mdp=''; // mot de passe
-
-  $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
+  $bd = seConnecterABD();
   $reponse = $bd->query('SELECT * FROM session where login="'.(string)$_POST["login"].'"');
   $donnees = $reponse->fetch();
 
@@ -19,7 +15,7 @@ if ( isset($_POST["connexion"]) ) {
 
   if ($loginClient == $_POST["login"] && $mdp == $_POST["mdp"]){
     $_SESSION["idClient"] = $idClient;
-    header("location: ./index.php");
+    header("location: ./recherche.php");
   }
   else{
     header("Location: ./connexion.php");
@@ -30,17 +26,23 @@ if ( isset($_POST["connexion"]) ) {
   header("Location: ./connexion.php");
 }else if(isset($_POST["inscription"])){
   echo "<p>inscription</p>";
-  $nomserveur='localhost'; //nom du seveur
-  $nombd='freetogo'; //nom de la base de données
-  $login='userfreetogo'; //login de l'utilisateur
-  $mdp=''; // mot de passe
-  $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
-  
-  $reponse2 = $bd->query('INSERT INTO client (nom, mail) VALUES'.'("'.$_POST["login"].'", "'.$_POST["mail"].'")');
+  $bd = seConnecterABD();
+  $requete = $bd->prepare('INSERT INTO client (nom, mail) VALUES(:nom,:mail)');
+  $requete->execute(array(
+    'nom' => $_POST["loginInc"],
+    'mail' => $_POST["mailInc"]
+  ));
   $reponse = $bd->query('SELECT LAST_INSERT_ID();');
   $donnees = $reponse->fetch();
-  $reponse2 = $bd->query('INSERT INTO session (login, mdp, idClient) VALUES'.'("'.$_POST["login"].'", "'.$_POST["mdp"].'", '.$donnees["LAST_INSERT_ID()"].')');
+  echo $donnees["LAST_INSERT_ID()"];
+  $requete2 = $bd->prepare('INSERT INTO session (login, mdp, idClient) VALUES(:login,:mdp,:idClient)');
+  $requete2->execute(array(
+    'login' => $_POST["loginInc"],
+    'mdp' => $_POST["mdpInc"],
+    'idClient' => $donnees["LAST_INSERT_ID()"]
+  ));
 
-  //header("Location: ./index.php");
+
 }
+echo "</div>";
  ?>

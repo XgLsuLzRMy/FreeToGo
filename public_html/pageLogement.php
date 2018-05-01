@@ -8,23 +8,18 @@
   <title>FreeToGo</title>
 </head>
 <body>
-  <?php include('include/header.html'); ?>
+  <?php include('include/header.html'); require_once('include/fonctions.php'); ?>
   <div class="main">
   <?php
   session_start();
-    //ouverture de la connexion
-    $nomserveur='localhost'; //nom du seveur
-    $nombd='freetogo'; //nom de la base de données
-    $login='userfreetogo'; //login de l'utilisateur
-    $mdp=''; // mot de passe
-    $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
+    $bd = seConnecterABD();
     $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
     $donnees = $reponse->fetch();
 
     if (isset($_GET["idLogement"])){
       echo "<p>Logement demandé : ".$_GET["idLogement"]."</p>";
 
-  echo "<div id=\"container\">
+      echo "<div id=\"container\">
     <div id=\"div_logement\" >
       <h2>Logement</h2>
       Type de logement :<br/>";
@@ -40,9 +35,7 @@
       echo "<br/>
       Description :<br/>";
       //Description du logement
-      if($donnees['photo']==NULL){
-        $photo="/images/logement_default.png";
-      }else{$photo=$donnees['photo'];}
+      $photo=gererPhoto($donnees,'photo',"/images/logement_default.png");
       echo "<img src=".$photo." style=\"float:right;\" class=\"photo\" />
     </div>
     <div id=\"div_commentaire\">

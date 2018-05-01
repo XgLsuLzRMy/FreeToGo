@@ -1,19 +1,7 @@
 <!-- ouverture de la session -->
 
-<?php
-session_start();
-
-
-// connection a la base de donnée
-$nomserveur='localhost'; //nom du seveur
-$nombd='freetogo'; //nom de la base de données
-$login='userfreetogo'; //login de l'utilisateur
-$mdp=''; // mot de passe
-$bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
-if (isset($_SESSION['idClient'])){
-  $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
-  $donnees = $reponse->fetch();
-}
+<?php require_once('include/fonctions.php');
+ouvrirSession();
 ?>
 
 <!--page HTML -->
@@ -27,53 +15,61 @@ if (isset($_SESSION['idClient'])){
   <title>FreeToGo</title>
 </head>
 <body>
-  <?php include('include/header.html'); ?>
   <div class="main">
-
+    <?php include('include/header.html');
+    if (isset($_SESSION['idClient'])){
+      $bd = seConnecterABD();
+      $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
+      $donnees = $reponse->fetch();
+    }
+    ?>
   <!--la partie pour modifier le profil de l'utilisateur -->
 <table>
    <tr>
      <td>
-  <form  method="post">
-    <h2> Votre profil </h2>
-    <br/>
-    <label>Nom : </label>
-    <br/>
-    <input type="text" name="nom" id="nom" value="<?php echo $donnees['nom'];?>"/ required>
-    <br/>
-    <label>Prenom : </label>
-    <br/>
-    <input type="text" name="prenom" id="nom" value="<?php echo $donnees['prenom'];?>"/>
-    <br/>
-    <label>age : </label>
-    <br/>
-    <input type="number" name="age" id="nom" value="<?php echo $donnees['age'];?>"/>
-    <br/>
-    <label>Adresse : </label>
-    <br/>
-    <input type="text" name="adresse" id="nom" value="<?php echo $donnees['adresse'];?>"/>
-    <br/>
-    <label>Telephone : </label>
-    <br/>
-    <input type="text" name="telephone" id="nom" value="<?php echo $donnees['telephone'];?>"/>
-    <br/>
-    <label>Email : </label>
-    <br/>
-    <input type="text" name="mail" id="nom" value="<?php echo $donnees['mail'];?>"/ required>
-    <br/>
-    <label>Description : </label>
-    <br/>
-    <textarea name="description" rows="10" cols="80" value="<?php echo $donnees['description'];?>"></textarea>
-    <br/>
-    <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
-  </td>
+       <form  method="post">
+        <h2> Votre profil </h2>
+        <br/>
+        <label>Nom : </label>
+        <br/>
+        <input type="text" name="nom" id="nom" value="<?php if(isset($donnees)){echo $donnees['nom'];}?>"/ required>
+        <br/>
+        <label>Prenom : </label>
+        <br/>
+        <input type="text" name="prenom" id="nom" value="<?php if(isset($donnees)){echo $donnees['prenom'];}?>"/>
+        <br/>
+        <label>age : </label>
+        <br/>
+        <input type="number" name="age" id="nom" value="<?php if(isset($donnees)){echo $donnees['age'];}?>"/>
+        <br/>
+        <label>Adresse : </label>
+        <br/>
+        <input type="text" name="adresse" id="nom" value="<?php if(isset($donnees)){echo $donnees['adresse'];}?>"/>
+        <br/>
+        <label>Telephone : </label>
+        <br/>
+        <input type="text" name="telephone" id="nom" value="<?php if(isset($donnees)){echo $donnees['telephone'];}?>"/>
+        <br/>
+        <label>Email : </label>
+        <br/>
+        <input type="text" name="mail" id="nom" value="<?php if(isset($donnees)){echo $donnees['mail'];}?>"/ required>
+        <br/>
+        <label>Description : </label>
+        <br/>
+        <textarea name="description" rows="10" cols="80" value="<?php if(isset($donnees)){echo $donnees['description'];}?>"></textarea>
+        <br/>
+        <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
+    </td>
   <td align="top" >
     <label>Photo de profil : </label>
     <br/>
     <?php
-    if($donnees['photoProfil']==NULL){
-      $photo="/images/profil_default.png";
-    }else{$photo=$donnees['photoProfil'];}
+    if(isset($donnees)){
+      $data=$donnees;
+    }else{
+      $data=NULL;
+    }
+    $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
     echo "<input type=\"file\" name=\"photoProfil\" id=\"photo\"/>";
     echo "<img  class=\"photo\" src=\"".$photo."\"/>";
     ?>
@@ -84,14 +80,6 @@ if (isset($_SESSION['idClient'])){
     <?php
 
     if (isset($_POST['Enregistrer'])) {
-
-      function calculChamps($champ){
-        if (isset($_POST[$champ])) {
-          return $_POST[$champ];
-        }elseif($donnees[$champ]!=NULL){
-          return $donnees[$champ];
-        }else{return NULL;}
-      }
       $nom = calculChamps('nom');
       $prenom = calculChamps('prenom');
       $age = calculChamps('age');
@@ -125,6 +113,7 @@ if (isset($_SESSION['idClient'])){
       <h2> Vos logements </h2>
       <br/>
       <?php
+      if (isset($_SESSION['idClient'])){
       $reponse = $bd->query('SELECT * FROM logement where idClient="'.(string)$_SESSION['idClient'].'"');
 
       $num = 1;
@@ -151,6 +140,7 @@ if (isset($_SESSION['idClient'])){
         $num = $num + 1;
       }
       echo "</table>";
+    }
       ?>
       <br/>
       <form action="ajoutlogement.php" method="post">

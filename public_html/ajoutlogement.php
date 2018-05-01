@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <?php include('include/header.html'); ?>
+  <?php include('include/header.html'); require_once('include/fonctions.php');  ?>
 <div class="main">
   <!--la partie pour décrire les informations du logement -->
 
@@ -56,12 +56,7 @@
 
     <?php
     session_start();
-      //ouverture de la connexion
-      $nomserveur='localhost'; //nom du seveur
-      $nombd='freetogo'; //nom de la base de données
-      $login='userfreetogo'; //login de l'utilisateur
-      $mdp=''; // mot de passe
-      $bd = new PDO('mysql:host='.$nomserveur.';dbname='.$nombd.'', $login);
+      $bd = seConnecterABD();
       $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
       $donnees = $reponse->fetch();
       $name="";
@@ -87,7 +82,7 @@
         if (isset($_POST['salledebain'])) {
           $salledebain = 1;
         }else {$salledebain = 0;}
-      $requete = $bd->prepare('INSERT INTO logement(prix,type,idClient, nomLogement,effectif, adresse, photo, description, ville, pays, wifi, cuisine,salledebain) VALUES(:prix,:type,:idClient,:nomLogement,:effectif,:adresse,:photo,:description,:ville,:pays,:wifi,:cuisine,:salledebain)');
+        $requete = $bd->prepare('INSERT INTO logement(prix,type,idClient, nomLogement,effectif, adresse, photo, description, ville, pays, wifi, cuisine,salledebain) VALUES(:prix,:type,:idClient,:nomLogement,:effectif,:adresse,:photo,:description,:ville,:pays,:wifi,:cuisine,:salledebain)');
         $requete->execute(array(
           'prix' => $_POST['prixNuit'],
           'type' => $_POST['typeLogement'],
