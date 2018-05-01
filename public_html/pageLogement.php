@@ -52,9 +52,18 @@
       <div>
       <h2>Fonctionnalités</h2>
       <ul>";
-      $sdb = "checked";
       $wifi = "unchecked";
-      $cuisine = "checked";
+      $sdb = "unchecked";
+      $cuisine = "unchecked";
+      if ($donnees["wifi"]){
+        $wifi = "checked";
+      }
+      if ($donnees["salledebain"]){
+        $sdb = "checked";
+      }
+      if ($donnees["cuisine"]){
+        $cuisine = "checked";
+      }
       echo "
       <li class=\"".$sdb."\">Salle de bain</li>
       <li class=\"".$wifi."\">Wifi</li>
