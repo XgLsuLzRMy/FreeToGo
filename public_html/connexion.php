@@ -3,13 +3,12 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" >
     <title> Connexion </title>
   </head>
   <body>
     <?php include('include/header.html'); ?>
     <div class="main">
-      <br/> 
+      <br/>
      <div class="login-cadre">
     <form action="connexion.php" method="post">
          <h2>   <center>Connexion </h2> </center>

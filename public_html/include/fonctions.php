@@ -58,7 +58,9 @@ function afficherNom($donnees){
 }
 
 function ouvrirSession(){
-  session_start();
+  if(session_id() == '') {
+    session_start();
+  }
   if(!isset($_SESSION['idClient'])){
      header("Location:connexion.php");
   }

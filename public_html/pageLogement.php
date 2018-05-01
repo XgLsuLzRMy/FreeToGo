@@ -11,12 +11,11 @@
   <?php include('include/header.html'); require_once('include/fonctions.php'); ?>
   <div class="main">
   <?php
-  session_start();
-    $bd = seConnecterABD();
-    $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
-    $donnees = $reponse->fetch();
-
+  ouvrirSession();
     if (isset($_GET["idLogement"])){
+      $bd = seConnecterABD();
+      $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
+      $donnees = $reponse->fetch();
       echo "<p>Logement demandé : ".$_GET["idLogement"]."</p>";
 
       echo "<div id=\"container\">
