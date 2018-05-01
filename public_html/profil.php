@@ -1,33 +1,25 @@
-<!-- ouverture de la session -->
-
-<?php require_once('include/fonctions.php');
-ouvrirSession();
-?>
-
-<!--page HTML -->
-
 <!doctype html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="css/common.css">
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" >
   <title>FreeToGo</title>
 </head>
+<?php include('include/header.html'); require_once('include/fonctions.php');
+ouvrirSession();
+if (isset($_SESSION['idClient'])){
+  $bd = seConnecterABD();
+  $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
+  $donnees = $reponse->fetch();
+}
+?>
 <body>
   <div class="main">
-    <?php include('include/header.html');
-    if (isset($_SESSION['idClient'])){
-      $bd = seConnecterABD();
-      $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
-      $donnees = $reponse->fetch();
-    }
-    ?>
   <!--la partie pour modifier le profil de l'utilisateur -->
 <table>
    <tr>
      <td>
-       <form  method="post">
+       <form  method=post enctype="multipart/form-data">
         <h2> Votre profil </h2>
         <br/>
         <label>Nom : </label>
@@ -71,7 +63,7 @@ ouvrirSession();
     }
     $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
     echo "<input type=\"file\" name=\"photoProfil\" id=\"photo\"/>";
-    echo "<img  class=\"photo\" src=\"".$photo."\"/>";
+    echo "<img  class=\"photo\"  src=\"".$photo."\"/>";
     ?>
     <br/>
   </td>
@@ -79,15 +71,36 @@ ouvrirSession();
     </table>
     <?php
 
+
+
     if (isset($_POST['Enregistrer'])) {
-      $nom = calculChamps('nom');
-      $prenom = calculChamps('prenom');
-      $age = calculChamps('age');
-      $adresse = calculChamps('adresse');
-      $telephone = calculChamps('telephone');
-      $mail = calculChamps('mail');
-      $description = calculChamps('description');
-      $photoProfil = calculChamps('photoProfil');
+      $nom = calculChamps("nom",$donnees);
+      $prenom = calculChamps("prenom",$donnees);
+      $age = calculChamps("age",$donnees);
+      $adresse = calculChamps("adresse",$donnees);
+      $telephone = calculChamps("telephone",$donnees);
+      $mail = calculChamps("mail",$donnees);
+      $description = calculChamps("description",$donnees);
+
+
+      $name="";
+      $dossier = './images';
+      if(file_exists($_FILES['photoProfil']['tmp_name']) || is_uploaded_file($_FILES['photoProfil']['tmp_name'])) {
+        //copier l'image chargée dans le dossier image
+        $dossier = './images';
+        $tmp_name = $_FILES['photoProfil']["tmp_name"];
+        $name = $_FILES['photoProfil']['name'];
+        move_uploaded_file($tmp_name, "$dossier/$name");
+        if($name==""){
+          $name="profil_default.png";
+          $photoProfil="$dossier/$name";
+        }
+        $photoProfil="$dossier/$name";
+      }elseif($donnees["photoProfil"]!=NULL){
+        $photoProfil=$donnees["photoProfil"];
+      }
+
+      //$photoProfil = calculChamps('photoProfil',$donnees);
 
       $requete = $bd->prepare('UPDATE client SET nom = :nom, prenom = :prenom, age = :age, adresse = :adresse, telephone = :telephone, mail =:mail, description = :description, photoProfil = :photoProfil WHERE idClient = :idClient');
       $requete->execute(array(

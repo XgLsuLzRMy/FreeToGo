@@ -54,7 +54,7 @@ function afficherTableLogement($reponse,$bd){
 function afficherNom($donnees){
     echo "<h2>".$donnees['nom']." ".$donnees['prenom']."</h2>";
     $photo=gererPhoto($donnees,'photoProfil',"images/profil_default.png");
-    echo '<img id="photoProfil" src="'.$photo.'" alt="image de profil" />';
+      echo "<img  class=\"photo\"  src=\"".$photo."\"/>";
 }
 
 function ouvrirSession(){
@@ -66,7 +66,7 @@ function ouvrirSession(){
   }
 }
 
-function calculChamps($champ){
+function calculChamps($champ,$donnees){
   if (isset($_POST[$champ])) {
     return $_POST[$champ];
   }elseif($donnees[$champ]!=NULL){

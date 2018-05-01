@@ -60,9 +60,9 @@
       $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
       $donnees = $reponse->fetch();
       $name="";
+      $dossier = './images';
       if(!empty($_FILES)){
         //copier l'image chargée dans le dossier image
-        $dossier = './images';
         $tmp_name = $_FILES['photoLogement']["tmp_name"];
         $name = $_FILES['photoLogement']['name'];
         move_uploaded_file($tmp_name, "$dossier/$name");

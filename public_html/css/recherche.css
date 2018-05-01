@@ -1,3 +1,10 @@
+:root {
+  --main-font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --main-vertFonce :   #44c767;
+  --main-vertClair :   #2efe9a;
+  --main-bleuFonce :   #01233f;
+}
+
 #container {
   display: flex; /* Permet de mettre le bloc recherche et profil l'un à coté de l'autre */
   border-style: solid;
