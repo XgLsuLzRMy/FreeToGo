@@ -46,15 +46,15 @@ function afficherTableLogement($reponse,$bd){
     </td>
     </tr>";
     $num = $num + 1;
-    echo "</table>";
   }
+  echo "</table>";
 }
 
 
 function afficherNom($donnees){
-    echo "<h2>".$donnees['nom']." ".$donnees['prenom']."</h2>";
-    $photo=gererPhoto($donnees,'photoProfil',"images/profil_default.png");
-      echo "<img  class=\"photo\"  src=\"".$photo."\"/>";
+  echo "<h2>".$donnees['nom']." ".$donnees['prenom']."</h2>";
+  $photo=gererPhoto($donnees,'photoProfil',"images/profil_default.png");
+  echo "<img  class=\"photo\"  src=\"".$photo."\"/>";
 }
 
 function ouvrirSession(){
@@ -62,7 +62,7 @@ function ouvrirSession(){
     session_start();
   }
   if(!isset($_SESSION['idClient'])){
-     header("Location:connexion.php");
+    header("Location:connexion.php");
   }
 }
 

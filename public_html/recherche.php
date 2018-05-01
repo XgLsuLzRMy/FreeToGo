@@ -69,17 +69,37 @@
     </div>
     <h2>Affichage des logements</h2>
     <?php
+    $bd = seConnecterABD();
+    $requete = "";
     if (isset($_POST["rechercher"])){
       if(!empty($_POST["lieu"])){
-        echo "<p>Ville recherchée : ".$_POST["lieu"]."</p>";
-        $bd = seConnecterABD();
-        $reponse = $bd->query('SELECT * FROM logement where ville="'.(string)$_POST["lieu"].'"');
-
-        afficherTableLogement($reponse, $bd);
-      }else{
-        echo "<p>La ville n'a pas été écrite...</p>";
+        if(!empty($requete)){
+          $requete = $requete.', ';
+        }
+        $requete = $requete.'ville='.$_POST["lieu"].' ';
+      }
+      if(!empty($_POST["prixMin"])){
+        if(!empty($requete)){
+          $requete = $requete.', ';
+        }
+        $requete = $requete.'prix>'.$_POST["prixMin"].' ';
+      }
+      if(!empty($_POST["prixMax"])){
+        if(!empty($requete)){
+          $requete = $requete.', ';
+        }
+        $requete = $requete.'prix<'.$_POST["prixMax"].' ';
+      }
+      if(!empty($_POST["nbPersonnes"])){
+        if(!empty($requete)){
+          $requete = $requete.', ';
+        }
+        $requete = $requete.'effectif>='.$_POST["nbPersonnes"].' ';
       }
     }
+    $requete = 'SELECT * FROM logement where '.$requete;
+    $reponse = $bd->query($requete);
+    afficherTableLogement($reponse, $bd);
     ?>
   </div>
 </body>
