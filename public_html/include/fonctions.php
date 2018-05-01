@@ -37,12 +37,12 @@ function afficherTableLogement($reponse,$bd){
     </tr>
     <tr>
     <td>".$num."</td>
-    <td>".$donnees["nomLogement"]."</td>
-    <td>".$donnees["ville"]." (".$donnees['pays'].")</td>
+    <td>". htmlspecialchars($donnees["nomLogement"])."</td>
+    <td>". htmlspecialchars($donnees["ville"])." (". htmlspecialchars($donnees['pays']).")</td>
     <td>Prix ".$donnees['prix']." €/nuit</td>
-    <td>Mr/Mme ".$donneesClient["nom"]."</td>
+    <td>Mr/Mme ". htmlspecialchars($donneesClient["nom"])."</td>
     <td>
-    <button class=\"bouton\" onclick=\"location.href='pageLogement.php?idLogement=".(string)$donnees["idLogement"]."'\" type=\"button\">VOIR</button>
+    <button class=\"bouton\" onclick=\"location.href='pageLogement.php?idLogement=".$donnees["idLogement"]."'\" type=\"button\">VOIR</button>
     </td>
     </tr>";
     $num = $num + 1;
