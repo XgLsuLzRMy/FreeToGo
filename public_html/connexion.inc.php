@@ -1,6 +1,5 @@
 <?php  require_once('include/fonctions.php');
 session_start();
-echo "<div class=\"main\">";
 if ( isset($_POST["connexion"]) ) {
 
   $OK = false;
@@ -25,7 +24,6 @@ if ( isset($_POST["connexion"]) ) {
   session_destroy();
   header("Location: ./connexion.php");
 }else if(isset($_POST["inscription"])){
-  echo "<p>inscription</p>";
   $bd = seConnecterABD();
   $requete = $bd->prepare('INSERT INTO client (nom, mail) VALUES(:nom,:mail)');
   $requete->execute(array(
@@ -34,7 +32,6 @@ if ( isset($_POST["connexion"]) ) {
   ));
   $reponse = $bd->query('SELECT LAST_INSERT_ID();');
   $donnees = $reponse->fetch();
-  echo $donnees["LAST_INSERT_ID()"];
   $requete2 = $bd->prepare('INSERT INTO session (login, mdp, idClient) VALUES(:login,:mdp,:idClient)');
   $requete2->execute(array(
     'login' => $_POST["loginInc"],
@@ -44,5 +41,4 @@ if ( isset($_POST["connexion"]) ) {
 
 
 }
-echo "</div>";
  ?>
