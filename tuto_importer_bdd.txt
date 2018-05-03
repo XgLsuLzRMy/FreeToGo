@@ -1,13 +1,11 @@
-#ouvrir un serveur PHP (dans le dossier ou se trouve les php)
-php -S localhost:8000
+# -- Installer mysql et php --
+sudo apt-get install mysql-common mysql-server
+sudo apt-get install php7.0
 
-#puis dans le navigateur
-
-localhost:8000/recherche.php
-
+# -- Creer la base de donnees --
 
 # se connecter en tant que root pour avoir les droits de creer une base de donnees
-mysql -u root -p
+sudo mysql -u root -p
 # entrer pasword
 
 # creer une base de donnee vide
@@ -36,7 +34,7 @@ mysql
 use freetogo
 show tables;
 
-
+# -- Installer PHP --
 
 
 #voir les versions php-mysql installer
@@ -51,3 +49,11 @@ mysqladmin -u root -p password 'nouveauMotDePasse'
 
 ou
 update user set authentication_string=password('1111') where user='root';
+
+#ouvrir un serveur PHP (dans le dossier ou se trouve les php)
+php -S localhost:8000
+
+#puis dans le navigateur
+
+localhost:8000/recherche.php
+
