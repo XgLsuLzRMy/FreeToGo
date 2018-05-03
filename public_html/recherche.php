@@ -14,7 +14,7 @@
     <div id="container">
       <div id="recherche">
         <h2>Recherche de logements</h2>
-        <form action="recherche.php" method="post">
+        <form action="recherche.php" method="get">
           <div id="col_gauche">
             <label>Lieu</label>
             <input type="text" name="lieu" placeholder="Ville où se situe le logement"/>
@@ -71,32 +71,34 @@
     <?php
     $bd = seConnecterABD();
     $requete = "";
-    if (isset($_POST["rechercher"])){
-      if(!empty($_POST["lieu"])){
+
+    if (isset($_GET["rechercher"])){
+      if(!empty($_GET["lieu"])){
         if(!empty($requete)){
           $requete = $requete.', ';
         }
-        $requete = $requete.'ville='.$_POST["lieu"].' ';
+        $requete = $requete.'ville='.$_GET["lieu"].' ';
       }
-      if(!empty($_POST["prixMin"])){
+      if(!empty($_GET["prixMin"])){
         if(!empty($requete)){
           $requete = $requete.', ';
         }
-        $requete = $requete.'prix>'.$_POST["prixMin"].' ';
+        $requete = $requete.'prix>'.$_GET["prixMin"].' ';
       }
-      if(!empty($_POST["prixMax"])){
+      if(!empty($_GET["prixMax"])){
         if(!empty($requete)){
           $requete = $requete.', ';
         }
-        $requete = $requete.'prix<'.$_POST["prixMax"].' ';
+        $requete = $requete.'prix<'.$_GET["prixMax"].' ';
       }
-      if(!empty($_POST["nbPersonnes"])){
+      if(!empty($_GET["nbPersonnes"])){
         if(!empty($requete)){
           $requete = $requete.', ';
         }
-        $requete = $requete.'effectif>='.$_POST["nbPersonnes"].' ';
+        $requete = $requete.'effectif>='.$_GET["nbPersonnes"].' ';
       }
     }
+
     $requete = 'SELECT * FROM logement where '.$requete;
     $reponse = $bd->query($requete);
     afficherTableLogement($reponse, $bd);
