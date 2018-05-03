@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `reserver` (
 
 CREATE TABLE IF NOT EXISTS `session` (
 	`login` varchar(30) NOT NULL,
-	`mdp` varchar(30) NOT NULL,
+	`mdp` varchar(512) NOT NULL,
 	`idClient` int(11) DEFAULT NULL,
 	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
 	PRIMARY KEY (`login`)
