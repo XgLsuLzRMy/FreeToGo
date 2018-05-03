@@ -77,7 +77,7 @@
         if(!empty($requete)){
           $requete = $requete.', ';
         }
-        $requete = $requete.'ville='.$_GET["lieu"].' ';
+        $requete = $requete.'ville="'.$_GET["lieu"].'" ';
       }
       if(!empty($_GET["prixMin"])){
         if(!empty($requete)){
