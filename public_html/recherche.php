@@ -77,7 +77,8 @@
         if(!empty($requete)){
           $requete = $requete.', ';
         }
-        $requete = $requete.'ville="'.$_GET["lieu"].'" ';
+        $requete = $requete.'ville LIKE "%'.$_GET["lieu"].'%" '; // les % fonctionnent comme les * d'habitude
+        // Cette requete permet de reconnaitre le mot "Ville" en ayant écrit "ill", "Vil" ou "lle" mais pas "Villes" ou "LaVille" par exemple
       }
       if(!empty($_GET["prixMin"])){
         if(!empty($requete)){
