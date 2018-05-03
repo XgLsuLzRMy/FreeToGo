@@ -1,8 +1,8 @@
-DROP TABLE commentaire;
-DROP TABLE session;
-DROP TABLE reserver;
-DROP TABLE logement;
-DROP TABLE client;
+DROP TABLE IF EXISTS commentaire;
+DROP TABLE IF EXISTS session;
+DROP TABLE IF EXISTS reserver;
+DROP TABLE IF EXISTS logement;
+DROP TABLE IF EXISTS client;
 
 CREATE TABLE IF NOT EXISTS `client` (
 	`idClient` int(11) NOT NULL AUTO_INCREMENT,
