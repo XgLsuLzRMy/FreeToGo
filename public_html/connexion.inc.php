@@ -53,9 +53,12 @@ if ( isset($_POST["connexion"]) ) {
   header("Location: ./connexion.php");
 }else if(isset($_POST["inscription"])){
   $bd = seConnecterABD();
-  $reponseLogin = $bd->query('SELECT * FROM session WHERE login="'.$_POST["loginInc"].'"'); // verifier que le login n'existe pas deja
-  $reponseMail = $bd->query('SELECT * FROM session WHERE login="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
-  if($reponseLogin && $reponseMail){
+  $con = mysqli_connect("localhost", "userfreetogo", "", "freetogo");
+  //$reponseLogin = $bd->query('SELECT * FROM session WHERE login="'.$_POST["loginInc"].'"'); // verifier que le login n'existe pas deja
+  $reponseLogin = mysqli_query($con, 'SELECT * FROM session WHERE login="'.$_POST["loginInc"].'"'); // verifier que le login n'existe pas deja
+  //$reponseMail = $bd->query('SELECT * FROM session WHERE login="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
+  $reponseMail = mysqli_query($con, 'SELECT * FROM client WHERE mail="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
+  if(mysqli_num_rows($reponseLogin) == 0 && mysqli_num_rows($reponseMail) == 0){
     $patternMail = '/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+/i';
     if(preg_match('/\s/', $_POST["loginInc"]) || empty($_POST["mdpInc"]) || !preg_match($patternMail, $_POST["mailInc"])){
       // il ne doit pas y avoir d'espace dans le login

@@ -11,7 +11,7 @@
   <?php include('include/header.html'); require_once('include/fonctions.php'); ?>
   <div class="main">
     <?php
-    ouvrirSession();
+    //ouvrirSession(); // a enlever car cela redirige vers connexion.php si l'utilisateur qui souhaite regarder ce logement n'est pas connecté
     if (isset($_GET["idLogement"])){
       $bd = seConnecterABD();
       $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
@@ -71,18 +71,35 @@
       </ul>
       </div>
       <h2>Profil Propriétaire</h2>
-      <div style=\"display:flex;\">
-      Nom :<br/>";
+      <div style=\"display:flex;\">";
+      $idProprietaire = $donnees["idClient"];
+      $reponse2=$bd->query('SELECT * FROM client WHERE idClient ="'.$idProprietaire.'";');
+      $donneesProprietaire = $reponse2->fetch();
+      echo "Nom :<br/>";
       //nom utilisateur
+      echo $donneesProprietaire["nom"]." ".$donneesProprietaire["prenom"];
       echo "<br/>
       Age :<br/>";
       //Age utilisateur
+      if (!empty($donneesProprietaire["age"])){
+        echo $donneesProprietaire["age"];
+      }else{
+        echo "inconnu";
+      }
       echo "<br/>
       Résidence Principale :<br/>";
       //Ville
+      if (!empty($donneesProprietaire["ville"])){
+        echo $donneesProprietaire["ville"];
+      }else{
+        echo "inconnue";
+      }
       echo "<br/>
       Description :<br/>";
       //Description du propriétaire
+      if (!empty($donneesProprietaire["description"])){
+        echo $donneesProprietaire["description"];
+      }
       echo "<img src=\"images/profil_default.png\" style=\"float:right;margin-left:15%;\"/>
       </div>";
     }else{
