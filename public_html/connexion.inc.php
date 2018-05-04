@@ -2,18 +2,31 @@
 session_start();
 
 function connexion($bd, $login, $mdp){
-  $reponse = $bd->query('SELECT * FROM session where login="'.$login.'"');
-  $donnees = $reponse->fetch();
-  $idClient = $donnees["idClient"];
-  $loginClient = $donnees["login"];
-  $mdpClient = $donnees["mdp"];
-  if ($loginClient == $login && $mdpClient == hash('sha512',$mdp)){
-    $_SESSION["idClient"] = $idClient;
-    header("location: ./recherche.php");
+  if (empty($login)){
+    //header("Location: ./connexion.php");
+    echo "<br/><br/><br/><p>login vide</p>";
   }
   else{
-    header("Location: ./connexion.php");
+    $reponse = $bd->query('SELECT * FROM session where login="'.$login.'"');
+    if($reponse){
+      $donnees = $reponse->fetch();
+      $idClient = $donnees["idClient"];
+      $loginClient = $donnees["login"];
+      $mdpClient = $donnees["mdp"];
+      if ($loginClient == $login && $mdpClient == hash('sha512',$mdp)){
+        $_SESSION["idClient"] = $idClient;
+        header("location: ./recherche.php");
+      }
+      else{
+        echo "<br/><br/><br/><p>mauvais mdp</p>";
+        //header("Location: ./connexion.php");
+      }
+    }else{
+      echo "<br/><br/><br/><p>mauvais login</p>";
+      //header("Location: ./connexion.php");
+    }
   }
+
 }
 
 function ajoutUtilisateur($bd, $login, $mail, $mdp){
@@ -40,7 +53,22 @@ if ( isset($_POST["connexion"]) ) {
   header("Location: ./connexion.php");
 }else if(isset($_POST["inscription"])){
   $bd = seConnecterABD();
-  ajoutUtilisateur($bd, $_POST["loginInc"], $_POST["mailInc"], $_POST["mdpInc"]);
-  connexion($bd, $_POST["loginInc"], $_POST["mdpInc"]);
+  $reponseLogin = $bd->query('SELECT * FROM session WHERE login="'.$_POST["loginInc"].'"'); // verifier que le login n'existe pas deja
+  $reponseMail = $bd->query('SELECT * FROM session WHERE login="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
+  if($reponseLogin && $reponseMail){
+    $patternMail = '/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+/i';
+    if(preg_match('/\s/', $_POST["loginInc"]) || empty($_POST["mdpInc"]) || !preg_match($patternMail, $_POST["mailInc"])){
+      // il ne doit pas y avoir d'espace dans le login
+      // le mot de passe ne doit pas etre vide
+      // le mail doit etre de la bonne forme
+      echo "<br/><br/><br/><p>login, mail ou mot de passe de la mauvaise forme</p>";
+    }else{
+      ajoutUtilisateur($bd, $_POST["loginInc"], $_POST["mailInc"], $_POST["mdpInc"]);
+      connexion($bd, $_POST["loginInc"], $_POST["mdpInc"]);
+    }
+  }else{
+    echo "<br/><br/><br/><p>utilisateur existe deja</p>";
+
+  }
 }
 ?>

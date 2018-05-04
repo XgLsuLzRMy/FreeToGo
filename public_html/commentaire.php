@@ -1,8 +1,9 @@
 <?php require("connexion.inc.php"); ouvrirSession();?>
 <HTML>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <title> Connexion </title>
   </head>
   <body>

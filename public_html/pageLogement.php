@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <link rel="stylesheet" type="text/css" href="css/common.css">
-  <link rel="stylesheet" type="text/css" href="css/pageLogement.css">
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" >
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/common.css" />
+  <link rel="stylesheet" type="text/css" href="css/pageLogement.css" />
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
   <title>FreeToGo</title>
 </head>
 <body>
