@@ -173,7 +173,7 @@
         echo"<table>";
         while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de logements
         {
-          $reponse2 = $bd->query('SELECT * FROM logement where idLogement="'.(string)$_donnees['idLogement'].'"');
+          $reponse2 = $bd->query('SELECT * FROM logement where idLogement="'.(string)$donnees1['idLogement'].'"');
           $donnees = $reponse2->fetch();
           echo '
           <tr>
@@ -181,23 +181,21 @@
           <th>Nom du logement</th>
           <th>Localisation</th>
           <th>Prix</th>
-          <th>nom du propriétaire</th>
           <th>Voir</th>
           <th>Commenter</th>
           </tr>
           <tr>
-          <td>".$num."</td>
-          <td>Logement ".$donnees["nomLogement"]."</td>
-          <td>".$donnees["ville"]."</td>
-          <td>".$donnees["prix"]."</td>
-          <td>Mr/MMe ".$donnees["nom"]."</td>
+          <td>'.$num.'</td>
+          <td>Logement '.$donnees["nomLogement"].'</td>
+          <td>'.$donnees["ville"].'</td>
+          <td>'.$donnees["prix"].'</td>
           <td>
-          <button onclick="location.href="pageLogement.php?idLogement='.(string)$donnees["idLogement"].'" type="button">VOIR</button>
+          <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button">VOIR</button>
           </td>
           <td>
           <form action="profil.php" method="post">
           <input type= "button" class="bouton" name="commenter" value="ajouter un commentaire"/>
-          </td> <input type="text" name="cache" style="visible:off" value="'.$donnees['idLogement'].'"/>
+          </td> <input type="hidden" name="idLogement" value="'.$donnees1['idLogement'].'"/>
           </form>
 
           </tr>';

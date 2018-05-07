@@ -102,10 +102,38 @@
       }
       echo "<img src=\"images/profil_default.png\" style=\"float:right;margin-left:15%;\"/>
       </div>";
+      echo "
+      <h2>demande de reservation</h2> 
+       </div>";
+       echo '
+       <div class= "main" >
+       <form action="reserver.php" method="post">
+       <tr>
+          <th> Date arrivee</th>
+          <th> <input type="date" name="ddebut" placeholder="Début reservation" required /> </th>
+          <br/>
+          <br/>
+          <br/>
+            <th> Date depart </th>
+        <th> <input type="date" name="dfin" placeholder="Fin reservation" required> </th>
+        <br/>
+        <br/>
+        <input type= "hidden" name= "idLogement1" value= "'.$_GET["idLogement"].'" />
+        <input type="submit" class= "bouton" name= "Reservation" value="Reserver ce logement"></p>
+
+     </div>
+     ';
+     
     }else{
       echo "<p> Pas de logement demandé...</p>";
     }
-    ?>
+    
+   
+
+    
+    
+
+    ?> 
   </div>
 </body>
 </html>
