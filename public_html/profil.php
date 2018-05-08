@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,7 +21,7 @@
         <td>
           <h2> Votre profil </h2>
           <br/>
-          <form  method=post enctype="multipart/form-data">
+          <form  method="post" enctype="multipart/form-data">
             <label>Nom : </label>
             <br/>
             <input type="text" name="nom" value="<?php if(isset($donnees)){echo $donnees['nom'];}?>" required />
@@ -72,19 +71,14 @@
       </tr>
     </table>
     <?php
-
-
-
     if (isset($_POST['Enregistrer'])) {
       $nom = calculChamps("nom",$donnees);
       $prenom = calculChamps("prenom",$donnees);
-      $age = calculChamps("age",$donnees);
+      $age = (int)calculChamps("age",$donnees);
       $adresse = calculChamps("adresse",$donnees);
       $telephone = calculChamps("telephone",$donnees);
       $mail = calculChamps("mail",$donnees);
       $description = calculChamps("description",$donnees);
-
-
       $name="";
       $dossier = './images';
       if(file_exists($_FILES['photoProfil']['tmp_name']) || is_uploaded_file($_FILES['photoProfil']['tmp_name'])) {
@@ -101,9 +95,7 @@
       }elseif($donnees["photoProfil"]!=NULL){
         $photoProfil=$donnees["photoProfil"];
       }
-
       //$photoProfil = calculChamps('photoProfil',$donnees);
-
       $requete = $bd->prepare('UPDATE client SET nom = :nom, prenom = :prenom, age = :age, adresse = :adresse, telephone = :telephone, mail =:mail, description = :description, photoProfil = :photoProfil WHERE idClient = :idClient');
       $requete->execute(array(
         'nom' => $nom,
@@ -118,7 +110,6 @@
       ));
       header("Refresh:0");
     }
-
     ?>
 
     <!--la partie pour ajouter un logement a louer sur le site -->
@@ -129,7 +120,6 @@
       <?php
       if (isset($_SESSION['idClient'])){
         $reponse = $bd->query('SELECT * FROM logement where idClient="'.(string)$_SESSION['idClient'].'"');
-
         $num = 1;
         echo"<table>";
         while ($donnees = $reponse->fetch()) //tant qu'il y a des lignes de logements
@@ -197,7 +187,6 @@
           <input type= "submit" class="bouton" name="commenter" value="Ajouter un commentaire"/>
           </td> <input type="hidden" name="idLogement" value="'.$donnees1['idLogement'].'"/>
           </form>
-
           </tr>';
           $num = $num + 1;
         }
@@ -211,7 +200,6 @@
       if (isset($_POST['commenter'])) {
         $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_SESSION['cache'].'";');
         $donnees = $reponse->fetch();
-
         echo '<label>Commenter le logement "'.$donnes['nomLogement'] .'" : </label>
         <br/>
         <textarea name="description" rows="10" cols="80" placeholder="Ecrire un commentaire"></textarea>
@@ -220,9 +208,7 @@
         <input type="submit" class="bouton" name="poster" value="poster le commentaire"/>
         </form>';
         if (isset($_POST['poster'])) {
-
           $requete = $bd->prepare('INSERT INTO commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
-
           $requete->execute(array(
             'commenter' => $_POST['commenter'],
             'idClient' => $_SESSION['idClient'],
