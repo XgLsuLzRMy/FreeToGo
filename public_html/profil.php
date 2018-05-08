@@ -193,8 +193,8 @@
           <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button">VOIR</button>
           </td>
           <td>
-          <form action="profil.php" method="post">
-          <input type= "button" class="bouton" name="commenter" value="ajouter un commentaire"/>
+          <form action="commentaire.php" method="GET">
+          <input type= "submit" class="bouton" name="commenter" value="Ajouter un commentaire"/>
           </td> <input type="hidden" name="idLogement" value="'.$donnees1['idLogement'].'"/>
           </form>
 
@@ -205,9 +205,9 @@
       }
       ?>
 
-      <?php
+   <?php
       // faire un commentaire :
-
+/*
       if (isset($_POST['commenter'])) {
         $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_SESSION['cache'].'";');
         $donnees = $reponse->fetch();
@@ -236,6 +236,7 @@
           }
         }
       }
+      */
       ?>
 
 

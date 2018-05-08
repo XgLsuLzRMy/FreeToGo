@@ -62,5 +62,6 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 	`idClient` int(11) NOT NULL,
 	`idLogement` int(11) NOT NULL,
 	FOREIGN KEY (`idClient`) REFERENCES client(`idClient`),
+	FOREIGN KEY (`idLogement`) REFERENCES logement(`idLogement`),
 	PRIMARY KEY (`idCommentaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

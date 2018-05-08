@@ -39,7 +39,7 @@
     <input type="text" name="adresse" id="adresse" placeholder="saisissez l'adresse"/>
     <br/>
     <label> Prix (pour une nuit) : </label>
-    <input type="number" name="prixNuit" id="prixNuit" value="1" min="5"  placeholder="saisissez le prix pour une nuit"/ required>
+    <input type="number" name="prixNuit" id="prixNuit" value="5" min="5"  placeholder="saisissez le prix pour une nuit"/ required>
     <br/>
     <label>Description : </label>
     <br/>
@@ -91,7 +91,7 @@
           'effectif' => $_POST['nbPersonne'],
           'adresse' => $_POST['adresse'],
           'photo' => "$dossier/$name",
-          'description' => $_POST['description'],
+          'description' => (string)$_POST['description'],
           'ville' => $_POST['ville'],
           'pays' => $_POST['pays'],
           'wifi' => $wifi,
