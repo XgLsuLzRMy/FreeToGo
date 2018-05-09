@@ -10,29 +10,34 @@
     <?php include('include/header.html');  ?>
     <div class="main">
       <br/>
-     <div class="login-cadre">
-    <form action="profil.php" method="post"  name="posterForm">
-         <h2>   <center>Votre commentaire </h2> </center>
-        <br/>
-        <label>Commentaire : </label>
-        <br/>
-        <textarea  form="posterForm"  name="commentaire" value= "commentaire" id="commentaire" rows="10" placeholder="Saisissez votre commentaire" required></textarea>
-        <br/>
-        <input type="submit" class="bouton" name="Poster"  value="Poster" />
-        <?php
+      <div class="login-cadre">
+        <h2>   <center>Votre commentaire </center> </h2>   <br/>
+        <form action="commentaire.php" method="post">
+
+          <?php
+          echo '<input type="hidden" name="idLogement" value="';
+          echo $_GET['idLogement'];
+          echo '" />';
+          ?>
+          <label>Commentaire : </label>
+          <br/>
+          <textarea name="commentaire" id="commentaire" rows="10" placeholder="Saisissez votre commentaire" required></textarea>
+          <br/>
+          <input type="submit" class="bouton" name="Poster"  value="Poster" />
+          <?php
           $bd = seConnecterABD();
           if (isset($_POST['Poster'])) {
             $requete = $bd->prepare('INSERT INTO commentaire(comment, idClient, idLogement) VALUES(:comment, :idClient,:idLogement)');
             $requete->execute(array(
               'comment' => (string)$_POST['commentaire'],
               'idClient' => $_SESSION['idClient'],
-              'idLogement' => $_GET['idLogement']
-          ));
-        }
-        ?>
-    </form>
-</div>
-
+              'idLogement' => $_POST['idLogement']
+            ));
+          }
+          ?>
+        </form>
+      </div>
+    </div>
   </body>
 
 

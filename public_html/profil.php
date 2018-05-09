@@ -51,7 +51,7 @@
             <textarea name="description" rows="10" cols="80"><?php if(isset($donnees)){echo $donnees['description'];}?></textarea>
             <br/>
             <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
-          </form>
+
         </td>
         <td><!-- ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;"> -->
           <label>Photo de profil : </label>
@@ -68,6 +68,7 @@
           ?>
           <br/>
         </td>
+        </form>
       </tr>
     </table>
     <?php
@@ -81,6 +82,11 @@
       $description = calculChamps("description",$donnees);
       $name="";
       $dossier = './images';
+      if(isset($_FILES['photoProfil']['tmp_name'])){
+        echo "<p>$-FILES['photoProfil']['tmp_name'] est set</p>";
+      }else{
+        echo "<p>$-FILES['photoProfil']['tmp_name'] n'est pas set</p>";
+      }
       if(file_exists($_FILES['photoProfil']['tmp_name']) || is_uploaded_file($_FILES['photoProfil']['tmp_name'])) {
         //copier l'image chargée dans le dossier image
         $dossier = './images';
@@ -108,7 +114,7 @@
         'photoProfil' => $photoProfil,
         'idClient' => $donnees['idClient']
       ));
-      header("Refresh:0");
+      //header("Refresh:0");
     }
     ?>
 
@@ -183,10 +189,7 @@
           <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button">VOIR</button>
           </td>
           <td>
-          <form action="commentaire.php" method="GET">
-          <input type= "submit" class="bouton" name="commenter" value="Ajouter un commentaire"/>
-          </td> <input type="hidden" name="idLogement" value="'.$donnees1['idLogement'].'"/>
-          </form>
+          <button onclick="location.href=\'commentaire.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button">commenter</button>
           </tr>';
           $num = $num + 1;
         }
@@ -194,42 +197,42 @@
       }
       ?>
 
-   <?php
+      <?php
       // faire un commentaire :
-/*
+      /*
       if (isset($_POST['commenter'])) {
-        $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_SESSION['cache'].'";');
-        $donnees = $reponse->fetch();
-        echo '<label>Commenter le logement "'.$donnes['nomLogement'] .'" : </label>
-        <br/>
-        <textarea name="description" rows="10" cols="80" placeholder="Ecrire un commentaire"></textarea>
-        <br/>
-        <form action="profil.php" method="post">
-        <input type="submit" class="bouton" name="poster" value="poster le commentaire"/>
-        </form>';
-        if (isset($_POST['poster'])) {
-          $requete = $bd->prepare('INSERT INTO commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
-          $requete->execute(array(
-            'commenter' => $_POST['commenter'],
-            'idClient' => $_SESSION['idClient'],
-            'idCommentaire' => $com
-          ));
-          $reponse2=$bd->query('SELECT idCommentaire FROM commentaire');
-          $com = 0;
-          while ($donnees2 = $reponse2->fetch()) //tant qu'il y a des lignes de logements
-          {
-            $com = $com + 1 ;
-          }
-        }
-      }
-      */
-      ?>
+      $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_SESSION['cache'].'";');
+      $donnees = $reponse->fetch();
+      echo '<label>Commenter le logement "'.$donnes['nomLogement'] .'" : </label>
+      <br/>
+      <textarea name="description" rows="10" cols="80" placeholder="Ecrire un commentaire"></textarea>
+      <br/>
+      <form action="profil.php" method="post">
+      <input type="submit" class="bouton" name="poster" value="poster le commentaire"/>
+      </form>';
+      if (isset($_POST['poster'])) {
+      $requete = $bd->prepare('INSERT INTO commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
+      $requete->execute(array(
+      'commenter' => $_POST['commenter'],
+      'idClient' => $_SESSION['idClient'],
+      'idCommentaire' => $com
+    ));
+    $reponse2=$bd->query('SELECT idCommentaire FROM commentaire');
+    $com = 0;
+    while ($donnees2 = $reponse2->fetch()) //tant qu'il y a des lignes de logements
+    {
+    $com = $com + 1 ;
+  }
+}
+}
+*/
+?>
 
 
-      <!-- il faudra faire un bouton qui permet d'ajouter un commentaire  : -->
+<!-- il faudra faire un bouton qui permet d'ajouter un commentaire  : -->
 
 
-    </section>
-  </div>
+</section>
+</div>
 </body>
 </html>

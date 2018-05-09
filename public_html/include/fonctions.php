@@ -71,9 +71,9 @@ function ouvrirSession(){
 function calculChamps($champ,$donnees){
   if (isset($_POST[$champ])) {
     return $_POST[$champ];
-  }elseif($donnees[$champ]!=NULL){
+  }else{
     return $donnees[$champ];
-  }else{return NULL;}
+  }
 }
 
 
