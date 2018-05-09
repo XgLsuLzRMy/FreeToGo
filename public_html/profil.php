@@ -130,16 +130,17 @@
         $reponse = $bd->query('SELECT * FROM logement where idClient="'.(string)$_SESSION['idClient'].'"');
         $num = 1;
         echo '<table id="tableaux">';
+        echo '
+        <tr>
+        <th></th>
+        <th>Nom du logement</th>
+        <th>Localisation</th>
+        <th>Prix</th>
+        <th>Voir</th>
+        </tr>';
         while ($donnees = $reponse->fetch()) //tant qu'il y a des lignes de logements
         {
           echo '
-          <tr>
-          <th></th>
-          <th>Nom du logement</th>
-          <th>Localisation</th>
-          <th>Prix</th>
-          <th>Voir</th>
-          </tr>
           <tr>
           <td>'.$num.'</td>
           <td>Logement '.$donnees["nomLogement"].'</td>
@@ -169,19 +170,20 @@
         $reponse = $bd->query('SELECT * FROM reserver where idClient="'.(string)$_SESSION['idClient'].'"');
         $num = 1;
         echo '<table id="tableaux">';
+        echo '
+        <tr>
+        <th></th>
+        <th>Nom du logement</th>
+        <th>Localisation</th>
+        <th>Prix</th>
+        <th>Voir</th>
+        <th>Commenter</th>
+        </tr>';
         while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de logements
         {
           $reponse2 = $bd->query('SELECT * FROM logement where idLogement="'.(string)$donnees1['idLogement'].'"');
           $donnees = $reponse2->fetch();
           echo '
-          <tr>
-          <th></th>
-          <th>Nom du logement</th>
-          <th>Localisation</th>
-          <th>Prix</th>
-          <th>Voir</th>
-          <th>Commenter</th>
-          </tr>
           <tr>
           <td>'.$num.'</td>
           <td>Logement '.$donnees["nomLogement"].'</td>

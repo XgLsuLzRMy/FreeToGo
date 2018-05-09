@@ -26,16 +26,7 @@
 }
 
 
-/* voir https://www.w3schools.com/Css/css_table.asp pour les styles de tableau*/
-table {
-  border-collapse: collapse;
-  width: 80%;
-  margin-left: 5%;
-}
 
-table, th, td {
-  border: 1px solid black;
-}
 
 /* Pour mettre les deux blocs de recherche côte à côte */
 #col_droite {

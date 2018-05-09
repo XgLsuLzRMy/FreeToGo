@@ -48,16 +48,17 @@
         $reponse = $bd->query('SELECT * FROM commentaire where idLogement="'.$_GET["idLogement"].'"');
         $num = 1;
         echo '<table id="tableaux">';
+        echo '
+        <tr>
+        <th></th>
+        <th>Nom du client</th>
+        <th>Commentaire</th>
+        </tr>';
         while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de commentaires pour ce logment
         {
           $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees1['idClient'].'"');
           $donnees = $reponse2->fetch();
           echo '
-          <tr>
-          <th></th>
-          <th>Nom du client</th>
-          <th>Commentaire</th>
-          </tr>
           <tr>
           <td>'.$num.'</td>
           <td> '.$donnees["nom"].' </td>

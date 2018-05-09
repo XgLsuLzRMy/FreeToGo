@@ -205,14 +205,17 @@ label
 #tableaux td {
     text-align: left;
     padding: 5px;
+    border: 1px solid #ddd;
 }
 
 #tableaux tr:nth-child(even){background-color: #E0EAD0}
-#tableaux tr:hover {background-color: #fff}
+#tableaux tr:nth-child(odd){background-color:   #b3ffbc   }
+#tableaux tr:hover {background-color: #faffd1}
 
 #tableaux th {
     background-color: var(--main-vertFonce);
     color: white;
+    border: 1px solid #ddd;
     text-align: left;
     padding: 5px;
 }

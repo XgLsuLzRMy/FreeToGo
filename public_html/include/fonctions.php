@@ -23,19 +23,20 @@ function afficherTableLogement($reponse,$bd){
   $num = 1;
   echo '<table id="tableaux">';
   if ($reponse){
+    echo "
+    <tr>
+    <th></th>
+    <th>Nom du logement</th>
+    <th>Localisation</th>
+    <th>Prix</th>
+    <th>nom du propriétaire</th>
+    <th>Voir</th>
+    </tr>";
     while ($donnees = $reponse->fetch())
     {
       $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees["idClient"].'"');
       $donneesClient = $reponse2->fetch();
       echo "
-      <tr>
-      <th></th>
-      <th>Nom du logement</th>
-      <th>Localisation</th>
-      <th>Prix</th>
-      <th>nom du propriétaire</th>
-      <th>Voir</th>
-      </tr>
       <tr>
       <td>".$num."</td>
       <td>". htmlspecialchars($donnees["nomLogement"])."</td>
