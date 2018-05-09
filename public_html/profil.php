@@ -146,7 +146,7 @@
           <td>'.$donnees["ville"].'</td>
           <td>'.$donnees["prix"].'</td>
           <td>
-          <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees["idLogement"].'\'" type="button">VOIR</button>
+          <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees["idLogement"].'\'" type="button" class="bouton">Voir</button>
           </td>
           </tr>';
           $num = $num + 1;
@@ -188,10 +188,10 @@
           <td>'.$donnees["ville"].'</td>
           <td>'.$donnees["prix"].'</td>
           <td>
-          <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button">VOIR</button>
+          <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button" class="bouton">Voir</button>
           </td>
           <td>
-          <button onclick="location.href=\'commentaire.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button">commenter</button>
+          <button onclick="location.href=\'commentaire.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button" class="bouton">Commenter</button>
           </tr>';
           $num = $num + 1;
         }

@@ -190,3 +190,23 @@ label
   color: var(--main-bleuFonce);
   font-weight: bold;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even){background-color: #E0EAD0}
+tr:hover {background-color: #fff}
+
+th {
+    background-color: var(--main-vertFonce);
+    color: white;
+    text-align: left;
+    padding: 5px;
+}

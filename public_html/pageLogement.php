@@ -45,8 +45,6 @@
       <h2>Commentaires</h2>
       <div class=\"commentaire\">";
       //Affichage des commentaires associés au logement
-      echo "<br/>
-      Commentaires :<br/>";
         $reponse = $bd->query('SELECT * FROM commentaire where idLogement="'.$_GET["idLogement"].'"');
         $num = 1;
         echo"<table>";
@@ -68,9 +66,7 @@
           $num = $num + 1;
         }
         echo "</table>";
-      
-      //Nom utilisateur 1:
-      //<p>Blabla</p>
+
       echo "</div>
       </div>
       </div>
