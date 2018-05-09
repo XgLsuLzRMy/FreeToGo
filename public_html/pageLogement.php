@@ -44,6 +44,32 @@
       <div id=\"div_commentaire\">
       <h2>Commentaires</h2>
       <div class=\"commentaire\">";
+      //Affichage des commentaires associés au logement 
+      echo "<br/>
+      Commentaires :<br/>";
+      if (isset($_SESSION['idClient'])){
+        $reponse = $bd->query('SELECT * FROM commentaire where idLogement="'.$_GET["idLogement"].'"');
+        $num = 1;
+        echo"<table>";
+        while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de commentaires pour ce logment
+        {
+          $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees1        ['idclient'].'"');
+          $donnees = $reponse2->fetch();
+          echo '
+          <tr>
+          <th></th>
+          <th>Nom du client</th>
+          <th>Commentaire</th>
+          </tr>
+          <tr>
+          <td>'.$num.'</td>
+          <td> '.$donnees["nom"].' </td> 
+          <td> '.$donnees1["comment"].'</td>
+          </tr>';
+          $num = $num + 1;
+        }
+        echo "</table>";
+      }
       //Nom utilisateur 1:
       //<p>Blabla</p>
       echo "</div>
@@ -126,9 +152,7 @@
      
     }else{
       echo "<p> Pas de logement demandé...</p>";
-    }
-    
-   
+    } 
 
     
     
