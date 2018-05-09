@@ -191,20 +191,26 @@ label
   font-weight: bold;
 }
 
-table {
+#tableaux {
+    font-family: var(--main-font-family);
     border-collapse: collapse;
     width: 100%;
 }
 
-td {
+#tableaux table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#tableaux td {
     text-align: left;
     padding: 5px;
 }
 
-tr:nth-child(even){background-color: #E0EAD0}
-tr:hover {background-color: #fff}
+#tableaux tr:nth-child(even){background-color: #E0EAD0}
+#tableaux tr:hover {background-color: #fff}
 
-th {
+#tableaux th {
     background-color: var(--main-vertFonce);
     color: white;
     text-align: left;

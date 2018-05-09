@@ -47,7 +47,7 @@
       //Affichage des commentaires associés au logement
         $reponse = $bd->query('SELECT * FROM commentaire where idLogement="'.$_GET["idLogement"].'"');
         $num = 1;
-        echo"<table>";
+        echo '<table id="tableaux">';
         while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de commentaires pour ce logment
         {
           $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees1['idClient'].'"');

@@ -21,7 +21,7 @@ function seConnecterABD()
 
 function afficherTableLogement($reponse,$bd){
   $num = 1;
-  echo"<table>";
+  echo '<table id="tableaux">';
   if ($reponse){
     while ($donnees = $reponse->fetch())
     {

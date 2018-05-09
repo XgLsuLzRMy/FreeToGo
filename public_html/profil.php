@@ -129,7 +129,7 @@
       if (isset($_SESSION['idClient'])){
         $reponse = $bd->query('SELECT * FROM logement where idClient="'.(string)$_SESSION['idClient'].'"');
         $num = 1;
-        echo"<table>";
+        echo '<table id="tableaux">';
         while ($donnees = $reponse->fetch()) //tant qu'il y a des lignes de logements
         {
           echo '
@@ -168,7 +168,7 @@
       if (isset($_SESSION['idClient'])){
         $reponse = $bd->query('SELECT * FROM reserver where idClient="'.(string)$_SESSION['idClient'].'"');
         $num = 1;
-        echo"<table>";
+        echo '<table id="tableaux">';
         while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de logements
         {
           $reponse2 = $bd->query('SELECT * FROM logement where idLogement="'.(string)$donnees1['idLogement'].'"');
