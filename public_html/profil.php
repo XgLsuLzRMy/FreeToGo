@@ -82,16 +82,18 @@
       $description = calculChamps("description",$donnees);
       $name="";
       $dossier = './images';
-      if(isset($_FILES['photoProfil']['tmp_name'])){
-        echo "<p>$-FILES['photoProfil']['tmp_name'] est set</p>";
-      }else{
-        echo "<p>$-FILES['photoProfil']['tmp_name'] n'est pas set</p>";
-      }
+
+
+
       if(file_exists($_FILES['photoProfil']['tmp_name']) || is_uploaded_file($_FILES['photoProfil']['tmp_name'])) {
+        // supprimer l'image précédente
+        if (file_exists($donnees['photoProfil'])){
+          unlink($donnees['photoProfil']);
+        }
         //copier l'image chargée dans le dossier image
         $dossier = './images';
         $tmp_name = $_FILES['photoProfil']["tmp_name"];
-        $name = $_FILES['photoProfil']['name'];
+        $name = "profil_".$_SESSION['idClient'].".".pathinfo($_FILES['photoProfil']['name'], PATHINFO_EXTENSION);
         move_uploaded_file($tmp_name, "$dossier/$name");
         if($name==""){
           $name="profil_default.png";
@@ -114,7 +116,7 @@
         'photoProfil' => $photoProfil,
         'idClient' => $donnees['idClient']
       ));
-      //header("Refresh:0");
+      header("Refresh:0");
     }
     ?>
 
