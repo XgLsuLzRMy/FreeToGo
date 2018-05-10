@@ -71,36 +71,32 @@
     <h2>Affichage des logements</h2>
     <?php
     $bd = seConnecterABD();
-    $requete = "";
+
 
     if (isset($_GET["rechercher"])){
+      $tableauRequetes = array();
       if(!empty($_GET["lieu"])){
-        if(!empty($requete)){
-          $requete = $requete.', ';
-        }
-        $requete = $requete.'ville LIKE "%'.$_GET["lieu"].'%" '; // les % fonctionnent comme les * d'habitude
+        array_push($tableauRequetes, 'ville LIKE "%'.$_GET["lieu"].'%" ');
+ // les % fonctionnent comme les * d'habitude
         // Cette requete permet de reconnaitre le mot "Ville" en ayant écrit "ill", "Vil" ou "lle" mais pas "Villes" ou "LaVille" par exemple
       }
       if(!empty($_GET["prixMin"])){
-        if(!empty($requete)){
-          $requete = $requete.', ';
-        }
-        $requete = $requete.'prix>'.$_GET["prixMin"].' ';
+        array_push($tableauRequetes, 'prix>'.$_GET["prixMin"].' ');
       }
       if(!empty($_GET["prixMax"])){
-        if(!empty($requete)){
-          $requete = $requete.', ';
-        }
-        $requete = $requete.'prix<'.$_GET["prixMax"].' ';
+        array_push($tableauRequetes, 'prix<'.$_GET["prixMax"].' ');
       }
       if(!empty($_GET["nbPersonnes"])){
-        if(!empty($requete)){
-          $requete = $requete.', ';
-        }
-        $requete = $requete.'effectif>='.$_GET["nbPersonnes"].' ';
+        array_push($tableauRequetes, 'effectif>='.$_GET["nbPersonnes"].' ');
       }
     }
-
+    $nombreAnd = count($tableauRequetes) -1;
+    $requete = $tableauRequetes[0];
+    if($nombreAnd>0){
+    for ($i = 0; $i <= $nombreAnd; $i++) {
+      $requete = $requete." AND ".$tableauRequetes[$i];
+    }
+    }
     $requete = 'SELECT * FROM logement where '.$requete;
     $reponse = $bd->query($requete);
     afficherTableLogement($reponse, $bd);

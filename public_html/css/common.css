@@ -135,7 +135,7 @@ nav   a:hover::before {
 	top:1px;
 }
 
-input[type="text"], input[type="password"],input[type="number"]{
+input[type="text"], input[type="password"],input[type="number"],input[type="date"]{
   border-radius: 10px;
 	padding: 10px ;
 	font-family: var(--main-font-family);
