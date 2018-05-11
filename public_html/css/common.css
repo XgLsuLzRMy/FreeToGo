@@ -218,4 +218,33 @@ label
     border: 1px solid #ddd;
     text-align: left;
     padding: 5px;
+  }
+
+
+#alertErreur {
+    padding: 15px;
+    background-color: #F12525;
+    color: white;
+    margin: 1%;
+}
+
+#alertSucces{
+    padding: 15px;
+    background-color: var(--main-vertFonce);
+    color: white;
+    margin: 1%;
+}
+
+.closebtn {
+  color: white;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.closebtn:hover {
+    color: var(--main-bleuFonce);
 }

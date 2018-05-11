@@ -129,7 +129,7 @@
        </div>";
        echo '
        <div class= "main" >
-       <form action="reserver.php" method="post">
+       <form  method="post">
        <tr>
           <th> Date arrivee</th>
           <th> <input type="date" name="ddebut" placeholder="Début reservation" required /> </th>
@@ -145,14 +145,14 @@
 
      </div>
      ';
+       if (isset($_POST['Reservation'])) {
+         session_start();
+         reserver();
+       }
 
     }else{
       echo "<p> Pas de logement demandé...</p>";
     }
-
-
-
-
     ?>
   </div>
 </body>

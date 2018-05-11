@@ -34,6 +34,7 @@
               'idLogement' => $_POST['idLogement']
             ));
             header("location:pageLogement.php?idLogement=".(string)$_POST['idLogement']); //redirige vers la page du logement apres avoir poster le commentaire
+
           }
           ?>
         </form>
