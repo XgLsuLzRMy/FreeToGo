@@ -57,16 +57,13 @@
                    
                     
                     $rep = $bd->query('select count(*) from reserver where (idLogement= "'.(string)$_POST['idLogement1'].'") and ( \''.$_POST['ddebut'].'\' between datedebut and datefin) or (\''.$_POST['dfin'].'\' between datedebut and datefin);');
-                    while($rep2 = $rep->fetch()){
-                    
-                    }
+             
                     
                     //de même les dates de réservation déja existante ne doivent pas être inclu dans l'intervalle de date demandé
                     //donc de même si le nombre de ligne est 0, c'est que la condition est verifiée
                     
                     $rep = $bd->query('select count(*) from reserver where (idLogement= "'.(string)$_POST['idLogement1'].'") and ( datedebut between  \''.$_POST['ddebut'].'\'and  \''.$_POST['dfin'].'\') or ( datefin between  \''.$_POST['ddebut'].'\'and  \''.$_POST['dfin'].'\');');
-                    while($rep3 = $rep->fetch()){
-                    }
+          
                     //on verifie ces deux conditions avant de faire la réservations
                     
                     if  ( ( $rep2["count(*)"] = 0) & ($rep3["count(*)"] = 0 )) {
