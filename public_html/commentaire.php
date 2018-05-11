@@ -33,7 +33,8 @@
               'idClient' => $_SESSION['idClient'],
               'idLogement' => $_POST['idLogement']
             ));
-            header("location:pageLogement.php?idLogement=".(string)$_POST['idLogement']); //redirige vers la page du logement apres avoir poster le commentaire
+            afficherMessageSucces("Votre logement a bien été enregistré!");
+            header("refresh:3; url=pageLogement.php?idLogement=".(string)$_POST['idLogement']); //redirige vers la page du logement apres avoir poster le commentaire
 
           }
           ?>

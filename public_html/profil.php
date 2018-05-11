@@ -116,7 +116,8 @@
         'photoProfil' => $photoProfil,
         'idClient' => $donnees['idClient']
       ));
-      header("Refresh:0");
+      afficherMessageSucces("Les modifications ont bien été enregistrées!");
+      header("Refresh:3");
     }
     ?>
 

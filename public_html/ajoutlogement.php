@@ -98,6 +98,8 @@
           'cuisine' => $cuisine,
           'salledebain' => $salledebain
       ));
+      afficherMessageSucces("Votre logement a bien été enregistré!");
+      header("refresh:3; url=profil.php" );
       }
     ?>
 
