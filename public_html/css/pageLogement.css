@@ -6,7 +6,7 @@ sql#container {
 #div_logement {
   margin-right: 0%; /* Espace le bloc recherche du bloc profil */
   border-right-style: solid;
-  border-color: blue;
+  border-color: #44c767;
   padding : 1%; /* Pour que le cadre ne soit pas collé au texte */
   /*width: 70%;*/
   padding-top: 0%; /* Il y a deja la border du h2 donc pas besoin de rajouter */
@@ -41,12 +41,12 @@ sql#container {
   content: "▢";
 }
 
-textarea {
-  width : fit-content;
-  text-align: center;
-  text-indent: -30%;
-  vertical-align: middle;
+textarea{
+  border: solid 2px var(--main-bleuFonce);
+ border-style:dashed;
 }
+
+
 
 .attribut {
   margin : 1%;
