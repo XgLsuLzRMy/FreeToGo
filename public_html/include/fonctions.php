@@ -58,7 +58,7 @@ function afficherNom($donnees){
   echo "<h2>".$donnees['nom']." ".$donnees['prenom']."</h2>";
   $photo=gererPhoto($donnees,'photoProfil',"images/profil_default.png");
   // width:250px pour que l'image soit de taille fixe
-  echo '<img alt="photo de profil" class="photo" style="width:250px;" src="'.$photo.'"/>';
+  echo '<img alt="photo de profil" class="photo photo_profil" src="'.$photo.'"/>';
 }
 
 function ouvrirSession(){
