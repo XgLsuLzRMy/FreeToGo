@@ -148,7 +148,9 @@ function reserver(){
                           'idLogement' => (int) $_POST["idLogement1"]
                           ));
 
-                           afficherMessageSucces("reservation effectuée.");
+                           //afficherMessageSucces("reservation effectuée.");
+                           
+                           return 0;
           } else {  afficherMessageErreur('Appartement déja reservé en ces dates');}
         }else { afficherMessageErreur('erreur4');}
       }else {  afficherMessageErreur('erreur1');}

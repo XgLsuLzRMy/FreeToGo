@@ -10,6 +10,14 @@
 <body>
   <?php include('include/header.html'); require_once('include/fonctions.php'); ?>
   <div class="main">
+
+    <?php
+      if (isset($_GET['reservationEffectuee'])){
+        afficherMessageSucces("reservation effectuée.");
+      }
+     ?>
+
+
     <?php
     //ouvrirSession(); // a enlever car cela redirige vers connexion.php si l'utilisateur qui souhaite regarder ce logement n'est pas connecté
     if (isset($_GET["idLogement"])){
@@ -216,7 +224,13 @@
     <?php
     if (isset($_POST['Reservation'])) {
       session_start();
-      reserver();
+      $res = reserver();
+      if ($res == 0){
+        $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEffectuee";
+        $str = "location: ".$url;
+        //echo '<script>alert("'.$str.'")</script>';
+        header("refresh:1; url=".$url);
+      }
     }
     ?>
   </div>
