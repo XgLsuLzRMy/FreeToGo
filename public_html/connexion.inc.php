@@ -19,10 +19,12 @@ function connexion($bd, $login, $mdp){
       }
       else{
         echo "<br/><br/><br/><p>mauvais mdp</p>";
+        header("Location: ./connexion.php?mauvaisLogin=1");
         //header("Location: ./connexion.php");
       }
     }else{
       echo "<br/><br/><br/><p>mauvais login</p>";
+      header("Location: ./connexion.php?mauvaisLogin=1");
       //header("Location: ./connexion.php");
     }
   }
@@ -65,6 +67,7 @@ if ( isset($_POST["connexion"]) ) {
       // le mot de passe ne doit pas etre vide
       // le mail doit etre de la bonne forme
       echo "<br/><br/><br/><p>login, mail ou mot de passe de la mauvaise forme</p>";
+      header("Location: ./connexion.php?mauvaiseForme=1");
     }else{
       ajoutUtilisateur($bd, $_POST["loginInc"], $_POST["mailInc"], $_POST["mdpInc"]);
       connexion($bd, $_POST["loginInc"], $_POST["mdpInc"]);

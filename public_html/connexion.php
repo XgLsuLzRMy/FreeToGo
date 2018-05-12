@@ -26,7 +26,14 @@
         <input type="submit" class="bouton" name="connexion" value= "Se connecter" />
     </form>
 </div>
-
+<?php
+  if (isset($_GET['mauvaisLogin'])){
+    echo '<script>alert("Mauvais login...");</script>';
+  }
+  if (isset($_GET['mauvaiseForme'])){
+    echo '<script>alert("mail de la mauvaise forme ou mot de passe vide...");</script>';
+  }
+ ?>
    <div class="login-cadre">
     <form action="connexion.php" method="post">
         <h2 style="text-align: center;">Inscription </h2>
