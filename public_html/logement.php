@@ -14,6 +14,26 @@
     <?php
       if (isset($_GET['reservationEffectuee'])){
         afficherMessageSucces("reservation effectuée.");
+        //echo '<script>alert("Hey");</script>';
+      }
+      if (isset($_GET['reservationEchouee'])){
+        if ($_GET['reservationEchouee']==2){
+           afficherMessageErreur('Appartement déja reservé en ces dates');
+        }else if ($_GET['reservationEchouee']==3){
+          afficherMessageErreur('erreur4');
+        }else if ($_GET['reservationEchouee']==4){
+            afficherMessageErreur('erreur1');
+        }else if ($_GET['reservationEchouee']==5){
+          afficherMessageErreur('Les dates de réservation ne sont pas cohérentes: la date d\'arrivée doit être préalable à la date de départ. Veuillez réffectuer la réservation.');
+        }else if ($_GET['reservationEchouee']==6){
+          afficherMessageErreur('La date de fin de sejour est non valide, veuillez recommencer la réservation.');
+        }else if ($_GET['reservationEchouee']==7){
+          afficherMessageErreur('erreur2');
+        }else if ($_GET['reservationEchouee']==7){
+          afficherMessageErreur( 'La date de début de sejour est non valide, veuillez recommencer la réservation.');
+        }else if ($_GET['reservationEchouee']==8){
+          afficherMessageErreur( 'erreur 3');
+        }
       }
      ?>
 
@@ -225,11 +245,20 @@
     if (isset($_POST['Reservation'])) {
       session_start();
       $res = reserver();
-      if ($res == 0){
+      if ($res == 1){
         $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEffectuee";
-        $str = "location: ".$url;
+        $str = "Location: ".$url;
         //echo '<script>alert("'.$str.'")</script>';
-        header("refresh:1; url=".$url);
+        //header($str);
+        //die();
+        echo '<script>window.location.replace("'.$url.'");</script>';
+      }else{
+        $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEchouee=".$res;
+        $str = "Location: ".$url;
+        //echo '<script>alert("'.$str.'")</script>';
+        //header($str);
+        //die();
+        echo '<script>window.location.replace("'.$url.'");</script>';
       }
     }
     ?>

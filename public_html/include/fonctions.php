@@ -149,17 +149,33 @@ function reserver(){
                           ));
 
                            //afficherMessageSucces("reservation effectuée.");
-                           
-                           return 0;
-          } else {  afficherMessageErreur('Appartement déja reservé en ces dates');}
-        }else { afficherMessageErreur('erreur4');}
-      }else {  afficherMessageErreur('erreur1');}
-    }else {  afficherMessageErreur('Les dates de réservation ne sont pas cohérentes: la date d\'arrivée doit être préalable à la date de départ. Veuillez réffectuer la réservation.');}
-      }else { afficherMessageErreur('La date de fin de sejour est non valide, veuillez recommencer la réservation.');}
-    }else {  afficherMessageErreur('erreur2');}
-  }else{ afficherMessageErreur( 'La date de début de sejour est non valide, veuillez recommencer la réservation.');}
 
-  } else { 'erreur3';}
+                           return 1;
+          } else {  //afficherMessageErreur('Appartement déja reservé en ces dates');
+            return 2;
+                }
+        }else { //afficherMessageErreur('erreur4');
+          return 3;
+        }
+      }else {  //afficherMessageErreur('erreur1');
+        return 4;
+      }
+    }else {  //afficherMessageErreur('Les dates de réservation ne sont pas cohérentes: la date d\'arrivée doit être préalable à la date de départ. Veuillez réffectuer la réservation.');
+      return 5;
+    }
+  }else { //afficherMessageErreur('La date de fin de sejour est non valide, veuillez recommencer la réservation.');
+        return 6;
+      }
+    }else {  //afficherMessageErreur('erreur2');
+      return 7;
+    }
+  }else{ //afficherMessageErreur( 'La date de début de sejour est non valide, veuillez recommencer la réservation.');
+    return 8;
+  }
+
+} else { //'erreur3';
+    return 9;
+  }
 }
 
 
