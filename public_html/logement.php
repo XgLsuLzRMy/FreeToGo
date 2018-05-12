@@ -42,11 +42,11 @@
 
               <div class="attribut">
                 <label>Type de logement :</label>
-                <textarea readonly="readonly" >
+
                   <?php
                   echo htmlspecialchars($donnees["type"]);
                   ?>
-                </textarea>
+
               </div>
 
               <div class="attribut"><label>Nombre de personnes :</label>
@@ -75,9 +75,32 @@
                   ?>
                 </textarea>
               </div>
+
             </div> <!-- Fin de la div_logement -->
           </td>
           <td>
+            <h2>Fonctionnalités</h2>
+            <ul id="liste_fonctionnalites">
+              <?php
+              $wifi = "unchecked";
+              $sdb = "unchecked";
+              $cuisine = "unchecked";
+              if ($donnees["wifi"]){
+                $wifi = "checked";
+              }
+              if ($donnees["salledebain"]){
+                $sdb = "checked";
+              }
+              if ($donnees["cuisine"]){
+                $cuisine = "checked";
+              }
+              echo '
+              <li class="'.$sdb.'">Salle de bain</li>
+              <li class="'.$wifi.'">Wifi</li>
+              <li class="'.$cuisine.'">Cuisine</li>';
+              ?>
+            </ul>
+          </div>
             <div id="div_commentaire">
               <h2>Commentaires</h2>
               <div class="commentaire">
@@ -111,28 +134,6 @@
       </table> <!-- Fin du tabeau permettant de séparer en deux colonnes la partie logement et la partie commentaires -->
     </div> <!-- Fin de la div container -->
     <div id="fonctionnalites">
-      <h2>Fonctionnalités</h2>
-      <ul id="liste_fonctionnalites">
-        <?php
-        $wifi = "unchecked";
-        $sdb = "unchecked";
-        $cuisine = "unchecked";
-        if ($donnees["wifi"]){
-          $wifi = "checked";
-        }
-        if ($donnees["salledebain"]){
-          $sdb = "checked";
-        }
-        if ($donnees["cuisine"]){
-          $cuisine = "checked";
-        }
-        echo '
-        <li class="'.$sdb.'">Salle de bain</li>
-        <li class="'.$wifi.'">Wifi</li>
-        <li class="'.$cuisine.'">Cuisine</li>';
-        ?>
-      </ul>
-    </div>
 
     <h2>Profil Propriétaire</h2>
     <div id="description_proprietaire" style="display:flex;">
