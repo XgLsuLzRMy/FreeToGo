@@ -1,5 +1,10 @@
 <!doctype html>
 <?php require("connexion.inc.php") ?>
+<?php
+  if (isset($_SESSION['idClient'])){
+    header("Location: ./index.php"); // redireige vers l'index si l'utilisateur est deja connecté
+  }
+ ?>
 <HTML lang="fr">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,6 +38,13 @@
   if (isset($_GET['mauvaiseForme'])){
     echo '<script>alert("mail de la mauvaise forme ou mot de passe vide...");</script>';
   }
+  if (isset($_GET['mailExistant'])){
+    echo '<script>alert("mail deja utilisé par un utilisateur...");</script>';
+  }
+  if (isset($_GET['loginExistant'])){
+    echo '<script>alert("login deja utilisé par un utilisateur...");</script>';
+  }
+
  ?>
    <div class="login-cadre">
     <form action="connexion.php" method="post">

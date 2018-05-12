@@ -19,12 +19,12 @@ function connexion($bd, $login, $mdp){
       }
       else{
         echo "<br/><br/><br/><p>mauvais mdp</p>";
-        header("Location: ./connexion.php?mauvaisLogin=1");
+        header("Location: ./connexion.php?mauvaisLogin");
         //header("Location: ./connexion.php");
       }
     }else{
       echo "<br/><br/><br/><p>mauvais login</p>";
-      header("Location: ./connexion.php?mauvaisLogin=1");
+      header("Location: ./connexion.php?mauvaisLogin");
       //header("Location: ./connexion.php");
     }
   }
@@ -60,21 +60,26 @@ if ( isset($_POST["connexion"]) ) {
   $reponseLogin = mysqli_query($con, 'SELECT * FROM session WHERE login="'.$_POST["loginInc"].'"'); // verifier que le login n'existe pas deja
   //$reponseMail = $bd->query('SELECT * FROM session WHERE login="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
   $reponseMail = mysqli_query($con, 'SELECT * FROM client WHERE mail="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
-  if(mysqli_num_rows($reponseLogin) == 0 && mysqli_num_rows($reponseMail) == 0){
-    $patternMail = '/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+/i';
-    if(preg_match('/\s/', $_POST["loginInc"]) || empty($_POST["mdpInc"]) || !preg_match($patternMail, $_POST["mailInc"])){
-      // il ne doit pas y avoir d'espace dans le login
-      // le mot de passe ne doit pas etre vide
-      // le mail doit etre de la bonne forme
-      echo "<br/><br/><br/><p>login, mail ou mot de passe de la mauvaise forme</p>";
-      header("Location: ./connexion.php?mauvaiseForme=1");
+  if(mysqli_num_rows($reponseLogin) == 0){
+    if(mysqli_num_rows($reponseMail) == 0){
+      $patternMail = '/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+/i';
+      if(preg_match('/\s/', $_POST["loginInc"]) || empty($_POST["mdpInc"]) || !preg_match($patternMail, $_POST["mailInc"])){
+        // il ne doit pas y avoir d'espace dans le login
+        // le mot de passe ne doit pas etre vide
+        // le mail doit etre de la bonne forme
+        echo "<br/><br/><br/><p>login, mail ou mot de passe de la mauvaise forme</p>";
+        header("Location: ./connexion.php?mauvaiseForme");
+      }else{
+        ajoutUtilisateur($bd, $_POST["loginInc"], $_POST["mailInc"], $_POST["mdpInc"]);
+        connexion($bd, $_POST["loginInc"], $_POST["mdpInc"]);
+      }
     }else{
-      ajoutUtilisateur($bd, $_POST["loginInc"], $_POST["mailInc"], $_POST["mdpInc"]);
-      connexion($bd, $_POST["loginInc"], $_POST["mdpInc"]);
+      echo "<br/><br/><br/><p>mail existe deja</p>";
+      header("Location: ./connexion.php?mailExistant");
     }
   }else{
     echo "<br/><br/><br/><p>utilisateur existe deja</p>";
-
+    header("Location: ./connexion.php?loginExistant");
   }
 }
 ?>
