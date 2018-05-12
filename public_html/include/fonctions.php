@@ -57,7 +57,8 @@ function afficherTableLogement($reponse,$bd){
 function afficherNom($donnees){
   echo "<h2>".$donnees['nom']." ".$donnees['prenom']."</h2>";
   $photo=gererPhoto($donnees,'photoProfil',"images/profil_default.png");
-  echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
+  // width:250px pour que l'image soit de taille fixe
+  echo '<img alt="photo de profil" class="photo" style="width:250px;" src="'.$photo.'"/>';
 }
 
 function ouvrirSession(){

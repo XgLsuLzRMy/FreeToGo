@@ -1,4 +1,4 @@
-#container {
+sql#container {
   display: flex; /* Permet de mettre le bloc recherche et profil l'un à coté de l'autre */
   border-style: solid;
 
@@ -6,13 +6,14 @@
 #div_logement {
   margin-right: 0%; /* Espace le bloc recherche du bloc profil */
   border-right-style: solid;
+  border-color: blue;
   padding : 1%; /* Pour que le cadre ne soit pas collé au texte */
-  width: 70%;
+  /*width: 70%;*/
   padding-top: 0%; /* Il y a deja la border du h2 donc pas besoin de rajouter */
-  flex-grow: 1; /* Le bloc profil rempli son espace (sinon il y a des retours à la ligne inutils) */
+  /*flex-grow: 1; *//* Le bloc profil rempli son espace (sinon il y a des retours à la ligne inutils) */
 }
 #div_commentaire {
-  flex-grow: 1; /* Le bloc profil rempli son espace (sinon il y a des retours à la ligne inutils) */
+  /*flex-grow: 1;*/ /* Le bloc profil rempli son espace (sinon il y a des retours à la ligne inutils) */
   border-style: none;
   padding : 1%; /* Pour que le cadre ne soit pas collé au texte */
   padding-top: 0%; /* Il y a deja la border du h2 donc pas besoin de rajouter */
@@ -24,9 +25,38 @@
   border-width: thin;
 }
 
-li.checked{
-  list-style-type: disc;
+#liste_fonctionnalites {
+   list-style: none;
 }
-li.unchecked{
-  list-style-type: circle;
+
+#liste_fonctionnalites li::before{
+  font-size: 170%;
+  padding-right: 5px;
+}
+
+#liste_fonctionnalites li.checked::before{
+  content: "☑";
+}
+#liste_fonctionnalites li.unchecked::before{
+  content: "▢";
+}
+
+textarea {
+  width : fit-content;
+  text-align: center;
+  text-indent: -30%;
+  vertical-align: middle;
+}
+
+.attribut {
+  margin : 1%;
+  font-size: large;
+}
+
+#description_proprietaire .attribut {
+  text-align: center;
+}
+
+li{
+  font-size : large;
 }
