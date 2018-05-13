@@ -77,7 +77,7 @@
       $tableauRequetes = array();
       if(!empty($_GET["lieu"])){
         array_push($tableauRequetes, 'ville LIKE "%'.$_GET["lieu"].'%" ');
- // les % fonctionnent comme les * d'habitude
+        // les % fonctionnent comme les * d'habitude
         // Cette requete permet de reconnaitre le mot "Ville" en ayant écrit "ill", "Vil" ou "lle" mais pas "Villes" ou "LaVille" par exemple
       }
       if(!empty($_GET["prixMin"])){
@@ -90,12 +90,17 @@
         array_push($tableauRequetes, 'effectif>='.$_GET["nbPersonnes"].' ');
       }
     }
-    $nombreAnd = count($tableauRequetes) -1;
-    $requete = $tableauRequetes[0];
-    if($nombreAnd>0){
-    for ($i = 0; $i <= $nombreAnd; $i++) {
-      $requete = $requete." AND ".$tableauRequetes[$i];
+    if(!empty($tableauRequetes)){
+      $nombreAnd = count($tableauRequetes) -1;
+      $requete = $tableauRequetes[0];
+    }else{
+      $nombreAnd = 0;
+      $requete = "";
     }
+    if($nombreAnd>0){
+      for ($i = 0; $i <= $nombreAnd; $i++) {
+        $requete = $requete." AND ".$tableauRequetes[$i];
+      }
     }
     $requete = 'SELECT * FROM logement where '.$requete;
     $reponse = $bd->query($requete);
