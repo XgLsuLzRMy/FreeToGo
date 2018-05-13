@@ -55,7 +55,7 @@ li{
   font-size : large;
 }
 
-span {
+.champLogement {
   border: solid 2px var(--main-vertFonce);
   border-style:dashed;;
   display: table;

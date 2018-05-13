@@ -60,7 +60,7 @@
 
               <div class="attribut">
                 <label>Description</label> :<br/>
-                <span>
+                <span class="champLogement">
                   <?php
                   echo htmlspecialchars($donnees["description"]);
                   ?>
@@ -70,7 +70,7 @@
 
               <div class="attribut">
                 <label>Type de logement :</label>
-                <span>
+                <span class="champLogement">
                 <?php
                 echo htmlspecialchars($donnees["type"]);
                 ?>
@@ -78,7 +78,7 @@
               </div>
 
               <div class="attribut"><label>Nombre de personnes :</label>
-                <span>
+                <span class="champLogement">
                   <?php
                   echo htmlspecialchars($donnees["effectif"]);
                   ?>
@@ -88,7 +88,7 @@
 
               <div class="attribut">
                 <label>Localisation</label> : <br/>
-                <span>
+                <span class="champLogement">
                   <?php
                   echo htmlspecialchars($donnees["ville"]);
                   ?>
@@ -97,7 +97,7 @@
 
               <div class="attribut">
                 <label>Prix</label> :
-                <span>
+                <span class="champLogement">
                   <?php
                   echo htmlspecialchars($donnees["prix"]).'€';
                   ?>
@@ -173,7 +173,7 @@
 
       <div class="attribut">
         <label>Nom : </label>
-        <span>
+        <span class="champLogement">
           <?php
           echo $donneesProprietaire["nom"]." ".$donneesProprietaire["prenom"];
           ?>
@@ -182,7 +182,7 @@
 
       <div class="attribut">
         <label>Age : </label>
-        <span>
+        <span class="champLogement">
           <?php
           if (!empty($donneesProprietaire["age"])){
             echo $donneesProprietaire["age"];
@@ -195,7 +195,7 @@
 
       <div class="attribut">
         <label>Résidence Principale : </label>
-        <span>
+        <span class="champLogement">
           <?php
           if (!empty($donneesProprietaire["ville"])){
             echo $donneesProprietaire["ville"];
@@ -208,7 +208,7 @@
 
       <div class="attribut">
         <label>Description :</label>
-        <span>
+        <span class="champLogement">
           <?php
           if (!empty($donneesProprietaire["description"])){
             echo $donneesProprietaire["description"];
