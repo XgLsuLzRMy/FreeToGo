@@ -253,3 +253,13 @@ label
 .closebtn:hover {
     color: var(--main-bleuFonce);
 }
+
+
+.ligne {
+    display: flex;
+}
+
+.colonne {
+    flex: 50%;
+    padding: 10px;
+}

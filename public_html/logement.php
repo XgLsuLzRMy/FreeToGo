@@ -220,56 +220,56 @@
       <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;" alt="photo de profil du proprietaire"/>
 
     </div> <!-- Fin de la div description_proprietaire -->
-   
-    
-    
-      <h2>demande de reservation</h2>
       <!-- A faire -->
     </div>
 
-    <div class= "main" >
-      <form method="post">
-        <div style="margin-bottom:5%;">
-          <label> Date arrivee</label>
-          <input type="date" name="ddebut" required />
-        </div>
-        <div style="margin-bottom:3%;">
-          <label> Date depart </label>
-          <input type="date" name="dfin" required>
-        </div>
-        <?php
-        echo '<input type= "hidden" name= "idLogement1" value= "'.$_GET["idLogement"].'" />';
-        ?>
-        <input type="submit" class= "bouton" name= "Reservation" value="Reserver ce logement" />
-      </form>
+
+  <div class="ligne">
+    <div class="colonne">
+      <h2>demande de reservation</h2>
+      <div class= "main" >
+        <form method="post">
+          <div style="margin-bottom:5%;">
+            <label> Date arrivee</label>
+            <input type="date" name="ddebut" required />
+          </div>
+          <div style="margin-bottom:3%;">
+            <label> Date depart </label>
+            <input type="date" name="dfin" required>
+          </div>
+          <?php
+          echo '<input type= "hidden" name= "idLogement1" value= "'.$_GET["idLogement"].'" />';
+          ?>
+          <input type="submit" class= "bouton" name= "Reservation" value="Reserver ce logement" />
+        </form>
+      </div>
     </div>
-    
-     <h2> Logement indisponible aux dates suivantes: </h2>
-    <?php
-    
-    if (isset($_GET["idLogement"])){
-      $bd = seConnecterABD();
-      $r=$bd->query('SELECT datedebut, datefin FROM reserver WHERE idLogement ="'.$_GET["idLogement"].'";');
-      
-      echo '<table id="tableaux">';
-        echo '
-        <tr>
-        <th> Date de début de reservation</th>
-         <th> Date de fin de reservation</th>
-        </tr>';
-        
-         while($d=$r->fetch()){
-         
-        echo '
-        <tr>
-        <td> '.$d['datedebut'].' </td>
-        <td> '.$d['datefin'].' </td>
-        </tr>' ;
-        }
-        
-    }else { echo 'erreur';}
-    
-    ?>
+    <div class="colonne" >
+      <h2> Logement indisponible aux dates suivantes: </h2>
+     <?php
+     if (isset($_GET["idLogement"])){
+       $bd = seConnecterABD();
+       $r=$bd->query('SELECT datedebut, datefin FROM reserver WHERE idLogement ="'.$_GET["idLogement"].'";');
+
+       echo '<table id="tableaux">';
+         echo '
+         <tr>
+         <th> Date de début de reservation</th>
+          <th> Date de fin de reservation</th>
+         </tr>';
+
+          while($d=$r->fetch()){
+
+         echo '
+         <tr>
+         <td> '.$d['datedebut'].' </td>
+         <td> '.$d['datefin'].' </td>
+         </tr>' ;
+         }
+     }
+     ?>
+    </div>
+  </div>
     <?php
     if (isset($_POST['Reservation'])) {
       session_start();
