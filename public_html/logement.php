@@ -217,7 +217,7 @@
         </span>
       </div>
       <!-- Il faudrait afficher l'image du propriétaire -->
-      <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;" alt="photo de profil du proprietaire"/>
+      <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;"  class="photo" alt="photo de profil du proprietaire"/>
 
     </div> <!-- Fin de la div description_proprietaire -->
     <div>

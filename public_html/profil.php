@@ -64,7 +64,8 @@
             <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
 
           </td>
-          <td><!-- ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;"> -->
+          <!--<td> ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;margin-top: 25%;display: block;"> -->
+            <td style="vertical-align: text-top;margin-top: 25%;display: block;">
             <label>Photo de profil : </label>
             <br/>
             <?php
