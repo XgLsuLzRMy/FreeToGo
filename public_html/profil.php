@@ -64,8 +64,7 @@
             <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
 
           </td>
-          <!--<td> ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;margin-top: 25%;display: block;"> -->
-            <td style="vertical-align: text-top;margin-top: 25%;display: block;">
+          <td><!-- ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;"> -->
             <label>Photo de profil : </label>
             <br/>
             <?php
@@ -213,6 +212,8 @@
         <th>Nom du logement</th>
         <th>Localisation</th>
         <th>Prix</th>
+        <th> Date début de reservation </th>
+        <th> Date fin de reservation </th>
         <th>Voir</th>
         <th>Commenter</th>
         </tr>';
@@ -226,6 +227,8 @@
           <td>Logement '.$donnees["nomLogement"].'</td>
           <td>'.$donnees["ville"].'</td>
           <td>'.$donnees["prix"].'</td>
+          <td> '.(string)$donnees1['dateDebut'].' </td>
+          <td>'.(string)$donnees1['dateFin'].' </td>
           <td>
           <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees1["idLogement"].'\'" type="button" class="bouton">Voir</button>
           </td>
