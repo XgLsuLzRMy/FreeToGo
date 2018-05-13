@@ -5,8 +5,8 @@ sql#container {
 }
 #div_logement {
   margin-right: 0%; /* Espace le bloc recherche du bloc profil */
-  border-right-style: solid;
-  border-color: #44c767;
+
+
   padding : 1%; /* Pour que le cadre ne soit pas collé au texte */
   /*width: 70%;*/
   padding-top: 0%; /* Il y a deja la border du h2 donc pas besoin de rajouter */
@@ -60,4 +60,9 @@ li{
   border-style:dashed;;
   display: table;
   padding: 1%;
+}
+
+#container .colonne {
+  border-right-style: solid;
+  border-color: #44c767;
 }
