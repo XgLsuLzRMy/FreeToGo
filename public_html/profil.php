@@ -27,61 +27,62 @@
     }
     ?>
     <!--la partie pour modifier le profil de l'utilisateur -->
-    <table>
-      <tr>
-        <td>
-          <h2> Votre profil </h2>
-          <br/>
-          <form  method="post" enctype="multipart/form-data">
-            <label>Nom : </label>
-            <br/>
-            <input type="text" name="nom" value="<?php if(isset($donnees)){echo $donnees['nom'];}?>" required />
-            <br/>
-            <label>Prenom : </label>
-            <br/>
-            <input type="text" name="prenom" value="<?php if(isset($donnees)){echo $donnees['prenom'];}?>"/>
-            <br/>
-            <label>age : </label>
-            <br/>
-            <input type="number" name="age" value="<?php if(isset($donnees)){echo $donnees['age'];}?>"/>
-            <br/>
-            <label>Adresse : </label>
-            <br/>
-            <input type="text" name="adresse" value="<?php if(isset($donnees)){echo $donnees['adresse'];}?>"/>
-            <br/>
-            <label>Telephone : </label>
-            <br/>
-            <input type="text" name="telephone" value="<?php if(isset($donnees)){echo $donnees['telephone'];}?>"/>
-            <br/>
-            <label>Email : </label>
-            <br/>
-            <input type="text" name="mail" value="<?php if(isset($donnees)){echo $donnees['mail'];}?>" required />
-            <br/>
-            <label>Description : </label>
-            <br/>
-            <textarea name="description" rows="10" cols="80"><?php if(isset($donnees)){echo $donnees['description'];}?></textarea>
-            <br/>
-            <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
+    <form  method="post" enctype="multipart/form-data">
+    <div class="ligne">
+      <div class="colonne" >
+        <h2> Votre profil </h2>
+        <br/>
 
-          </td>
-          <td><!-- ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;"> -->
-            <label>Photo de profil : </label>
-            <br/>
-            <?php
-            if(isset($donnees)){
-              $data=$donnees;
-            }else{
-              $data=NULL;
-            }
-            $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
-            echo '<input type="file" name="photoProfil" id="photo"/>';
-            echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
-            ?>
-            <br/>
-          </td>
-        </form>
-      </tr>
-    </table>
+          <label>Nom : </label>
+          <br/>
+          <input type="text" name="nom" value="<?php if(isset($donnees)){echo $donnees['nom'];}?>" required />
+          <br/>
+          <label>Prenom : </label>
+          <br/>
+          <input type="text" name="prenom" value="<?php if(isset($donnees)){echo $donnees['prenom'];}?>"/>
+          <br/>
+          <label>age : </label>
+          <br/>
+          <input type="number" name="age" value="<?php if(isset($donnees)){echo $donnees['age'];}?>"/>
+          <br/>
+          <label>Adresse : </label>
+          <br/>
+          <input type="text" name="adresse" value="<?php if(isset($donnees)){echo $donnees['adresse'];}?>"/>
+          <br/>
+      </div>
+      <div class="colonne" style="margin-top: 50px;">
+        <label>Telephone : </label>
+        <br/>
+        <input type="text" name="telephone" value="<?php if(isset($donnees)){echo $donnees['telephone'];}?>"/>
+        <br/>
+        <label>Email : </label>
+        <br/>
+        <input type="text" name="mail" value="<?php if(isset($donnees)){echo $donnees['mail'];}?>" required />
+        <br/>
+        <label>Description : </label>
+        <br/>
+        <textarea name="description" rows="10" cols="80"><?php if(isset($donnees)){echo $donnees['description'];}?></textarea>
+        <br/>
+      </div>
+      <div class="colonne" style="margin-top: 50px;" >
+        <label>Photo de profil : </label>
+        <br/>
+        <?php
+        if(isset($donnees)){
+          $data=$donnees;
+        }else{
+          $data=NULL;
+        }
+        $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
+        echo '<input type="file" name="photoProfil" id="photo"/>';
+        echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
+        ?>
+        <br/>
+      </div>
+    </div>
+      <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
+  </form>
+
     <?php
     if (isset($_POST['Enregistrer'])) {
 

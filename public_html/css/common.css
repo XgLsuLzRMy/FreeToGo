@@ -261,4 +261,5 @@ label
 
 .colonne {
     flex: 50%;
+    float: left;
 }
