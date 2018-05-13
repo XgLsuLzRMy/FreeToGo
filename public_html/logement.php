@@ -52,86 +52,86 @@
     ?>
 
     <div id="container">
-      <table style="width : 100%;">
-        <tr>
-          <td>
-            <div id="div_logement" >
-              <h2>Logement</h2>
-              <?php
-              echo '<img src="'.$photo.'" style="float:right;" class="photo" alt="photo du logement"/>';
-              ?>
+      <div class="ligne">
+        <div class="colonne" >
+          <div id="div_logement" >
+            <h2>Logement</h2>
+            <?php
+            echo '<img src="'.$photo.'" style="float:right;" class="photo" alt="photo du logement"/>';
+            ?>
 
-              <div class="attribut">
-                <label>Description</label> :<br/>
-                <span class="champLogement">
-                  <?php
-                  echo htmlspecialchars($donnees["description"]);
-                  ?>
-
-                </span>
-              </div>
-
-              <div class="attribut">
-                <label>Type de logement :</label>
-                <span class="champLogement">
+            <div class="attribut">
+              <label>Description</label> :<br/>
+              <span class="champLogement">
                 <?php
-                echo htmlspecialchars($donnees["type"]);
+                echo htmlspecialchars($donnees["description"]);
+                ?>
+
+              </span>
+            </div>
+
+            <div class="attribut">
+              <label>Type de logement :</label>
+              <span class="champLogement">
+              <?php
+              echo htmlspecialchars($donnees["type"]);
+              ?>
+            </span>
+            </div>
+
+            <div class="attribut"><label>Nombre de personnes :</label>
+              <span class="champLogement">
+                <?php
+                echo htmlspecialchars($donnees["effectif"]);
+                ?>
+
+              </span>
+            </div>
+
+            <div class="attribut">
+              <label>Localisation</label> : <br/>
+              <span class="champLogement">
+                <?php
+                echo htmlspecialchars($donnees["ville"]);
                 ?>
               </span>
-              </div>
+            </div>
 
-              <div class="attribut"><label>Nombre de personnes :</label>
-                <span class="champLogement">
-                  <?php
-                  echo htmlspecialchars($donnees["effectif"]);
-                  ?>
+            <div class="attribut">
+              <label>Prix</label> :
+              <span class="champLogement">
+                <?php
+                echo htmlspecialchars($donnees["prix"]).'€';
+                ?>
+              </span>
+            </div>
 
-                </span>
-              </div>
-
-              <div class="attribut">
-                <label>Localisation</label> : <br/>
-                <span class="champLogement">
-                  <?php
-                  echo htmlspecialchars($donnees["ville"]);
-                  ?>
-                </span>
-              </div>
-
-              <div class="attribut">
-                <label>Prix</label> :
-                <span class="champLogement">
-                  <?php
-                  echo htmlspecialchars($donnees["prix"]).'€';
-                  ?>
-                </span>
-              </div>
-
-            </div> <!-- Fin de la div_logement -->
-          </td>
-          <td>
-            <h2>Fonctionnalités</h2>
-            <ul id="liste_fonctionnalites">
-              <?php
-              $wifi = "unchecked";
-              $sdb = "unchecked";
-              $cuisine = "unchecked";
-              if ($donnees["wifi"]){
-                $wifi = "checked";
-              }
-              if ($donnees["salledebain"]){
-                $sdb = "checked";
-              }
-              if ($donnees["cuisine"]){
-                $cuisine = "checked";
-              }
-              echo '
-              <li class="'.$sdb.'">Salle de bain</li>
-              <li class="'.$wifi.'">Wifi</li>
-              <li class="'.$cuisine.'">Cuisine</li>';
-              ?>
-            </ul>
-          </div>
+          </div> <!-- Fin de la div_logement -->
+        </div>
+        <div class="colonne" >
+          <h2>Fonctionnalités</h2>
+          <ul id="liste_fonctionnalites">
+            <?php
+            $wifi = "unchecked";
+            $sdb = "unchecked";
+            $cuisine = "unchecked";
+            if ($donnees["wifi"]){
+              $wifi = "checked";
+            }
+            if ($donnees["salledebain"]){
+              $sdb = "checked";
+            }
+            if ($donnees["cuisine"]){
+              $cuisine = "checked";
+            }
+            echo '
+            <li class="'.$sdb.'">Salle de bain</li>
+            <li class="'.$wifi.'">Wifi</li>
+            <li class="'.$cuisine.'">Cuisine</li>';
+            ?>
+          </ul>
+        </div>
+        <div class="colonne" >
           <div id="div_commentaire">
             <h2>Commentaires</h2>
             <div class="commentaire">
@@ -160,71 +160,79 @@
               </table>
             </div> <!-- Fin de la div commentaire -->
           </div> <!-- Fin de la div_commentaire -->
-        </td>
-      </tr>
-    </table> <!-- Fin du tabeau permettant de séparer en deux colonnes la partie logement et la partie commentaires -->
-  </div> <!-- Fin de la div container -->
-  <div id="fonctionnalites">
-
-    <h2>Profil Propriétaire</h2>
-    <div id="description_proprietaire" style="display:flex;">
-      <?php
-      $idProprietaire = $donnees["idClient"];
-      $reponse2=$bd->query('SELECT * FROM client WHERE idClient ="'.$idProprietaire.'";');
-      $donneesProprietaire = $reponse2->fetch();
-      ?>
-
-      <div class="attribut">
-        <label>Nom : </label>
-        <span class="champLogement">
-          <?php
-          echo $donneesProprietaire["nom"]." ".$donneesProprietaire["prenom"];
-          ?>
-        </span>
+        </div>
       </div>
-
-      <div class="attribut">
-        <label>Age : </label>
-        <span class="champLogement">
-          <?php
-          if (!empty($donneesProprietaire["age"])){
-            echo $donneesProprietaire["age"];
-          }else{
-            echo "inconnu";
-          }
-          ?>
-        </span>
-      </div>
-
-      <div class="attribut">
-        <label>Résidence Principale : </label>
-        <span class="champLogement">
-          <?php
-          if (!empty($donneesProprietaire["ville"])){
-            echo $donneesProprietaire["ville"];
-          }else{
-            echo "inconnue";
-          }
-          ?>
-        </span>
-      </div>
-
-      <div class="attribut">
-        <label>Description :</label>
-        <span class="champLogement">
-          <?php
-          if (!empty($donneesProprietaire["description"])){
-            echo $donneesProprietaire["description"];
-          }
-          ?>
-        </span>
-      </div>
-      <!-- Il faudrait afficher l'image du propriétaire -->
-      <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;" class="photo" alt="photo de profil du proprietaire"/>
-
-    </div> <!-- Fin de la div description_proprietaire -->
-      <!-- A faire -->
     </div>
+
+    <div class="ligne">
+      <div class="colonne" >
+        <h2>Profil Propriétaire</h2>
+        <div id="description_proprietaire" style="display:flex;">
+          <?php
+          $idProprietaire = $donnees["idClient"];
+          $reponse2=$bd->query('SELECT * FROM client WHERE idClient ="'.$idProprietaire.'";');
+          $donneesProprietaire = $reponse2->fetch();
+          ?>
+
+          <div class="attribut">
+            <label>Nom : </label>
+            <span class="champLogement">
+              <?php
+              echo $donneesProprietaire["nom"]." ".$donneesProprietaire["prenom"];
+              ?>
+            </span>
+          </div>
+
+          <div class="attribut">
+            <label>Age : </label>
+            <span class="champLogement">
+              <?php
+              if (!empty($donneesProprietaire["age"])){
+                echo $donneesProprietaire["age"];
+              }else{
+                echo "inconnu";
+              }
+              ?>
+            </span>
+          </div>
+
+          <div class="attribut">
+            <label>Résidence Principale : </label>
+            <span class="champLogement">
+              <?php
+              if (!empty($donneesProprietaire["ville"])){
+                echo $donneesProprietaire["ville"];
+              }else{
+                echo "inconnue";
+              }
+              ?>
+            </span>
+          </div>
+
+          <div class="attribut">
+            <label>Description :</label>
+            <span class="champLogement">
+              <?php
+              if (!empty($donneesProprietaire["description"])){
+                echo $donneesProprietaire["description"];
+              }
+              ?>
+            </span>
+          </div>
+          <!-- Il faudrait afficher l'image du propriétaire -->
+        </div> <!-- Fin de la div description_proprietaire -->
+      </div>
+      <div class="colonne" style="margin-top:30px">
+        <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;" class="photo" alt="photo de profil du proprietaire"/>
+      </div>
+      
+    </div>
+
+
+
+
+
+      <!-- A faire -->
 
 
   <div class="ligne">
