@@ -28,6 +28,7 @@ function afficherTableLogement($reponse,$bd){
     <th></th>
     <th>Nom du logement</th>
     <th>Localisation</th>
+    <th> Nombre de personnes </th>
     <th>Prix</th>
     <th>nom du propriétaire</th>
     <th>Voir</th>
@@ -41,6 +42,7 @@ function afficherTableLogement($reponse,$bd){
       <td>".$num."</td>
       <td>". htmlspecialchars($donnees["nomLogement"])."</td>
       <td>". htmlspecialchars($donnees["ville"])." (". htmlspecialchars($donnees['pays']).")</td>
+       <td> ".$donnees['effectif']." </td>
       <td>Prix ".$donnees['prix']." €/nuit</td>
       <td>Mr/Mme ". htmlspecialchars($donneesClient["nom"])."</td>
       <td>
