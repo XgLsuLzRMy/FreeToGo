@@ -60,3 +60,9 @@ textarea{
 li{
   font-size : large;
 }
+
+span {
+  border-style: dashed;
+  display: table;
+  padding: 1%;
+}

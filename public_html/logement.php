@@ -12,30 +12,30 @@
   <div class="main">
 
     <?php
-      if (isset($_GET['reservationEffectuee'])){
-        afficherMessageSucces("reservation effectuée.");
-        //echo '<script>alert("Hey");</script>';
+    if (isset($_GET['reservationEffectuee'])){
+      afficherMessageSucces("reservation effectuée.");
+      //echo '<script>alert("Hey");</script>';
+    }
+    if (isset($_GET['reservationEchouee'])){
+      if ($_GET['reservationEchouee']==2){
+        afficherMessageErreur('Appartement déja reservé en ces dates');
+      }else if ($_GET['reservationEchouee']==3){
+        afficherMessageErreur('erreur4');
+      }else if ($_GET['reservationEchouee']==4){
+        afficherMessageErreur('erreur1');
+      }else if ($_GET['reservationEchouee']==5){
+        afficherMessageErreur('Les dates de réservation ne sont pas cohérentes: la date d\'arrivée doit être préalable à la date de départ. Veuillez réffectuer la réservation.');
+      }else if ($_GET['reservationEchouee']==6){
+        afficherMessageErreur('La date de fin de sejour est non valide, veuillez recommencer la réservation.');
+      }else if ($_GET['reservationEchouee']==7){
+        afficherMessageErreur('erreur2');
+      }else if ($_GET['reservationEchouee']==7){
+        afficherMessageErreur( 'La date de début de sejour est non valide, veuillez recommencer la réservation.');
+      }else if ($_GET['reservationEchouee']==8){
+        afficherMessageErreur( 'erreur 3');
       }
-      if (isset($_GET['reservationEchouee'])){
-        if ($_GET['reservationEchouee']==2){
-           afficherMessageErreur('Appartement déja reservé en ces dates');
-        }else if ($_GET['reservationEchouee']==3){
-          afficherMessageErreur('erreur4');
-        }else if ($_GET['reservationEchouee']==4){
-            afficherMessageErreur('erreur1');
-        }else if ($_GET['reservationEchouee']==5){
-          afficherMessageErreur('Les dates de réservation ne sont pas cohérentes: la date d\'arrivée doit être préalable à la date de départ. Veuillez réffectuer la réservation.');
-        }else if ($_GET['reservationEchouee']==6){
-          afficherMessageErreur('La date de fin de sejour est non valide, veuillez recommencer la réservation.');
-        }else if ($_GET['reservationEchouee']==7){
-          afficherMessageErreur('erreur2');
-        }else if ($_GET['reservationEchouee']==7){
-          afficherMessageErreur( 'La date de début de sejour est non valide, veuillez recommencer la réservation.');
-        }else if ($_GET['reservationEchouee']==8){
-          afficherMessageErreur( 'erreur 3');
-        }
-      }
-     ?>
+    }
+    ?>
 
 
     <?php
@@ -60,48 +60,48 @@
 
               <div class="attribut">
                 <label>Description</label> :<br/>
-                <textarea readonly="readonly" >
+                <span>
                   <?php
                   echo htmlspecialchars($donnees["description"]);
                   ?>
 
-                </textarea>
+                </span>
               </div>
 
               <div class="attribut">
                 <label>Type de logement :</label>
-
-                  <?php
-                  echo htmlspecialchars($donnees["type"]);
-                  ?>
-
+                <span>
+                <?php
+                echo htmlspecialchars($donnees["type"]);
+                ?>
+              </span>
               </div>
 
               <div class="attribut"><label>Nombre de personnes :</label>
-                <textarea readonly="readonly" >
+                <span>
                   <?php
                   echo htmlspecialchars($donnees["effectif"]);
                   ?>
 
-                </textarea>
+                </span>
               </div>
 
               <div class="attribut">
                 <label>Localisation</label> : <br/>
-                <textarea readonly="readonly" >
+                <span>
                   <?php
                   echo htmlspecialchars($donnees["ville"]);
                   ?>
-                </textarea>
+                </span>
               </div>
 
               <div class="attribut">
                 <label>Prix</label> :
-                <textarea readonly="readonly" >
+                <span>
                   <?php
                   echo htmlspecialchars($donnees["prix"]).'€';
                   ?>
-                </textarea>
+                </span>
               </div>
 
             </div> <!-- Fin de la div_logement -->
@@ -129,39 +129,39 @@
               ?>
             </ul>
           </div>
-            <div id="div_commentaire">
-              <h2>Commentaires</h2>
-              <div class="commentaire">
-                <table id="tableaux">
+          <div id="div_commentaire">
+            <h2>Commentaires</h2>
+            <div class="commentaire">
+              <table id="tableaux">
+                <tr>
+                  <th></th>
+                  <th>Nom du client</th>
+                  <th>Commentaire</th>
+                </tr>
+                <?php
+                $reponse = $bd->query('SELECT * FROM commentaire where idLogement="'.$_GET["idLogement"].'"');
+                $num = 1;
+                while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de commentaires pour ce logment
+                {
+                  $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees1['idClient'].'"');
+                  $donnees = $reponse2->fetch();
+                  echo '
                   <tr>
-                    <th></th>
-                    <th>Nom du client</th>
-                    <th>Commentaire</th>
-                  </tr>
-                  <?php
-                  $reponse = $bd->query('SELECT * FROM commentaire where idLogement="'.$_GET["idLogement"].'"');
-                  $num = 1;
-                  while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de commentaires pour ce logment
-                  {
-                    $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees1['idClient'].'"');
-                    $donnees = $reponse2->fetch();
-                    echo '
-                    <tr>
-                    <td>'.$num.'</td>
-                    <td> '.$donnees["nom"].'</td>
-                    <td> '.$donnees1["comment"].'</td>
-                    </tr>';
-                    $num = $num + 1;
-                  }
-                  ?>
-                </table>
-              </div> <!-- Fin de la div commentaire -->
-            </div> <!-- Fin de la div_commentaire -->
-          </td>
-        </tr>
-      </table> <!-- Fin du tabeau permettant de séparer en deux colonnes la partie logement et la partie commentaires -->
-    </div> <!-- Fin de la div container -->
-    <div id="fonctionnalites">
+                  <td>'.$num.'</td>
+                  <td> '.$donnees["nom"].'</td>
+                  <td> '.$donnees1["comment"].'</td>
+                  </tr>';
+                  $num = $num + 1;
+                }
+                ?>
+              </table>
+            </div> <!-- Fin de la div commentaire -->
+          </div> <!-- Fin de la div_commentaire -->
+        </td>
+      </tr>
+    </table> <!-- Fin du tabeau permettant de séparer en deux colonnes la partie logement et la partie commentaires -->
+  </div> <!-- Fin de la div container -->
+  <div id="fonctionnalites">
 
     <h2>Profil Propriétaire</h2>
     <div id="description_proprietaire" style="display:flex;">
@@ -173,16 +173,16 @@
 
       <div class="attribut">
         <label>Nom : </label>
-        <textarea readonly="readonly" >
+        <span>
           <?php
           echo $donneesProprietaire["nom"]." ".$donneesProprietaire["prenom"];
           ?>
-        </textarea>
+        </span>
       </div>
 
       <div class="attribut">
         <label>Age : </label>
-        <textarea readonly="readonly">
+        <span>
           <?php
           if (!empty($donneesProprietaire["age"])){
             echo $donneesProprietaire["age"];
@@ -190,12 +190,12 @@
             echo "inconnu";
           }
           ?>
-        </textarea>
+        </span>
       </div>
 
       <div class="attribut">
         <label>Résidence Principale : </label>
-        <textarea readonly="readonly">
+        <span>
           <?php
           if (!empty($donneesProprietaire["ville"])){
             echo $donneesProprietaire["ville"];
@@ -203,18 +203,18 @@
             echo "inconnue";
           }
           ?>
-        </textarea>
+        </span>
       </div>
 
       <div class="attribut">
         <label>Description :</label>
-        <textarea readonly="readonly">
+        <span>
           <?php
           if (!empty($donneesProprietaire["description"])){
             echo $donneesProprietaire["description"];
           }
           ?>
-        </textarea>
+        </span>
       </div>
       <!-- Il faudrait afficher l'image du propriétaire -->
       <img src="images/profil_default.png" style="float:right;margin-left:15%;" alt="photo de profil du proprietaire"/>
@@ -229,12 +229,12 @@
       <form method="post">
         <div style="margin-bottom:5%;">
           <label> Date arrivee</label>
-        <input type="date" name="ddebut" required />
-      </div>
-      <div style="margin-bottom:3%;">
-        <label> Date depart </label>
-        <input type="date" name="dfin" required>
-      </div>
+          <input type="date" name="ddebut" required />
+        </div>
+        <div style="margin-bottom:3%;">
+          <label> Date depart </label>
+          <input type="date" name="dfin" required>
+        </div>
         <?php
         echo '<input type= "hidden" name= "idLogement1" value= "'.$_GET["idLogement"].'" />';
         ?>
@@ -248,16 +248,10 @@
       if ($res == 1){
         $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEffectuee";
         $str = "Location: ".$url;
-        //echo '<script>alert("'.$str.'")</script>';
-        //header($str);
-        //die();
         echo '<script>window.location.replace("'.$url.'");</script>';
       }else{
         $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEchouee=".$res;
         $str = "Location: ".$url;
-        //echo '<script>alert("'.$str.'")</script>';
-        //header($str);
-        //die();
         echo '<script>window.location.replace("'.$url.'");</script>';
       }
     }

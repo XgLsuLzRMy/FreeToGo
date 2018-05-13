@@ -153,7 +153,7 @@
     ?>
 
     <form action="connexion.php" method="post">
-      <input type="submit" value="supprimer votre compte" name="suppressionCompte" style="background-color:red;height: 5%;" />
+      <input type="submit" value="supprimer votre compte" name="suppressionCompte" style="background-color:red;height: 5%;color: antiquewhite;font-weight: bold;" />
     </form>
 
     <!--la partie pour ajouter un logement a louer sur le site -->
