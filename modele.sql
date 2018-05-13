@@ -65,3 +65,6 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 	FOREIGN KEY (`idLogement`) REFERENCES logement(`idLogement`),
 	PRIMARY KEY (`idCommentaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO client (nom, mail) VALUES ("compte supprimé", "mail@mail.com");

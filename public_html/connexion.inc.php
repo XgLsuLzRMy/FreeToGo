@@ -77,9 +77,20 @@ if ( isset($_POST["connexion"]) ) {
   $reponse3 = $bd->query('SELECT idLogement FROM logement where idClient="'.$_SESSION['idClient'].'"');
   while ($donnees=$reponse3->fetch()){
     $reponse4 = $bd->query('DELETE FROM reserver where idLogement="'.$donnees['idLogement'].'"');
+    $reponse5 = $bd->query('DELETE FROM commentaire where idLogement="'.$donnees['idLogement'].'"');
   }
-  $reponse5 = $bd->query('DELETE FROM logement where idClient="'.$_SESSION['idClient'].'"');
-  $reponse6 = $bd->query('DELETE FROM client where idClient="'.$_SESSION['idClient'].'"');
+  $reponse6 = $bd->query('SELECT * FROM commentaire where idClient="'.$_SESSION['idClient'].'"');
+  while ($donnees=$reponse6->fetch()){
+    $requete = $bd->prepare('INSERT INTO commentaire (comment, idClient, idLogement) VALUES (:comment, :idClient, :idLogement)');
+    $requete->execute(array(
+      'comment' => $donnees['comment'],
+      'idClient' => 1,
+      'idLogement' => $donnees['idLogement']
+    ));
+  }
+  $reponse6 = $bd->query('DELETE FROM commentaire where idClient="'.$_SESSION['idClient'].'"');
+  $reponse7 = $bd->query('DELETE FROM logement where idClient="'.$_SESSION['idClient'].'"');
+  $reponse8 = $bd->query('DELETE FROM client where idClient="'.$_SESSION['idClient'].'"');
   session_destroy();
   header("Location: ./connexion.php?suppressionSuccess");
 }
