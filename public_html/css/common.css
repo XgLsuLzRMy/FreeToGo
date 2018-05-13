@@ -113,8 +113,8 @@ nav   a:hover::before {
 
 
 .bouton {
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-top:5px;
+  margin-bottom:5px;
 	background-color:var(--main-vertFonce);
 	-moz-border-radius:20px;
 	-webkit-border-radius:20px;
@@ -208,8 +208,8 @@ label
 }
 
 #tableaux td {
-    text-align: left;
-    padding: 5px;
+    text-align: center;
+    padding: 2px;
     border: 1px solid #ddd;
 }
 
@@ -221,7 +221,7 @@ label
     background-color: var(--main-vertFonce);
     color: white;
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center;
     padding: 5px;
   }
 
