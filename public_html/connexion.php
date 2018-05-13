@@ -19,6 +19,9 @@ if (isset($_SESSION['idClient']) && !isset($_POST['suppressionCompte'])){
       if (isset($_GET['suppressionSuccess'])){
         afficherMessageSucces('Votre compte a bien été supprimé');
       }
+      if (isset($_GET['reserver'])){
+        afficherMessageErreur('Veuillez vous connecter pour pouvoir reserver');
+      }
       ?>
       <br/>
       <div class="login-cadre">

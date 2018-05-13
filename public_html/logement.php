@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+  session_start();
+ ?>
 <html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -272,7 +275,7 @@
   </div>
     <?php
     if (isset($_POST['Reservation'])) {
-      session_start();
+      if(isset($_SESSION['idClient'])){
       $res = reserver();
       if ($res == 1){
         $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEffectuee";
@@ -283,7 +286,10 @@
         $str = "Location: ".$url;
         echo '<script>window.location.replace("'.$url.'");</script>';
       }
+    }else{
+      echo '<script>window.location.replace("./connexion.php?reserver");</script>';
     }
+  }
     ?>
   </div>
 </body>
