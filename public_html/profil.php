@@ -15,6 +15,17 @@
   }
   ?>
   <div class="main">
+    <?php
+    if (isset($_GET['succes'])){
+      afficherMessageSucces("Les modifications ont bien été enregistrées!");
+    }
+    if (isset($_GET['mailError'])){
+      afficherMessageErreur("Adresse mail non valide ou déjà utilisée par un utilisateur");
+    }
+    if (isset($_GET['telError'])){
+      afficherMessageErreur("numero de telephone non valide");
+    }
+    ?>
     <!--la partie pour modifier le profil de l'utilisateur -->
     <table>
       <tr>
@@ -52,27 +63,30 @@
             <br/>
             <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
 
-        </td>
-        <td><!-- ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;"> -->
-          <label>Photo de profil : </label>
-          <br/>
-          <?php
-          if(isset($donnees)){
-            $data=$donnees;
-          }else{
-            $data=NULL;
-          }
-          $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
-          echo '<input type="file" name="photoProfil" id="photo"/>';
-          echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
-          ?>
-          <br/>
-        </td>
+          </td>
+          <td><!-- ou alors si on veut que la photo soit en haut de la page <td style="vertical-align: text-top;"> -->
+            <label>Photo de profil : </label>
+            <br/>
+            <?php
+            if(isset($donnees)){
+              $data=$donnees;
+            }else{
+              $data=NULL;
+            }
+            $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
+            echo '<input type="file" name="photoProfil" id="photo"/>';
+            echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
+            ?>
+            <br/>
+          </td>
         </form>
       </tr>
     </table>
     <?php
     if (isset($_POST['Enregistrer'])) {
+
+      $mailChange = $_POST['mail']!=$donnees['mail'];
+
       $nom = calculChamps("nom",$donnees);
       $prenom = calculChamps("prenom",$donnees);
       $age = (int)calculChamps("age",$donnees);
@@ -83,7 +97,24 @@
       $name="";
       $dossier = './images';
 
-
+      if($mail != NULL && $mailChange){
+        $patternMail = '/^[a-z0-9_.-]+@[a-z0-9._-]+\.[a-z0-9]+$/i';
+        if(!preg_match($patternMail, $mail)){
+          echo '<script>window.location.replace("./profil.php?mailError");</script>';
+          die();
+        }elseif (mailExiste($mail)) {
+          echo '<script>window.location.replace("./profil.php?mailError");</script>';
+          die();
+        }
+      }
+      if($telephone != NULL){
+        $patternTel = '/^0[0-9]{9}$/';
+        $patternTel2 = '/^0[0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]$/';
+        if(!(preg_match($patternTel, $telephone) || preg_match($patternTel2, $telephone))){
+          echo '<script>window.location.replace("./profil.php?telError");</script>';
+          die();
+        }
+      }
 
       if(file_exists($_FILES['photoProfil']['tmp_name']) || is_uploaded_file($_FILES['photoProfil']['tmp_name'])) {
         // supprimer l'image précédente
@@ -116,10 +147,14 @@
         'photoProfil' => $photoProfil,
         'idClient' => $donnees['idClient']
       ));
-      afficherMessageSucces("Les modifications ont bien été enregistrées!");
-      header("Refresh:3");
+      echo '<script>window.location.replace("./profil.php?succes");</script>';
+      die();
     }
     ?>
+
+    <form action="connexion.php" method="post">
+      <input type="submit" value="supprimer votre compte" name="suppressionCompte" style="background-color:red;height: 5%;" />
+    </form>
 
     <!--la partie pour ajouter un logement a louer sur le site -->
 

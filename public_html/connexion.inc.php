@@ -3,7 +3,6 @@ session_start();
 
 function connexion($bd, $login, $mdp){
   if (empty($login)){
-    //header("Location: ./connexion.php");
     echo "<br/><br/><br/><p>login vide</p>";
   }
   else{
@@ -20,12 +19,10 @@ function connexion($bd, $login, $mdp){
       else{
         echo "<br/><br/><br/><p>mauvais mdp</p>";
         header("Location: ./connexion.php?mauvaisLogin");
-        //header("Location: ./connexion.php");
       }
     }else{
       echo "<br/><br/><br/><p>mauvais login</p>";
       header("Location: ./connexion.php?mauvaisLogin");
-      //header("Location: ./connexion.php");
     }
   }
 
@@ -50,36 +47,41 @@ function ajoutUtilisateur($bd, $login, $mail, $mdp){
 if ( isset($_POST["connexion"]) ) {
   $bd = seConnecterABD();
   connexion($bd, $_POST["login"], $_POST["mdp"]);
-}else if(isset($_POST["deconnexion"])){
+}elseif(isset($_POST["deconnexion"])){
   session_destroy();
   header("Location: ./connexion.php");
-}else if(isset($_POST["inscription"])){
+}elseif(isset($_POST["inscription"])){
   $bd = seConnecterABD();
-  $con = mysqli_connect("localhost", "userfreetogo", "", "freetogo");
-  //$reponseLogin = $bd->query('SELECT * FROM session WHERE login="'.$_POST["loginInc"].'"'); // verifier que le login n'existe pas deja
-  $reponseLogin = mysqli_query($con, 'SELECT * FROM session WHERE login="'.$_POST["loginInc"].'"'); // verifier que le login n'existe pas deja
-  //$reponseMail = $bd->query('SELECT * FROM session WHERE login="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
-  $reponseMail = mysqli_query($con, 'SELECT * FROM client WHERE mail="'.$_POST["mailInc"].'"'); // verifier que le login n'existe pas deja
-  if(mysqli_num_rows($reponseLogin) == 0){
-    if(mysqli_num_rows($reponseMail) == 0){
-      $patternMail = '/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+/i';
+  if(!loginExiste($_POST["loginInc"])){
+    if(!mailExiste($_POST["mailInc"])){
+      $patternMail = '/^[a-z0-9_.-]+@[a-z0-9._-]+\.[a-z0-9]+$/i';
       if(preg_match('/\s/', $_POST["loginInc"]) || empty($_POST["mdpInc"]) || !preg_match($patternMail, $_POST["mailInc"])){
         // il ne doit pas y avoir d'espace dans le login
         // le mot de passe ne doit pas etre vide
         // le mail doit etre de la bonne forme
-        echo "<br/><br/><br/><p>login, mail ou mot de passe de la mauvaise forme</p>";
         header("Location: ./connexion.php?mauvaiseForme");
       }else{
         ajoutUtilisateur($bd, $_POST["loginInc"], $_POST["mailInc"], $_POST["mdpInc"]);
         connexion($bd, $_POST["loginInc"], $_POST["mdpInc"]);
       }
     }else{
-      echo "<br/><br/><br/><p>mail existe deja</p>";
       header("Location: ./connexion.php?mailExistant");
     }
   }else{
-    echo "<br/><br/><br/><p>utilisateur existe deja</p>";
     header("Location: ./connexion.php?loginExistant");
   }
+}elseif (isset($_POST["suppressionCompte"]) && isset($_SESSION["idClient"])){
+  $bd = seConnecterABD();
+  $reponse1 = $bd->query('DELETE FROM session where idClient="'.$_SESSION['idClient'].'"');
+  $reponse2 = $bd->query('DELETE FROM reserver where idClient="'.$_SESSION['idClient'].'"');
+  $reponse3 = $bd->query('SELECT idLogement FROM logement where idClient="'.$_SESSION['idClient'].'"');
+  while ($donnees=$reponse3->fetch()){
+    $reponse4 = $bd->query('DELETE FROM reserver where idLogement="'.$donnees['idLogement'].'"');
+  }
+  $reponse5 = $bd->query('DELETE FROM logement where idClient="'.$_SESSION['idClient'].'"');
+  $reponse6 = $bd->query('DELETE FROM client where idClient="'.$_SESSION['idClient'].'"');
+  session_destroy();
+  header("Location: ./connexion.php?suppressionSuccess");
 }
+
 ?>
