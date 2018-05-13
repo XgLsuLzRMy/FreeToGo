@@ -41,12 +41,6 @@ sql#container {
   content: "▢";
 }
 
-textarea{
-  border: solid 2px var(--main-bleuFonce);
- border-style:dashed;
-}
-
-
 
 .attribut {
   margin : 1%;
@@ -62,7 +56,8 @@ li{
 }
 
 span {
-  border-style: dashed;
+  border: solid 2px var(--main-vertFonce);
+  border-style:dashed;;
   display: table;
   padding: 1%;
 }
