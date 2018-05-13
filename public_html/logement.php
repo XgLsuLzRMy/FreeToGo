@@ -264,8 +264,6 @@
         <tr>
         <td> '.$d['datedebut'].' </td>
         <td> '.$d['datefin'].' </td>
-        <td>
-        </td>
         </tr>' ;
         }
         
