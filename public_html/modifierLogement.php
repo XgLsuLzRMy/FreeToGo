@@ -109,6 +109,10 @@ session_start();
       die();
     }
 
+    if(isset($_POST['supprimer'])){
+
+    }
+
     $photo=gererPhoto($donnees,'photo',"/images/logement_default.png");
 
     if (isset($_GET['logementEnregistre'])){
@@ -161,6 +165,10 @@ session_start();
               <input type="submit" name="enregistrer" class="bouton" value="enregistrer" />
 
             </form>
+            <form method="post">
+              <input type="hidden" name="idLogement" value="<?php echo $_GET['idLogement'];?>" />
+              <input type="submit" name="supprimer" class="bouton" value="supprimer ce logement" />
+            </form>
           </div> <!-- Fin de la div_logement -->
         </div>
         <div class="colonne">
@@ -189,39 +197,6 @@ session_start();
             </form>';
             ?>
           </ul>
-        </div>
-        <div class="colonne">
-          <div id="div_commentaire">
-            <h2>Commentaires</h2>
-            <div class="commentaire">
-              <table class="tableaux">
-                <tr>
-                  <th></th>
-                  <th>Nom du client</th>
-                  <th>Commentaire</th>
-                </tr>
-                <?php
-                $reponse = $bd->query('SELECT * FROM commentaire where idLogement="'.$_GET["idLogement"].'"');
-                $num = 1;
-                while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de commentaires pour ce logment
-                {
-                  $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees1['idClient'].'"');
-                  $donnees2 = $reponse2->fetch();
-                  echo '
-                  <tr>
-                  <td>'.$num.'</td>
-                  <td> '.$donnees2["nom"].'</td>
-                  <td> '.$donnees1["comment"].'</td>
-                  </tr>';
-                  $num = $num + 1;
-                }
-                ?>
-              </table>
-            </div> <!-- Fin de la div commentaire -->
-            <?php
-            echo '<button style="margin-left:75%;" onclick="location.href=\'commentaire.php?idLogement='.$_GET["idLogement"].'\'" type="button" class="bouton">Commenter</button>';
-            ?>
-          </div> <!-- Fin de la div_commentaire -->
         </div>
       </div>
     </div>
@@ -287,71 +262,6 @@ session_start();
         <img src="<?php echo gererPhoto($donneesProprietaire, "photoProfil", "./images/profil_default.png"); ?>" style="float:right;margin-left:15%;" class="photo_profil" alt="photo de profil du proprietaire"/>
       </div>
     </div> <!-- Fin de la div ligne -->
-
-    <div class="ligne">
-      <div class="colonne">
-        <h2>demande de reservation</h2>
-        <div class= "main" >
-          <form method="post">
-            <div style="margin-bottom:5%;">
-              <label> Date arrivee</label>
-              <input type="date" name="ddebut" required />
-            </div>
-            <div style="margin-bottom:3%;">
-              <label> Date depart </label>
-              <input type="date" name="dfin" required />
-            </div>
-            <?php
-            echo '<input type= "hidden" name= "idLogement1" value= "'.$_GET["idLogement"].'" />';
-            ?>
-            <input type="submit" class= "bouton" name= "Reservation" value="Reserver ce logement" />
-          </form>
-        </div>
-      </div>
-      <div class="colonne">
-        <h2> Logement indisponible aux dates suivantes: </h2>
-        <?php
-        if (isset($_GET["idLogement"])){
-          $bd = seConnecterABD();
-          $r=$bd->query('SELECT datedebut, datefin FROM reserver WHERE idLogement ="'.$_GET["idLogement"].'";');
-
-          echo '<table class="tableaux">';
-          echo '
-          <tr>
-          <th> Date de début de reservation</th>
-          <th> Date de fin de reservation</th>
-          </tr>';
-
-          while($d=$r->fetch()){
-            echo '
-            <tr>
-            <td> '.$d['datedebut'].' </td>
-            <td> '.$d['datefin'].' </td>
-            </tr>' ;
-          }
-          echo '</table>';
-        }
-        ?>
-      </div>
-    </div> <!-- Fin de la div ligne -->
-    <?php
-    if (isset($_POST['Reservation'])) {
-      if(isset($_SESSION['idClient'])){
-        $res = reserver();
-        if ($res == 1){
-          $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEffectuee";
-          $str = "Location: ".$url;
-          echo '<script>window.location.replace("'.$url.'");</script>';
-        }else{
-          $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEchouee=".$res;
-          $str = "Location: ".$url;
-          echo '<script>window.location.replace("'.$url.'");</script>';
-        }
-      }else{
-        echo '<script>window.location.replace("./connexion.php?reserver");</script>';
-      }
-    }
-    ?>
   </div> <!-- Fin de la div main -->
 </body>
 </html>
