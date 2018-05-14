@@ -30,14 +30,15 @@ session_start();
       $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_POST["idLogement"].'";');
       $donnees = $reponse->fetch();
     }else{
+      echo '<script>alert("idLogement !!");</script>';
       die();
     }
 
     if (isset($_POST['enregistrer'])){
-
       $idProprietaire = $donnees["idClient"];
 
       if($_SESSION['idClient'] != $idProprietaire){
+        echo '<script>alert("Vous n etes pas proprietaire de ce logement");</script>';
         die();
       }
 
@@ -54,11 +55,12 @@ session_start();
       $salledebain = calculChamps("salledebain", $donnees);
 
       $name = "";
-      $dossier = './images';
+      $dossier = './images/logements';
 
       if(file_exists($_FILES['photo']['tmp_name']) || is_uploaded_file($_FILES['photo']['tmp_name'])) {
         // supprimer l'image précédente
         if (file_exists($donnees['photo'])){
+
           unlink($donnees['photo']);
         }
         //copier l'image chargée dans le dossier image
@@ -66,6 +68,7 @@ session_start();
         $tmp_name = $_FILES['photo']["tmp_name"];
         $name = "photo_".$_POST['idLogement'].".".pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
         move_uploaded_file($tmp_name, "$dossier/$name");
+
         if($name==""){
           $name="logement_default.png";
           $photo="$dossier/$name";
@@ -74,8 +77,8 @@ session_start();
       }elseif($donnees["photo"]!=NULL){
         $photo=$donnees["photo"];
       }
-/*
-      echo '<script>alert("prix=-'.$prix.'-");</script>';
+
+    /*  echo '<script>alert("prix=-'.$prix.'-");</script>';
       echo '<script>alert("type=-'.$type.'-");</script>';
       echo '<script>alert("nomLogement=-'.$nomLogement.'-");</script>';
       echo '<script>alert("adresse=-'.$adresse.'-");</script>';
@@ -87,8 +90,8 @@ session_start();
       echo '<script>alert("wifi=-'.$wifi.'-");</script>';
       echo '<script>alert("cuisine=-'.$cuisine.'-");</script>';
       echo '<script>alert("salledebain=-'.$salledebain.'-");</script>';
-      echo '<script>alert("idLogement=-'.$_POST['idLogement'].'-");</script>';
-*/
+      echo '<script>alert("idLogement=-'.$_POST['idLogement'].'-");</script>';*/
+
       $requete = $bd->prepare('UPDATE logement SET prix = :prix, type = :type, nomLogement = :nomLogement, adresse = :adresse, effectif = :effectif, photo =:photo, description = :description, ville = :ville, pays = :pays, wifi = :wifi, cuisine = :cuisine, salledebain = :salledebain WHERE idLogement = :idLogement');
       $requete->execute(array(
         'prix' => $prix,
@@ -132,7 +135,7 @@ session_start();
 
               <div class="attribut">
                 <label>Description</label> :<br/>
-                <textarea ><?php echo htmlspecialchars($donnees["description"]);?></textarea>
+                <textarea name="description" ><?php echo htmlspecialchars($donnees["description"]);?></textarea>
               </div>
 
               <div class="attribut">
@@ -167,7 +170,7 @@ session_start();
             </form>
             <form method="post">
               <input type="hidden" name="idLogement" value="<?php echo $_GET['idLogement'];?>" />
-              <input type="submit" name="supprimer" class="bouton" value="supprimer ce logement" />
+              <input type="submit" name="supprimer" class="bouton" value="supprimer ce logement" style="background-color:red;padding: 0.5%;color: antiquewhite;font-weight: bold;" />
             </form>
           </div> <!-- Fin de la div_logement -->
         </div>
