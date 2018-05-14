@@ -156,11 +156,11 @@
                 while ($donnees1 = $reponse->fetch()) //tant qu'il y a des lignes de commentaires pour ce logment
                 {
                   $reponse2 = $bd->query('SELECT * FROM client where idClient="'.(string)$donnees1['idClient'].'"');
-                  $donnees = $reponse2->fetch();
+                  $donnees2 = $reponse2->fetch();
                   echo '
                   <tr>
                   <td>'.$num.'</td>
-                  <td> '.$donnees["nom"].'</td>
+                  <td> '.$donnees2["nom"].'</td>
                   <td> '.$donnees1["comment"].'</td>
                   </tr>';
                   $num = $num + 1;
