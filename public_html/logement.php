@@ -206,8 +206,8 @@ session_start();
             <label>Résidence Principale : </label>
             <span class="champLogement">
               <?php
-              if (!empty($donneesProprietaire["ville"])){
-                echo $donneesProprietaire["ville"];
+              if (!empty($donneesProprietaire["adresse"])){
+                echo $donneesProprietaire["adresse"];
               }else{
                 echo "inconnue";
               }

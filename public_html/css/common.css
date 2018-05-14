@@ -62,7 +62,7 @@ img {
   margin-right: 70px;
 }
 
-
+/*gestion de la barre de menu*/
 .navbar {
   overflow: hidden;
   position: fixed;
@@ -111,7 +111,8 @@ nav   a:hover::before {
   width: 100%;
 }
 
-
+/*gere les boutons du site (change de couleur lorsque l'on passe la
+souris dessus) */
 .bouton {
   margin-top:5px;
   margin-bottom:5px;
@@ -136,6 +137,8 @@ nav   a:hover::before {
   top:1px;
 }
 
+
+/*creation d'une bordure arrondi pour les inputs*/
 input[type="text"], input[type="password"],input[type="number"],input[type="date"]{
   border-radius: 10px;
   padding: 10px ;
@@ -157,6 +160,7 @@ textarea{
   width: 80%;
 }
 
+/* style du cadre pour la connexion, inscription et le poste  d'un commentaire*/
 .login-cadre {
   z-index: 1;
 
@@ -196,6 +200,9 @@ label
   font-weight: bold;
 }
 
+/*classe pour les tableaux du site. Les couleurs des lignes sont différentes
+selon si c'est une ligne paire ou impaire. La couleur d'une ligne change si on
+passe la souris dessus*/
 .tableaux {
   font-family: var(--main-font-family);
   border-collapse: collapse;
