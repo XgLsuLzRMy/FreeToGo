@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -154,7 +155,7 @@
     ?>
 
     <form action="connexion.php" method="post">
-      <input type="submit" value="supprimer votre compte" name="suppressionCompte" style="background-color:red;height: 5%;color: antiquewhite;font-weight: bold;" />
+      <input type="submit" value="supprimer votre compte" name="suppressionCompte" style="background-color:red;padding: 0.5%;color: antiquewhite;font-weight: bold;" />
     </form>
 
     <!--la partie pour ajouter un logement a louer sur le site -->
@@ -166,7 +167,7 @@
       if (isset($_SESSION['idClient'])){
         $reponse = $bd->query('SELECT * FROM logement where idClient="'.(string)$_SESSION['idClient'].'"');
         $num = 1;
-        echo '<table id="tableaux">';
+        echo '<table class="tableaux">';
         echo '
         <tr>
         <th></th>
@@ -206,7 +207,7 @@
       if (isset($_SESSION['idClient'])){
         $reponse = $bd->query('SELECT * FROM reserver where idClient="'.(string)$_SESSION['idClient'].'"');
         $num = 1;
-        echo '<table id="tableaux">';
+        echo '<table class="tableaux">';
         echo '
         <tr>
         <th></th>

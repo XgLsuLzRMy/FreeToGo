@@ -138,7 +138,7 @@ session_start();
             ?>
             <h2>Commentaires</h2>
             <div class="commentaire">
-              <table id="tableaux">
+              <table class="tableaux">
                 <tr>
                   <th></th>
                   <th>Nom du client</th>
@@ -226,7 +226,7 @@ session_start();
         </div> <!-- Fin de la div description_proprietaire -->
       </div>
       <div class="colonne" style="margin-top:30px">
-        <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;" class="photo" alt="photo de profil du proprietaire"/>
+        <img src="<?php echo $donneesProprietaire["photoProfil"] ?>" style="float:right;margin-left:15%;" class="photo" alt="photo de profil du proprietaire"/>
       </div>
     </div> <!-- Fin de la div ligne -->
 
@@ -261,13 +261,13 @@ session_start();
           $bd = seConnecterABD();
           $r=$bd->query('SELECT datedebut, datefin FROM reserver WHERE idLogement ="'.$_GET["idLogement"].'";');
 
-          echo '<table id="tableaux">';
+          echo '<table class="tableaux">';
           echo '
           <tr>
           <th> Date de début de reservation</th>
           <th> Date de fin de reservation</th>
           </tr>';
-          
+
           while($d=$r->fetch()){
             echo '
             <tr>
@@ -275,6 +275,7 @@ session_start();
             <td> '.$d['datefin'].' </td>
             </tr>' ;
           }
+          echo '</table>';
         }
         ?>
       </div>
@@ -297,6 +298,6 @@ session_start();
       }
     }
     ?>
-  </div>
+  </div> <!-- Fin de la div main -->
 </body>
 </html>

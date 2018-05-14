@@ -196,28 +196,28 @@ label
   font-weight: bold;
 }
 
-#tableaux {
+.tableaux {
   font-family: var(--main-font-family);
   border-collapse: collapse;
   width: 100%;
 }
 
-#tableaux table {
+.tableaux table {
   border-collapse: collapse;
   width: 100%;
 }
 
-#tableaux td {
+.tableaux td {
   text-align: center;
   padding: 2px;
   border: 1px solid #ddd;
 }
 
-#tableaux tr:nth-child(even) { background-color: #E0EAD0 }
-#tableaux tr:nth-child(odd) { background-color:   #b3ffbc }
-#tableaux tr:hover { background-color: #faffd1 }
+.tableaux tr:nth-child(even) { background-color: #E0EAD0 }
+.tableaux tr:nth-child(odd) { background-color:   #b3ffbc }
+.tableaux tr:hover { background-color: #faffd1 }
 
-#tableaux th {
+.tableaux th {
   background-color: var(--main-vertFonce);
   color: white;
   border: 1px solid #ddd;

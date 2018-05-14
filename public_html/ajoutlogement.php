@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="css/ajoutLogement.css" />
@@ -20,7 +20,7 @@
       <br/>
       <br/>
       <label> Nom du logement : </label>
-      <input type="text" name="nomLogement" id="type" placeholder="saisissez le nom du logement" required />
+      <input type="text" name="nomLogement" id="nom" placeholder="saisissez le nom du logement" required />
       <br/>
       <label> Type de logement : </label>
       <input type="text" name="typeLogement" id="type" placeholder="saisissez le type du logement" required />
