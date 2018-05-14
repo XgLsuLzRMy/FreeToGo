@@ -23,13 +23,18 @@ DROP TABLE IF EXISTS `client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client` (
-  `idClient` int(11) NOT NULL,
-  `nom` varchar(30) DEFAULT NULL,
-  `adresse` varchar(30) DEFAULT NULL,
-  `telephone` varchar(30) DEFAULT NULL,
+  `idClient` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(30) NOT NULL,
+  `mail` varchar(30) NOT NULL,
+  `prenom` varchar(30) DEFAULT NULL,
+  `adresse` varchar(90) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `photoProfil` varchar(30) DEFAULT NULL,
   `pays` varchar(30) DEFAULT NULL,
+  `telephone` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idClient`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,35 +43,37 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'Abrego Maldonado','Calle Carril de la Fuente, 11,','737 570 865','Espagne'),(2,'Jasinski','ul. Dziecięca 12, 04-919 Warsz','67 112 04 56','Pologne'),(3,'Symanska','ul. Krakowska 61, 42-600 Tarno','69 413 23 87','Pologne'),(4,'Ricci','Via Galileo Ferraris, 147, 460','0342 5973042','Italie'),(5,'Pirozzi','Via delle Viole, 150, 60010-Sc','0328 7080599','Italie'),(6,'Siciliani','Via Capo le Case, 67, 39035-We','0379 4728252','Italie'),(7,'Ylonen','Linnoitustie 45, 36240 KANGASA','046 053 7137','Finlande'),(8,'Salmi','Sahantie 66, 33230 TAMPERE','050 564 8804','Finlande'),(9,'Seppinen','Tawastintie 50, 15300 LAHTI ','041 104 4651','Finlande'),(10,'Haataja','Korkeakoulunkatu 36, 50520 MIK','050 112 2070','Finlande'),(11,'Sterling','1589 Blackwell Street, Kazakof','907-379-6539','Etats-Unis'),(12,'Rodriguez','4418 Simpson Square, Pike City','580-673-5146','Etats-Unis'),(13,'Gatton','2973 Pine Tree Lane, Myersvill','240-385-8449','Etats-Unis'),(14,'Rowley','59 Essex Rd TATWORTH TA20 6LP','070 6773 4657','Angleterre'),(15,'Woodward','18 Dunmow Road GROVE DN22 4XN','079 4711 8225','Angleterre'),(16,'Booth','83 Station Rd QUOYS OF REISS K','079 3909 1896','Angleterre'),(17,'Wilkins','27 Iolaire Road NEW FARNLEY LS','077 2371 3370','Angleterre'),(18,'Bernier','Obere Haltenstrasse 101 6900 L','091 784 22 57','Suisse'),(19,'Houle','Erlenweg 105 8836 Bennau','055 300 40 76','Suisse'),(20,'Maur','Bahnhofplatz 100 8560 Altenkli','052 550 52 56','Suisse'),(21,'Kluge','Puntstrasse 6 4495 Zeglingen','061 787 26 42','Suisse');
+INSERT INTO `client` VALUES (1,'compte inexistant','mail@mail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Abregado','5nikhil.waghmare1@johnpo.cf','Maldonado','Calle Carril de la Fuente 11 13191 Los Pozuelos de Calatrava,737570865,Espagne','',20,NULL,NULL,'0737570865'),(3,'Jasinski','bepicchri@satisfyme.club','','Symanska,ul. Krakowska 61 42-600 Tarnowskie Gory, Pologne','',44,NULL,NULL,'0694132387'),(4,'ricc','masad_sharaba1@7pccf.tk','','Via Galileo Ferraris 147 46040-Cerlongo MN, Italie','',23,NULL,NULL,'0342597304'),(5,'Pirozzi','itan@janganjadiabu4.cf','','Via delle Viole 150 60010-Scapezzano AN, Italie','',21,NULL,NULL,'0328708059'),(6,'Siciliani','8aouadi.limem2w@satcom.ml','','Via Capo le Case 67 39035-Welsberg BZ, Italie','',19,NULL,NULL,'0379472825'),(7,'Ylonen','kchel@a458a534na4.cf','','Linnoitustie 45 36240 KANGASALA, Finlande','',30,NULL,NULL,'0460537137'),(8,'Salmi','relmakd@baban.ml','','Sahantie 66 33230 TAMPERE, Finalnde','',28,NULL,NULL,'0505648804'),(9,'Seppinen','mastrcrazy555r@redmail.tech','','Tawastintie 50 15300 LAHTI, Finlande','',27,NULL,NULL,'0411044651'),(10,'Haataja','idevamani2242@tempm.gq','','Korkeakoulunkatu 36 50520 MIKKELI, Finlande','',26,NULL,NULL,'0501122070'),(11,'Sterling','tdrenzkeef@wwwmail.gq','','1589 Blackwell Street Kazakof Bay AK 99615','',23,NULL,NULL,'0907379653'),(12,'rodr','vzaking98x@bringluck.pw','','4418 Simpson Square Pike City OK 73438, Etats-Unis','',27,NULL,NULL,'0580673514'),(13,'Gatton','khbbmouni@sahrulselow.ml','','2973 Pine Tree Lane Myersville MD 21773, Etats-Unis','',37,NULL,NULL,'0240385844'),(14,'Rowley','xbiju2skya@rejo.technology','','59 Essex Rd TATWORTH TA20 6LP,070 6773 4657, Angleterre','',18,NULL,NULL,'0706773465'),(15,'Woodward','ddzhamodav@renaulttrucks.ml','','59 Essex Rd TATWORTH TA20 6LP, Angleterre','',18,NULL,NULL,'0706773465');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hote`
+-- Table structure for table `commentaire`
 --
 
-DROP TABLE IF EXISTS `hote`;
+DROP TABLE IF EXISTS `commentaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `hote` (
-  `idHote` int(11) NOT NULL,
-  `nom` varchar(30) DEFAULT NULL,
-  `adresse` varchar(30) DEFAULT NULL,
-  `pays` varchar(30) DEFAULT NULL,
-  `telephone` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`idHote`)
+CREATE TABLE `commentaire` (
+  `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
+  `comment` varchar(500) NOT NULL,
+  `idClient` int(11) NOT NULL,
+  `idLogement` int(11) NOT NULL,
+  PRIMARY KEY (`idCommentaire`),
+  KEY `idClient` (`idClient`),
+  KEY `idLogement` (`idLogement`),
+  CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`),
+  CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`idLogement`) REFERENCES `logement` (`idLogement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hote`
+-- Dumping data for table `commentaire`
 --
 
-LOCK TABLES `hote` WRITE;
-/*!40000 ALTER TABLE `hote` DISABLE KEYS */;
-INSERT INTO `hote` VALUES (1,'Sauriol','24, boulevard Bryas, 92400 COU','01.89.78.47.19','France'),(2,'Primeau','80, Cours Marechal-Joffre, 691','02.87.49.54.41','France'),(3,'Fluet','32, avenue Ferdinand de Lessep','02.99.55.30.04','France'),(4,'Fecteau','85, Cours Marechal-Joffre, 592','01.24.42.06.13','France'),(5,'Rouleau','24, route de Lyon, 67400 ILLKI','03.74.44.59.05','France'),(9,'Lachance','33, rue Victor Hugo, 78700 CON','03.30.87.94.95','France'),(10,'Faucher','37, rue du Président Roosevelt','05.46.11.06.36','France'),(11,'Fresne','Jahnstrasse 28, 84149 Velden ','08086 30 21 06','Allemagne'),(12,'Lemann','Borstelmannsweg 98, 92239 Hirs','09608 71 71 36','Allemagne'),(13,'Farber','Hans-Grade-Allee 53, 22941 Bar','04532 30 13 16','Allemagne'),(14,'Shuster','Landhausstraße 95, 16540 Hohen','03303 87 35 94','Allemagne'),(15,'Abend','Brandenburgische Straße 90, 14','030 33 68 99','Allemagne'),(16,'Becerra Camarillo','Avda. Los llanos, 82, 26288 Zo','638309325','Espagne'),(17,'Rivero Salas','Av. Santiago Lapuente, 22, 507','645230093','Espagne'),(18,'Rentería Longoria','Visitación de la Encina, 56, 3','604043595','Espagne'),(19,'Aranda Rivas','Celso Emilio Ferreiro, 64, 506','646431645','Espagne'),(20,'Mills','35, Daskalaki Street, 4620 Epi','96 983719','Chypre'),(21,'Morrison','45, Eleftherias Street, 7743 P','95 320346','Chypre'),(22,'Krol','ul. Wrocławska 70, 71-034 Szcz','51 618 72 56','Pologne');
-/*!40000 ALTER TABLE `hote` ENABLE KEYS */;
+LOCK TABLES `commentaire` WRITE;
+/*!40000 ALTER TABLE `commentaire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commentaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -77,15 +84,24 @@ DROP TABLE IF EXISTS `logement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `logement` (
-  `idLogement` int(11) NOT NULL,
-  `idHote` int(11) DEFAULT NULL,
-  `adresse` varchar(30) DEFAULT NULL,
+  `idLogement` int(11) NOT NULL AUTO_INCREMENT,
+  `prix` int(11) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `idClient` int(11) NOT NULL,
+  `nomLogement` varchar(30) NOT NULL,
+  `effectif` int(11) DEFAULT NULL,
+  `adresse` varchar(90) DEFAULT NULL,
+  `photo` varchar(30) DEFAULT NULL,
+  `description` varchar(240) DEFAULT NULL,
   `ville` varchar(30) DEFAULT NULL,
   `pays` varchar(30) DEFAULT NULL,
+  `wifi` tinyint(1) DEFAULT '0',
+  `cuisine` tinyint(1) DEFAULT '0',
+  `salledebain` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`idLogement`),
-  KEY `idHote` (`idHote`),
-  CONSTRAINT `logement_ibfk_1` FOREIGN KEY (`idHote`) REFERENCES `hote` (`idHote`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `idClient` (`idClient`),
+  CONSTRAINT `logement_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +110,7 @@ CREATE TABLE `logement` (
 
 LOCK TABLES `logement` WRITE;
 /*!40000 ALTER TABLE `logement` DISABLE KEYS */;
-INSERT INTO `logement` VALUES (1,1,'1, rue du Blues, Paris','Paris','France'),(2,2,'66, rue Léon Dierx, 14100 Lisi','Lisieux','France'),(3,3,'64, rue Clement Marot, 66100 P','Perpignan','France'),(4,4,'90, Square de la Couronne,7500','Paris','France'),(5,5,'81, avenue Ferdinand de Lessep','Grasse','France'),(9,9,'Ventanilla de Beas,  43, 27880','Burela','Espagne'),(10,10,'C/ Libertad, 24, 06000 Badajoz','Badajoz','Espagne'),(11,11,'Outid de Arriba, 88, 43717 La ','La Bisbal del Penedès','Espagne'),(12,12,'Carretera Cádiz-Málaga, 79, 20','Aretxabaleta ','Espagne'),(13,13,'Rúa Olmos, 26, 37316 Bóveda de','Bóveda del Río Almar ','Espagne'),(14,14,'Alt-Moabit 43, 14750 Brandenbu','Brandenburg','Allemagne'),(15,15,'Am Borsigturm 13, 47800 Krefel','Krefeld ','Allemagne'),(16,16,'Schaarsteinweg 18, 93099 Mötzi','Mötzing ','Allemagne'),(17,17,'Meininger Strasse, 72, 66515 N','Neunkirchen ','Allemagne'),(18,18,'Augsburger Strasse 39, 54673 B','Bauler ','Allemagne'),(19,19,'Baumgarten 57, 4282 NIEDERHOFS','NIEDERHOFSTETTEN ','Autriche'),(20,20,'Ausergassen, 80,3370 YBBS AN D','YBBS AN DER DONAU','Autriche'),(21,21,'Gralla 17, 8742 GROSSPRETHAL','GROSSPRETHAL','Autriche'),(22,22,'Villacher Strasse 67, 5120 PFA','PFAFFING','Autriche'),(23,1,'86, Kondilaki Street, 2963 Cha','Challeri ','Chypre'),(24,2,'204, Athens Sounio Avenue, 862','Agios Nikolaos Salamiou','Chypre'),(25,3,'270, Iroon Politehniou Square,','Limassol ','Chypre'),(26,4,'Jalonkatu,70, 90240 OULU ','Oulu','Finlande'),(27,5,'Visiokatu 38, 38950 HONKAJOKI ','HONKAJOKI ','Finlande'),(31,9,'ul. Fiołków 99, 40-046 Katowic','Katowice ','Pologne'),(32,10,'Pl. Ducha Świętego 35,15-204 B','Białystok ','Pologne'),(33,11,'ul. Przemszy 58, 41-400 Mysłow','Mysłowice','Pologne'),(34,12,'Via Longhena, 98,00188-Labaro ','Labaro RM','Italie'),(35,13,'Via Nolana, 119, 19010-Maissan','Maissana SP','Italie'),(36,14,'Via Medina, 55, 34071-Brazzano','Brazzano GO','Italie'),(37,15,'Via Matteo Schilizzi, 49,16046','Mezzanego GE ','Italie'),(38,16,'Via degli Aldobrandeschi, 135,','Borgo Petilia CL ','Italie'),(39,17,'38, rue Sébastopol, 97438 SAIN','SAINTE-MARIE ','France'),(40,18,'18, Chemin Du Lavarin Sud, 068','CAGNES-SUR-MER ','France'),(41,19,'26, rue des Lacs, 78800 HOUILL','HOUILLES','France'),(42,20,'13, rue Marguerite, 94300 VINC',' VINCENNES ','France'),(43,21,'80, rue Petite Fusterie, 18000','BOURGES ','France'),(44,22,'10, boulevard de la Liberation','MARSEILLE','France'),(45,1,'66, rue Banaudon, 69009 LYON','LYON','France'),(46,2,'36, rue des Chaligny, 06000 NI','NICE','France'),(47,3,'18, rue des Lacs, 83400 HYÈRES','HYÈRES ','France'),(48,4,'91, rue de la République, 6900',' LYON ','France'),(49,5,'22, rue de Raymond Poincaré, 4','NANTES','France'),(53,9,'63, rue La Boétie, 75013 PARIS','PARIS ','France'),(54,10,'21, rue Reine Elisabeth, 06500','MENTON ','France'),(55,11,'9, Cours Marechal-Joffre, 7620','DIEPPE ','France'),(56,12,' 81, rue du Château, 78100 SAI','SAINT-GERMAIN-EN-LAYE','France'),(57,13,'26, Faubourg Saint Honoré, 750',' PARIS ','France');
+INSERT INTO `logement` VALUES (1,45,'appartement',2,'Appartement en bord de mer',1,'Ventanilla de Beas 43 27880','./images/logement_default.png','Petit appartement pour une personne.\r\nTrÃ¨s agrÃ©able et vue sur la mer.','Burela','Espagne',0,0,1),(2,49,'maison',9,'petite maison proche du centre',4,'Jalonkatu 70 90240','./images/logement_default.png','Maison trÃ¨s confortable. Proche du centre de Oulu et de la mer.\r\nLa gare est Ã  10 minutes Ã  pieds.','Oulu','Finlande',1,1,1),(3,25,'appartement',3,'apart\' vintage',2,'ul GÃ³rna 21 71-803','./images/logement_default.png','Petite appartement au style vintage.\r\nSituÃ© au bord d\'un lac et Ã  la frontiÃ¨re avec l\'Allemagne.','Szczecin','Pologne',1,0,1),(4,55,'appartement',14,'appart\' fraÃ®cheur',2,'89 Gordon Terrace','./images/logement_default.png','Cet appartement a pour objectif de vous faire passer des vacances rafraichissante et calmes.','Bawburgh','Angleterre',0,1,1),(5,48,'maison',15,'maison chic',3,'8 Netherpark Crescent','./images/logement_default.png','Petite maison bien situÃ©e et agrÃ©able.','Bawburgh','Angleterre',1,1,1),(6,132,'appartement',14,'appartement de luxe',2,'26 Newgate Street','./images/logement_default.png','Cet appartement moderne et luxueux est parfait pour un voyage pour le travail ou prendre des vacances reposantes.','Bawburgh','Angleterre',1,1,1);
 /*!40000 ALTER TABLE `logement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,7 +122,7 @@ DROP TABLE IF EXISTS `reserver`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reserver` (
-  `numeroReservation` int(11) NOT NULL,
+  `numeroReservation` int(11) NOT NULL AUTO_INCREMENT,
   `idClient` int(11) DEFAULT NULL,
   `idLogement` int(11) DEFAULT NULL,
   `dateDebut` date DEFAULT NULL,
@@ -125,8 +141,34 @@ CREATE TABLE `reserver` (
 
 LOCK TABLES `reserver` WRITE;
 /*!40000 ALTER TABLE `reserver` DISABLE KEYS */;
-INSERT INTO `reserver` VALUES (1,7,19,'2018-06-09','2018-06-29'),(2,10,54,'2018-09-28','2018-10-07'),(3,18,44,'2018-11-01','2018-11-25'),(4,12,38,'2018-07-13','2018-08-13'),(5,1,53,'2018-01-12','2018-03-12'),(7,4,57,'2018-10-27','2018-12-15'),(8,15,38,'2018-09-08','2018-10-02'),(9,3,9,'2018-07-26','2018-07-29'),(10,17,53,'2018-06-30','2018-07-12'),(11,12,22,'2018-12-05','2018-12-23'),(12,12,24,'2018-06-02','2018-06-17'),(13,12,38,'2018-11-08','2018-11-22'),(14,3,54,'2018-01-17','2018-02-05'),(15,2,42,'2018-01-12','2018-01-23');
 /*!40000 ALTER TABLE `reserver` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `session`
+--
+
+DROP TABLE IF EXISTS `session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `session` (
+  `login` varchar(30) NOT NULL,
+  `mdp` varchar(512) NOT NULL,
+  `idClient` int(11) DEFAULT NULL,
+  PRIMARY KEY (`login`),
+  KEY `idClient` (`idClient`),
+  CONSTRAINT `session_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `session`
+--
+
+LOCK TABLES `session` WRITE;
+/*!40000 ALTER TABLE `session` DISABLE KEYS */;
+INSERT INTO `session` VALUES ('abre','fe3d8503f2590db0694286e5700626d77e96517b0877a0143b04ab9dc93bdc981c51190cca3e3a3a26d4830153a4b44fb9618cd53ddf677bcf2bb6946846e241',2),('gatt','f61ae0ba43d497a417bd35fc5020148bf5c76e44564c6d69b6c886ef6b9a994df2311a7812ce98b5a957fb238d40194eaf23e38f36cb962a732d68cde0fd4dca',13),('haat','e388ed9be2ba6b17f0c99f9f0191e38a66592f595dc89a3341d7cc2de5379e3a92def166afb71d498985d18266d4adc778b0fb6d01b9662382746677fc451eca',10),('jasi','a35f19c5331058a2da11aac1a384aad7a404d4bfd50af23c8eec14c9dfca3e111bb1e1ff9dede00b387d85252e7bb8cff9e0c449eb7515d3a1b8953d67cab0dd',3),('piro','9e3573d0ec5e872f38b7118a1bc59ef716681fefcb5123c7b3d140220dac960cbd8dbee45159a7ffae8d7c1d36a587b075af6f7745a2b35ddea5bfe206a4f387',5),('ricc','1838d34a156897e9372739aece27ab305cde0aa2315640ea9b1c194e02552202653b2b3746d68eefc8337c268143f14ee4660719a4e3b2758592b0cf310ec269',4),('rodr','632e0df1847de6d41a5ad033db66a310b5f5f9dd3bad5a47f93824409aadc93719eaa5f3384ac61655454df1a3f15f6844cdb605ffaf283a78840ce0dc65e5fa',12),('rowl','9b7f6a4156c86d45535d11f7ad8558b5e19839825ddc0c249a694afb0c3441c53769a1e877480750dc713f39afc19044057bd53b01af3d299c36e52db412a496',14),('salm','8b2a18da9fd14db25d4b85cfb09908db19e55f3aaa4b4371effcb19f96f809df729bc97b016105aa94560cbdcb3c7cd5464e1763720389f25f4b4d918b15b0aa',8),('sepp','af773b5e2a0502a830e9ee589897587eacb93dc5c6898f135d87a537b9dc5e79ceee74aacabc1f35c6a58cae9e4e1e9ce8604960eb2c2cfa17439a5642715b8e',9),('sici','c78102d87283710cb7c2729f2447fca33c63e75d947cd5eaaa33ee32ed0d2e9c76d1d702de22add97e065461ab0961b3b12362ca7ec6846aee712b834bf5cc92',6),('ster','1fa5c72c33497cd002f5151f2f146709707b02e9cb2de21decbac1a22aad4256ca554555014c8dab4d1913bf2cfd7450fb2832985328c7c0ca7ab6a438078d72',11),('wood','5c465e0ffb585013d74270112485a79287d51942cd2d2a4bd24999a5cfe8dccf10ac144640eaabadf4badc5263233b33239137d8563f17cd82aabd5e1ca4ad33',15),('ylon','87f96e7a0d8a8ab761f6ba7cba7c86c66d8a32d75d5d93242c56c9af5cffff815204aed9863b01c4eb741362c10f458f90d8828ccebc79944b342b2365bdd3ab',7);
+/*!40000 ALTER TABLE `session` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -138,4 +180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-24 12:28:34
+-- Dump completed on 2018-05-14 22:30:22
