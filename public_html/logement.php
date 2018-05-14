@@ -60,8 +60,8 @@ session_start();
       <div class="ligne">
         <div class="colonne" >
           <div id="div_logement" >
-            <h2>Logement</h2>
             <?php
+            echo '  <h2>Logement '.$donnees["nomLogement"].'</h2>';
             echo '<img src="'.$photo.'" style="float:right;" class="photo" alt="photo du logement"/>';
             ?>
 
