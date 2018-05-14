@@ -67,4 +67,4 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO client (nom, mail) VALUES ("compte supprimé", "mail@mail.com");
+INSERT INTO client (nom, mail) VALUES ("compte inexistant", "mail@mail.com");
