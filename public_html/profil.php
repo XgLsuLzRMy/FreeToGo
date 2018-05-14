@@ -242,10 +242,6 @@
         echo "</table>";
       }
       ?>
-
-      <!-- il faudra faire un bouton qui permet d'ajouter un commentaire  : -->
-
-
     </section>
   </div>
 </body>
