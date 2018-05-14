@@ -1,8 +1,9 @@
 <!doctype html>
 <?php require("connexion.inc.php") ?>
 <?php
-if (isset($_SESSION['idClient']) && !isset($_POST['suppressionCompte'])){
+if (isset($_SESSION['idClient']) && !isset($_POST['suppressionCompte']) && !isset($_POST["connexion"])){
   header("Location: ./profil.php"); // redirige vers le profil si l'utilisateur est deja connecté et qu'il ne souahite pas supprimer son compte
+  // le !isset($_POST['connexion']) permet de ne pas rediriger vers profil si l'utilisateur se connecte. L'utilisateur est donc redirigé vers profil s'il vient de créer son compte
 }
 ?>
 <HTML lang="fr">
