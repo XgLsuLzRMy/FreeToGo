@@ -197,4 +197,24 @@ function mailExiste($mail){
     return true;
   }
 }
+
+function verifierReservation(){
+  $con = mysqli_connect("localhost", "userfreetogo", "", "freetogo");
+  if (isset($_GET['idLogement'])){
+    $idL = $_GET['idLogement'];
+  }elseif (isset($_POST['idLogement'])){
+    $idL = $_POST['idLogement'];
+  }else{
+    echo '<script>alert("ERREUR AUCUN idLogement DANS POST OU GET");</script>';
+    return false;
+  }
+  $requete3 = 'SELECT * FROM reserver where idLogement="'.$idL.'" AND idClient="'.$_SESSION['idClient'].'"';
+  $reponse = mysqli_query($con, $requete3); // verifier que l'utilisateur a deja reserver le logement'
+  if(mysqli_num_rows($reponse) != 0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
 ?>

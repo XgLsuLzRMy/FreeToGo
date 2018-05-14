@@ -8,20 +8,28 @@
     <title> Commentaire </title>
   </head>
   <body>
-    <?php include('include/header.html');  ?>
+    <?php include('include/header.html'); require_once('include/fonctions.php'); ?>
     <div class="main">
       <br/>
       <div class="login-cadre">
         <?php
         $bd = seConnecterABD();
-        if (isset($_POST['Poster'])) {
-          $requete = $bd->prepare('INSERT INTO commentaire(comment, idClient, idLogement) VALUES(:comment, :idClient,:idLogement)');
-          $requete->execute(array(
-            'comment' => (string)$_POST['commentaire'],
-            'idClient' => $_SESSION['idClient'],
-            'idLogement' => $_POST['idLogement']
-          ));
-          header("refresh:0; url=logement.php?idLogement=".(string)$_POST['idLogement']."&commentaireEnregistre"); //redirige vers la page du logement apres avoir poster le commentaire
+        if (isset($_SESSION['idClient'])){
+          if(verifierReservation()){
+            if (isset($_POST['Poster'])) {
+              $requete = $bd->prepare('INSERT INTO commentaire(comment, idClient, idLogement) VALUES(:comment, :idClient,:idLogement)');
+              $requete->execute(array(
+                'comment' => (string)$_POST['commentaire'],
+                'idClient' => $_SESSION['idClient'],
+                'idLogement' => $_POST['idLogement']
+              ));
+              header("refresh:0; url=logement.php?idLogement=".(string)$_POST['idLogement']."&commentaireEnregistre"); //redirige vers la page du logement apres avoir poster le commentaire
+            }
+          }else{
+            header("refresh:0;url=logement.php?idLogement=".$_GET['idLogement'].'&commentaireReserver');
+          }
+        }else{
+          header("refresh:0;url=connexion.php?commentaire");
         }
         ?>
         <h2 style="text-align: center;">Votre commentaire</h2>

@@ -41,7 +41,9 @@ session_start();
     if (isset($_GET['commentaireEnregistre'])){
       afficherMessageSucces("Votre commentaire a bien été enregistré!");
     }
-
+    if (isset($_GET['commentaireReserver'])){
+      afficherMessageErreur('Veuillez reserver pour pouvoir commenter');
+    }
     //ouvrirSession(); // a enlever car cela redirige vers connexion.php si l'utilisateur qui souhaite regarder ce logement n'est pas connecté
     if (isset($_GET["idLogement"])){
       $bd = seConnecterABD();
@@ -160,6 +162,9 @@ session_start();
                 ?>
               </table>
             </div> <!-- Fin de la div commentaire -->
+            <?php
+            echo '<button style="margin-left:75%;" onclick="location.href=\'commentaire.php?idLogement='.$_GET["idLogement"].'\'" type="button" class="bouton">Commenter</button>';
+            ?>
           </div> <!-- Fin de la div_commentaire -->
         </div>
       </div>

@@ -2,7 +2,7 @@
 <?php require("connexion.inc.php") ?>
 <?php
 if (isset($_SESSION['idClient']) && !isset($_POST['suppressionCompte'])){
-  header("Location: ./profil.php"); // redireige vers le profil si l'utilisateur est deja connecté et qu'il ne souahite pas supprimer son compte
+  header("Location: ./profil.php"); // redirige vers le profil si l'utilisateur est deja connecté et qu'il ne souahite pas supprimer son compte
 }
 ?>
 <HTML lang="fr">
@@ -21,6 +21,9 @@ if (isset($_SESSION['idClient']) && !isset($_POST['suppressionCompte'])){
       }
       if (isset($_GET['reserver'])){
         afficherMessageErreur('Veuillez vous connecter pour pouvoir reserver');
+      }
+      if (isset($_GET['commentaire'])){
+        afficherMessageErreur('Veuillez vous connecter pour pouvoir commenter');
       }
       ?>
       <br/>
