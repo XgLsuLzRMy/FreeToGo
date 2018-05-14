@@ -229,7 +229,7 @@ session_start();
         </div> <!-- Fin de la div description_proprietaire -->
       </div>
       <div class="colonne" style="margin-top:30px">
-        <img src="<?php echo $donneesProprietaire["photoProfil"] ?>" style="float:right;margin-left:15%;" class="photo" alt="photo de profil du proprietaire"/>
+        <img src="<?php echo gererPhoto($donneesProprietaire, "photoProfil", "./images/profil_default.png"); ?>" style="float:right;margin-left:15%;" class="photo_profil" alt="photo de profil du proprietaire"/>
       </div>
     </div> <!-- Fin de la div ligne -->
 
