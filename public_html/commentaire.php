@@ -1,5 +1,6 @@
+<!doctype html>
 <?php require("connexion.inc.php"); ouvrirSession();?>
-<HTML>
+<HTML lang="fr">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="css/common.css" />
@@ -23,9 +24,9 @@
           header("refresh:0; url=logement.php?idLogement=".(string)$_POST['idLogement']."&commentaireEnregistre"); //redirige vers la page du logement apres avoir poster le commentaire
         }
         ?>
-        <h2>   <center>Votre commentaire </center> </h2>   <br/>
+        <h2 style="text-align: center;">Votre commentaire</h2>
+        <br/>
         <form action="commentaire.php" method="post">
-
           <?php
           if (isset($_GET['idLogement'])){
             echo '<input type="hidden" name="idLogement" value="';
@@ -42,7 +43,4 @@
       </div>
     </div>
   </body>
-
-
-
 </HTML>

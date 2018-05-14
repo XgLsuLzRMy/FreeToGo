@@ -8,7 +8,6 @@
 #container {
   display: flex; /* Permet de mettre le bloc recherche et profil l'un à coté de l'autre */
   border-style: solid;
-
 }
 #recherche {
   margin-right: 0%; /* Espace le bloc recherche du bloc profil */
@@ -24,9 +23,6 @@
   padding : 1%; /* Pour que le cadre ne soit pas collé au texte */
   padding-top: 0%; /* Il y a deja la border du h2 donc pas besoin de rajouter */
 }
-
-
-
 
 /* Pour mettre les deux blocs de recherche côte à côte */
 #col_droite {

@@ -42,7 +42,7 @@ function afficherTableLogement($reponse,$bd){
       <td>".$num."</td>
       <td>". htmlspecialchars($donnees["nomLogement"])."</td>
       <td>". htmlspecialchars($donnees["ville"])." (". htmlspecialchars($donnees['pays']).")</td>
-       <td> ".$donnees['effectif']." </td>
+      <td> ".$donnees['effectif']." </td>
       <td>Prix ".$donnees['prix']." €/nuit</td>
       <td>Mr/Mme ". htmlspecialchars($donneesClient["nom"])."</td>
       <td>
@@ -94,25 +94,19 @@ function afficherMessageSucces($s){
   echo '</div>';
 }
 
-
-
 function reserver(){
   $bd = seConnecterABD();
   if (isset($_POST['ddebut'])) {
 
     //la date d'arrivee doit être supérieur à la date actuelle
-
     $date = date('Y-m-d');
     $dateactuelle = date_create( $date);
     $datedebutreservation = date_create($_POST['ddebut']);
     $interval = date_diff($dateactuelle, $datedebutreservation);
     if ($interval->format('%R%a days') >0){
 
-
       if (isset($_POST['dfin'])) {
-
         //de même pour la date de départ
-
         $date = date('Y-m-d');
         $dateactuelle = date_create( $date);
         $datefinreservation = date_create($_POST['dfin']);
@@ -128,7 +122,6 @@ function reserver(){
 
                 //les dates de réservation arrivee et depart ne doivent pas être inclu dans les dates de reservation déjà existente
                 //count permet de compter le nombre de ligne de la requete: si le nombre de ligne est 0, c'est que la condition est verifié
-
 
                 $rep = $bd->query('select count(*) from reserver where (idLogement= "'.(string)$_POST['idLogement1'].'") and (( \''.$_POST['ddebut'].'\' between datedebut and datefin) or (\''.$_POST['dfin'].'\' between datedebut and datefin));');
                 $rep2 = $rep->fetch();
@@ -149,33 +142,38 @@ function reserver(){
                     'datefin' => $_POST['dfin'],
                     'idLogement' => (int) $_POST["idLogement1"]
                   ));
-
                   //afficherMessageSucces("reservation effectuée.");
-
                   return 1;
-                } else {  //afficherMessageErreur('Appartement déja reservé en ces dates');
+                } else {
+                  //afficherMessageErreur('Appartement déja reservé en ces dates');
                   return 2;
                 }
-              }else { //afficherMessageErreur('erreur4');
+              }else {
+                //afficherMessageErreur('erreur4');
                 return 3;
               }
-            }else {  //afficherMessageErreur('erreur1');
+            }else {
+              //afficherMessageErreur('erreur1');
               return 4;
             }
-          }else {  //afficherMessageErreur('Les dates de réservation ne sont pas cohérentes: la date d\'arrivée doit être préalable à la date de départ. Veuillez réffectuer la réservation.');
+          }else {
+            //afficherMessageErreur('Les dates de réservation ne sont pas cohérentes: la date d\'arrivée doit être préalable à la date de départ. Veuillez réffectuer la réservation.');
             return 5;
           }
-        }else { //afficherMessageErreur('La date de fin de sejour est non valide, veuillez recommencer la réservation.');
+        }else {
+          //afficherMessageErreur('La date de fin de sejour est non valide, veuillez recommencer la réservation.');
           return 6;
         }
-      }else {  //afficherMessageErreur('erreur2');
+      }else {
+        //afficherMessageErreur('erreur2');
         return 7;
       }
-    }else{ //afficherMessageErreur( 'La date de début de sejour est non valide, veuillez recommencer la réservation.');
+    }else{
+      //afficherMessageErreur( 'La date de début de sejour est non valide, veuillez recommencer la réservation.');
       return 8;
     }
-
-  } else { //'erreur3';
+  } else {
+    //'erreur3';
     return 9;
   }
 }
@@ -199,5 +197,4 @@ function mailExiste($mail){
     return true;
   }
 }
-
 ?>

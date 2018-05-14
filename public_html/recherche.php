@@ -11,7 +11,6 @@
 <body>
   <?php include('include/header.html');  require_once('include/fonctions.php'); ?>
   <div class="main">
-
     <div id="container">
       <div id="recherche">
         <h2>Recherche de logements</h2>
@@ -40,10 +39,8 @@
         </form>
       </div>
       <div id="profil">
-        <!-- Code a remplacer par du php -->
         <?php
         $bd = seConnecterABD();
-
         if (isset($_SESSION["idClient"])){
           $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION["idClient"].'";');
           $donnees = $reponse->fetch();
@@ -67,11 +64,11 @@
         }
         ?>
       </div>
-    </div>
+    </div> <!-- Fin de la div container -->
+
     <h2>Affichage des logements</h2>
     <?php
     $bd = seConnecterABD();
-
 
     if (isset($_GET["rechercher"])){
       $tableauRequetes = array();
@@ -106,6 +103,6 @@
     $reponse = $bd->query($requete);
     afficherTableLogement($reponse, $bd);
     ?>
-  </div>
+  </div> <!-- Fin de la div main -->
 </body>
 </html>

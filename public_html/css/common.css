@@ -7,16 +7,16 @@
 
 body {
   background: #FAFFD1;
-	font-family: var(--main-font-family);
-	font-weight: 400;
+  font-family: var(--main-font-family);
+  font-weight: 400;
   margin:0;
 }
 
 #container {
-border: 5px solid var(--main-vertFonce);
-border-radius: 5px;
-margin-top: 15px;
-margin-bottom: 15px;
+  border: 5px solid var(--main-vertFonce);
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 h1{
@@ -57,7 +57,7 @@ img {
 
 .logo {
   float: center;
-	padding: 5px 0;
+  padding: 5px 0;
   margin-left: 70px;
   margin-right: 70px;
 }
@@ -115,35 +115,35 @@ nav   a:hover::before {
 .bouton {
   margin-top:5px;
   margin-bottom:5px;
-	background-color:var(--main-vertFonce);
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
-	border:1px ;
-	cursor:pointer;
-	color:#ffffff;
-	font-family: var(--main-font-family);
-	font-size:14px;
-	padding:12px 12px;
-	text-shadow:0px 1px 0px #2f6627;
+  background-color:var(--main-vertFonce);
+  -moz-border-radius:20px;
+  -webkit-border-radius:20px;
+  border-radius:20px;
+  border:1px ;
+  cursor:pointer;
+  color:#ffffff;
+  font-family: var(--main-font-family);
+  font-size:14px;
+  padding:12px 12px;
+  text-shadow:0px 1px 0px #2f6627;
 }
 .bouton:hover {
-	background-color:#2efe9a;
+  background-color:#2efe9a;
   color: var(--main-bleuFonce);
 }
 .bouton:active {
-	position:relative;
-	top:1px;
+  position:relative;
+  top:1px;
 }
 
 input[type="text"], input[type="password"],input[type="number"],input[type="date"]{
   border-radius: 10px;
-	padding: 10px ;
-	font-family: var(--main-font-family);
-	font-size: 1em;
+  padding: 10px ;
+  font-family: var(--main-font-family);
+  font-size: 1em;
   margin-top:5px;
   margin-bottom:5px;
-	border: solid 2px var(--main-vertClair);;
+  border: solid 2px var(--main-vertClair);;
 }
 
 textarea{
@@ -161,7 +161,7 @@ textarea{
   z-index: 1;
 
   max-width: 360px;
-   background-image: radial-gradient(circle at center, #FAFFD1, #c9ffc4);
+  background-image: radial-gradient(circle at center, #FAFFD1, #c9ffc4);
   margin: 0 auto 100px;
   -moz-border-radius:20px;
   -webkit-border-radius:20px;
@@ -178,11 +178,11 @@ textarea{
 
 
 .photo {
-    border-radius: 8px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+  border-radius: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .photo_profil {
@@ -191,53 +191,53 @@ textarea{
 
 label
 {
-	font-family: var(--main-font-family);
+  font-family: var(--main-font-family);
   color: var(--main-bleuFonce);
   font-weight: bold;
 }
 
 #tableaux {
-    font-family: var(--main-font-family);
-    border-collapse: collapse;
-    width: 100%;
+  font-family: var(--main-font-family);
+  border-collapse: collapse;
+  width: 100%;
 }
 
 #tableaux table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 #tableaux td {
-    text-align: center;
-    padding: 2px;
-    border: 1px solid #ddd;
+  text-align: center;
+  padding: 2px;
+  border: 1px solid #ddd;
 }
 
-#tableaux tr:nth-child(even){background-color: #E0EAD0}
-#tableaux tr:nth-child(odd){background-color:   #b3ffbc   }
-#tableaux tr:hover {background-color: #faffd1}
+#tableaux tr:nth-child(even) { background-color: #E0EAD0 }
+#tableaux tr:nth-child(odd) { background-color:   #b3ffbc }
+#tableaux tr:hover { background-color: #faffd1 }
 
 #tableaux th {
-    background-color: var(--main-vertFonce);
-    color: white;
-    border: 1px solid #ddd;
-    text-align: center;
-    padding: 5px;
-  }
+  background-color: var(--main-vertFonce);
+  color: white;
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 5px;
+}
 
 
 #alertErreur {
-    padding: 15px;
-    background-color: #F12525;
-    color: white;
-    margin: 1%;
+  padding: 15px;
+  background-color: #F12525;
+  color: white;
+  margin: 1%;
 }
 
 #alertSucces{
-    padding: 15px;
-    background-color: var(--main-vertFonce);
-    color: white;
-    margin: 1%;
+  padding: 15px;
+  background-color: var(--main-vertFonce);
+  color: white;
+  margin: 1%;
 }
 
 .closebtn {
@@ -251,15 +251,15 @@ label
 }
 
 .closebtn:hover {
-    color: var(--main-bleuFonce);
+  color: var(--main-bleuFonce);
 }
 
 
 .ligne {
-    display: flex;
+  display: flex;
 }
 
 .colonne {
-    flex: 50%;
-    float: left;
+  flex: 50%;
+  float: left;
 }

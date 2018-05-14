@@ -28,10 +28,10 @@
     ?>
     <!--la partie pour modifier le profil de l'utilisateur -->
     <form  method="post" enctype="multipart/form-data">
-    <div class="ligne">
-      <div class="colonne" >
-        <h2> Votre profil </h2>
-        <br/>
+      <div class="ligne">
+        <div class="colonne" >
+          <h2> Votre profil </h2>
+          <br/>
 
           <label>Nom : </label>
           <br/>
@@ -49,39 +49,39 @@
           <br/>
           <input type="text" name="adresse" value="<?php if(isset($donnees)){echo $donnees['adresse'];}?>"/>
           <br/>
+        </div>
+        <div class="colonne" style="margin-top: 50px;">
+          <label>Telephone : </label>
+          <br/>
+          <input type="text" name="telephone" value="<?php if(isset($donnees)){echo $donnees['telephone'];}?>"/>
+          <br/>
+          <label>Email : </label>
+          <br/>
+          <input type="text" name="mail" value="<?php if(isset($donnees)){echo $donnees['mail'];}?>" required />
+          <br/>
+          <label>Description : </label>
+          <br/>
+          <textarea name="description" rows="10" cols="80"><?php if(isset($donnees)){echo $donnees['description'];}?></textarea>
+          <br/>
+        </div>
+        <div class="colonne" style="margin-top: 50px;" >
+          <label>Photo de profil : </label>
+          <br/>
+          <?php
+          if(isset($donnees)){
+            $data=$donnees;
+          }else{
+            $data=NULL;
+          }
+          $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
+          echo '<input type="file" name="photoProfil" id="photo"/>';
+          echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
+          ?>
+          <br/>
+        </div>
       </div>
-      <div class="colonne" style="margin-top: 50px;">
-        <label>Telephone : </label>
-        <br/>
-        <input type="text" name="telephone" value="<?php if(isset($donnees)){echo $donnees['telephone'];}?>"/>
-        <br/>
-        <label>Email : </label>
-        <br/>
-        <input type="text" name="mail" value="<?php if(isset($donnees)){echo $donnees['mail'];}?>" required />
-        <br/>
-        <label>Description : </label>
-        <br/>
-        <textarea name="description" rows="10" cols="80"><?php if(isset($donnees)){echo $donnees['description'];}?></textarea>
-        <br/>
-      </div>
-      <div class="colonne" style="margin-top: 50px;" >
-        <label>Photo de profil : </label>
-        <br/>
-        <?php
-        if(isset($donnees)){
-          $data=$donnees;
-        }else{
-          $data=NULL;
-        }
-        $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
-        echo '<input type="file" name="photoProfil" id="photo"/>';
-        echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
-        ?>
-        <br/>
-      </div>
-    </div>
       <input type="submit" class="bouton" name="Enregistrer" value="Enregistrer"/>
-  </form>
+    </form>
 
     <?php
     if (isset($_POST['Enregistrer'])) {
@@ -242,42 +242,10 @@
       }
       ?>
 
-      <?php
-      // faire un commentaire :
-      /*
-      if (isset($_POST['commenter'])) {
-      $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_SESSION['cache'].'";');
-      $donnees = $reponse->fetch();
-      echo '<label>Commenter le logement "'.$donnes['nomLogement'] .'" : </label>
-      <br/>
-      <textarea name="description" rows="10" cols="80" placeholder="Ecrire un commentaire"></textarea>
-      <br/>
-      <form action="profil.php" method="post">
-      <input type="submit" class="bouton" name="poster" value="poster le commentaire"/>
-      </form>';
-      if (isset($_POST['poster'])) {
-      $requete = $bd->prepare('INSERT INTO commentaire VALUES comment = :commenter, idCommentaire = :idCommentaire, idClient = :idClient');
-      $requete->execute(array(
-      'commenter' => $_POST['commenter'],
-      'idClient' => $_SESSION['idClient'],
-      'idCommentaire' => $com
-    ));
-    $reponse2=$bd->query('SELECT idCommentaire FROM commentaire');
-    $com = 0;
-    while ($donnees2 = $reponse2->fetch()) //tant qu'il y a des lignes de logements
-    {
-    $com = $com + 1 ;
-  }
-}
-}
-*/
-?>
+      <!-- il faudra faire un bouton qui permet d'ajouter un commentaire  : -->
 
 
-<!-- il faudra faire un bouton qui permet d'ajouter un commentaire  : -->
-
-
-</section>
-</div>
+    </section>
+  </div>
 </body>
 </html>

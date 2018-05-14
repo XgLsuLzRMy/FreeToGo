@@ -10,52 +10,51 @@
 
 <body>
   <?php include('include/header.html'); require_once('include/fonctions.php');  ?>
-<div class="main">
-  <!--la partie pour décrire les informations du logement -->
+  <div class="main">
+    <!--la partie pour décrire les informations du logement -->
+    <form action=ajoutlogement.php method=post enctype="multipart/form-data">
+      <h2> Votre logement </h2>
+      <label>Photo du logement : </label>
+      <br/>
+      <input type="file" accept="image/jpeg" name="photoLogement" id="photo" />
+      <br/>
+      <br/>
+      <label> Nom du logement : </label>
+      <input type="text" name="nomLogement" id="type" placeholder="saisissez le nom du logement" required />
+      <br/>
+      <label> Type de logement : </label>
+      <input type="text" name="typeLogement" id="type" placeholder="saisissez le type du logement" required />
+      <br/>
+      <label>Nombre de personnes : </label>
+      <input type="number" name="nbPersonne" id="nbPersonne" value="1" min="1" max="30" required />
+      <br/>
+      <label>Pays : </label>
+      <input type="text" name="pays" id="pays" placeholder="saisissez le pays"/>
+      <br/>
+      <label>Ville : </label>
+      <input type="text" name="ville" id="ville" placeholder="saisissez la ville"/>
+      <br/>
+      <label>Adresse : </label>
+      <input type="text" name="adresse" id="adresse" placeholder="saisissez l'adresse"/>
+      <br/>
+      <label> Prix (pour une nuit) : </label>
+      <input type="number" name="prixNuit" id="prixNuit" value="5" min="5" placeholder="saisissez le prix pour une nuit" required />
+      <br/>
+      <label>Description : </label>
+      <br/>
+      <textarea name="description" rows="10" cols="80" placeholder="saisissez la description du logement"></textarea>
 
-  <form action=ajoutlogement.php method=post enctype="multipart/form-data">
-    <h2> Votre logement </h2>
-    <label>Photo du logement : </label>
-    <br/>
-    <input type="file" accept="image/jpeg" name="photoLogement" id="photo"/>
-    <br/>
-    <br/>
-    <label> Nom du logement : </label>
-    <input type="text" name="nomLogement" id="type" placeholder="saisissez le nom du logement"/ required>
-    <br/>
-    <label> Type de logement : </label>
-    <input type="text" name="typeLogement" id="type" placeholder="saisissez le type du logement"/ required>
-    <br/>
-    <label>Nombre de personnes : </label>
-    <input type="number" name="nbPersonne" id="nbPersonne" value="1" min="1" max="30" required>
-    <br/>
-    <label>Pays : </label>
-    <input type="text" name="pays" id="pays" placeholder="saisissez le pays"/>
-    <br/>
-    <label>Ville : </label>
-    <input type="text" name="ville" id="ville" placeholder="saisissez la ville"/>
-    <br/>
-    <label>Adresse : </label>
-    <input type="text" name="adresse" id="adresse" placeholder="saisissez l'adresse"/>
-    <br/>
-    <label> Prix (pour une nuit) : </label>
-    <input type="number" name="prixNuit" id="prixNuit" value="5" min="5"  placeholder="saisissez le prix pour une nuit"/ required>
-    <br/>
-    <label>Description : </label>
-    <br/>
-    <textarea name="description" rows="10" cols="80" placeholder="saisissez la description du logement"></textarea>
+      <h2> Fonctionnalités </h2>
+      <p>
+        Veuillez indiquer les fonctionnalités du logement :<br />
+        <input type="checkbox" name="salledebain"  id="salledebain" /> <label for="salledebain">Salle de bain</label><br/>
+        <input type="checkbox" name="wifi" id="wifi" /> <label for="wifi">Wifi</label><br/>
+        <input type="checkbox" name="cuisine" value="Cuisine" id="cuisine" /> <label for="cuisine">Cuisine</label><br/>
+      </p>
+      <input type="submit" class="bouton" name="Enregistrer_Logement" value ="Enregistrer" />
 
-    <h2> Fonctionnalités </h2>
-    <p>
-      Veuillez indiquer les fonctionnalités du logement :<br />
-      <input type="checkbox" name="salledebain"  id="salledebain" /> <label for="salledebain">Salle de bain</label><br />
-      <input type="checkbox" name="wifi" id="wifi" /> <label for="wifi">Wifi</label><br />
-      <input type="checkbox" name="cuisine" value="Cuisine" id="cuisine" /> <label for="cuisine">Cuisine</label><br />
-    </p>
-    <input type="submit" class="bouton" name="Enregistrer_Logement" value ="Enregistrer"/>
-
-    <?php
-    session_start();
+      <?php
+      session_start();
       $bd = seConnecterABD();
       $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
       $donnees = $reponse->fetch();
@@ -70,7 +69,6 @@
       if($name==""){
         $name="logement_default.png";
       }
-
 
       if (isset($_POST['Enregistrer_Logement'])) {
         if (isset($_POST['wifi'])) {
@@ -97,16 +95,14 @@
           'wifi' => $wifi,
           'cuisine' => $cuisine,
           'salledebain' => $salledebain
-      ));
-      //afficherMessageSucces("Votre logement a bien été enregistré!");
-      $reponse = $bd->query('SELECT LAST_INSERT_ID();');
-      $donnees = $reponse->fetch();
-      header("refresh:0; url=logement.php?idLogement=".$donnees["LAST_INSERT_ID()"]."&logementEnregistre");
+        ));
+        //afficherMessageSucces("Votre logement a bien été enregistré!");
+        $reponse = $bd->query('SELECT LAST_INSERT_ID();');
+        $donnees = $reponse->fetch();
+        header("refresh:0; url=logement.php?idLogement=".$donnees["LAST_INSERT_ID()"]."&logementEnregistre");
       }
-    ?>
-
-
-  </form>
-</div>
+      ?>
+    </form>
+  </div>
 </body>
 </html>

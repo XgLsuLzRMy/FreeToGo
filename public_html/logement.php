@@ -1,7 +1,7 @@
 <!doctype html>
 <?php
-  session_start();
- ?>
+session_start();
+?>
 <html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,10 +38,7 @@
         afficherMessageErreur( 'erreur 3');
       }
     }
-    ?>
 
-
-    <?php
     //ouvrirSession(); // a enlever car cela redirige vers connexion.php si l'utilisateur qui souhaite regarder ce logement n'est pas connecté
     if (isset($_GET["idLogement"])){
       $bd = seConnecterABD();
@@ -49,11 +46,10 @@
       $donnees = $reponse->fetch();
     }
     $photo=gererPhoto($donnees,'photo',"/images/logement_default.png");
-    ?>
-    <?php
-      if (isset($_GET['logementEnregistre'])){
-        afficherMessageSucces("Votre logement a bien été enregistré!");
-      }
+
+    if (isset($_GET['logementEnregistre'])){
+      afficherMessageSucces("Votre logement a bien été enregistré!");
+    }
     ?>
     <div id="container">
       <div class="ligne">
@@ -70,17 +66,16 @@
                 <?php
                 echo htmlspecialchars($donnees["description"]);
                 ?>
-
               </span>
             </div>
 
             <div class="attribut">
               <label>Type de logement :</label>
               <span class="champLogement">
-              <?php
-              echo htmlspecialchars($donnees["type"]);
-              ?>
-            </span>
+                <?php
+                echo htmlspecialchars($donnees["type"]);
+                ?>
+              </span>
             </div>
 
             <div class="attribut"><label>Nombre de personnes :</label>
@@ -88,7 +83,6 @@
                 <?php
                 echo htmlspecialchars($donnees["effectif"]);
                 ?>
-
               </span>
             </div>
 
@@ -112,7 +106,7 @@
 
           </div> <!-- Fin de la div_logement -->
         </div>
-        <div class="colonne" >
+        <div class="colonne">
           <h2>Fonctionnalités</h2>
           <ul id="liste_fonctionnalites">
             <?php
@@ -135,13 +129,13 @@
             ?>
           </ul>
         </div>
-        <div class="colonne" >
+        <div class="colonne">
           <div id="div_commentaire">
             <?php
-              if (isset($_GET['commentaireEnregistre'])){
-                afficherMessageSucces("Votre commentaire a bien été enregistré!");
-              }
-             ?>
+            if (isset($_GET['commentaireEnregistre'])){
+              afficherMessageSucces("Votre commentaire a bien été enregistré!");
+            }
+            ?>
             <h2>Commentaires</h2>
             <div class="commentaire">
               <table id="tableaux">
@@ -234,79 +228,74 @@
       <div class="colonne" style="margin-top:30px">
         <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;" class="photo" alt="photo de profil du proprietaire"/>
       </div>
-
-    </div>
-
+    </div> <!-- Fin de la div ligne -->
 
 
+    <!-- A faire -->
 
 
-      <!-- A faire -->
-
-
-  <div class="ligne">
-    <div class="colonne">
-      <h2>demande de reservation</h2>
-      <div class= "main" >
-        <form method="post">
-          <div style="margin-bottom:5%;">
-            <label> Date arrivee</label>
-            <input type="date" name="ddebut" required />
-          </div>
-          <div style="margin-bottom:3%;">
-            <label> Date depart </label>
-            <input type="date" name="dfin" required>
-          </div>
-          <?php
-          echo '<input type= "hidden" name= "idLogement1" value= "'.$_GET["idLogement"].'" />';
-          ?>
-          <input type="submit" class= "bouton" name= "Reservation" value="Reserver ce logement" />
-        </form>
+    <div class="ligne">
+      <div class="colonne">
+        <h2>demande de reservation</h2>
+        <div class= "main" >
+          <form method="post">
+            <div style="margin-bottom:5%;">
+              <label> Date arrivee</label>
+              <input type="date" name="ddebut" required />
+            </div>
+            <div style="margin-bottom:3%;">
+              <label> Date depart </label>
+              <input type="date" name="dfin" required />
+            </div>
+            <?php
+            echo '<input type= "hidden" name= "idLogement1" value= "'.$_GET["idLogement"].'" />';
+            ?>
+            <input type="submit" class= "bouton" name= "Reservation" value="Reserver ce logement" />
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="colonne" >
-      <h2> Logement indisponible aux dates suivantes: </h2>
-     <?php
-     if (isset($_GET["idLogement"])){
-       $bd = seConnecterABD();
-       $r=$bd->query('SELECT datedebut, datefin FROM reserver WHERE idLogement ="'.$_GET["idLogement"].'";');
+      <div class="colonne">
+        <h2> Logement indisponible aux dates suivantes: </h2>
+        <?php
+        if (isset($_GET["idLogement"])){
+          $bd = seConnecterABD();
+          $r=$bd->query('SELECT datedebut, datefin FROM reserver WHERE idLogement ="'.$_GET["idLogement"].'";');
 
-       echo '<table id="tableaux">';
-         echo '
-         <tr>
-         <th> Date de début de reservation</th>
+          echo '<table id="tableaux">';
+          echo '
+          <tr>
+          <th> Date de début de reservation</th>
           <th> Date de fin de reservation</th>
-         </tr>';
-
+          </tr>';
+          
           while($d=$r->fetch()){
-
-         echo '
-         <tr>
-         <td> '.$d['datedebut'].' </td>
-         <td> '.$d['datefin'].' </td>
-         </tr>' ;
-         }
-     }
-     ?>
-    </div>
-  </div>
+            echo '
+            <tr>
+            <td> '.$d['datedebut'].' </td>
+            <td> '.$d['datefin'].' </td>
+            </tr>' ;
+          }
+        }
+        ?>
+      </div>
+    </div> <!-- Fin de la div ligne -->
     <?php
     if (isset($_POST['Reservation'])) {
       if(isset($_SESSION['idClient'])){
-      $res = reserver();
-      if ($res == 1){
-        $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEffectuee";
-        $str = "Location: ".$url;
-        echo '<script>window.location.replace("'.$url.'");</script>';
+        $res = reserver();
+        if ($res == 1){
+          $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEffectuee";
+          $str = "Location: ".$url;
+          echo '<script>window.location.replace("'.$url.'");</script>';
+        }else{
+          $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEchouee=".$res;
+          $str = "Location: ".$url;
+          echo '<script>window.location.replace("'.$url.'");</script>';
+        }
       }else{
-        $url = "./logement.php?idLogement=".$_GET['idLogement']."\&reservationEchouee=".$res;
-        $str = "Location: ".$url;
-        echo '<script>window.location.replace("'.$url.'");</script>';
+        echo '<script>window.location.replace("./connexion.php?reserver");</script>';
       }
-    }else{
-      echo '<script>window.location.replace("./connexion.php?reserver");</script>';
     }
-  }
     ?>
   </div>
 </body>

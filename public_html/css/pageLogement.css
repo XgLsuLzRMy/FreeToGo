@@ -26,7 +26,7 @@ sql#container {
 }
 
 #liste_fonctionnalites {
-   list-style: none;
+  list-style: none;
 }
 
 #liste_fonctionnalites li::before{

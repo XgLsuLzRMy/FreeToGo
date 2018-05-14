@@ -52,8 +52,8 @@ if (isset($_SESSION['idClient']) && !isset($_POST['suppressionCompte'])){
       if (isset($_GET['loginExistant'])){
         echo '<script>alert("login deja utilisé par un utilisateur...");</script>';
       }
-
       ?>
+
       <div class="login-cadre">
         <form action="connexion.php" method="post">
           <h2 style="text-align: center;">Inscription </h2>
@@ -75,6 +75,4 @@ if (isset($_SESSION['idClient']) && !isset($_POST['suppressionCompte'])){
       </div>
     </div>
   </body>
-
-
 </HTML>

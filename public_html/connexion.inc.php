@@ -25,7 +25,6 @@ function connexion($bd, $login, $mdp){
       header("Location: ./connexion.php?mauvaisLogin");
     }
   }
-
 }
 
 function ajoutUtilisateur($bd, $login, $mail, $mdp){
