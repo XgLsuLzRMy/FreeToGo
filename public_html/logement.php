@@ -17,7 +17,6 @@ session_start();
     <?php
     if (isset($_GET['reservationEffectuee'])){
       afficherMessageSucces("reservation effectuée.");
-      //echo '<script>alert("Hey");</script>';
     }
     if (isset($_GET['reservationEchouee'])){
       if ($_GET['reservationEchouee']==2){
@@ -44,7 +43,6 @@ session_start();
     if (isset($_GET['commentaireReserver'])){
       afficherMessageErreur('Veuillez reserver pour pouvoir commenter');
     }
-    //ouvrirSession(); // a enlever car cela redirige vers connexion.php si l'utilisateur qui souhaite regarder ce logement n'est pas connecté
     if (isset($_GET["idLogement"])){
       $bd = seConnecterABD();
       $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
@@ -225,17 +223,12 @@ session_start();
               ?>
             </span>
           </div>
-          <!-- Il faudrait afficher l'image du propriétaire -->
         </div> <!-- Fin de la div description_proprietaire -->
       </div>
       <div class="colonne" style="margin-top:30px">
         <img src="<?php echo gererPhoto($donneesProprietaire, "photoProfil", "./images/profil_default.png"); ?>" style="float:right;margin-left:15%;" class="photo_profil" alt="photo de profil du proprietaire"/>
       </div>
     </div> <!-- Fin de la div ligne -->
-
-
-    <!-- A faire -->
-
 
     <div class="ligne">
       <div class="colonne">

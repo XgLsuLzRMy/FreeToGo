@@ -10,7 +10,6 @@
 <body>
   <?php include('include/header.html'); require_once('include/fonctions.php'); ?>
   <?php
-  //ouvrirSession(); // a enlever car cela redirige vers connexion.php si l'utilisateur qui souhaite regarder ce logement n'est pas connecté
   if (!isset($_GET["idLogement"]) || empty($_GET["idLogement"])){
     header("location: ./index.php");
   }else{
