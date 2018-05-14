@@ -98,8 +98,10 @@
           'cuisine' => $cuisine,
           'salledebain' => $salledebain
       ));
-      afficherMessageSucces("Votre logement a bien été enregistré!");
-      header("refresh:3; url=profil.php" );
+      //afficherMessageSucces("Votre logement a bien été enregistré!");
+      $reponse = $bd->query('SELECT LAST_INSERT_ID();');
+      $donnees = $reponse->fetch();
+      header("refresh:0; url=logement.php?idLogement=".$donnees["LAST_INSERT_ID()"]."&logementEnregistre");
       }
     ?>
 

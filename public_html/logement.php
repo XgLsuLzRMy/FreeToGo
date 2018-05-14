@@ -50,7 +50,11 @@
     }
     $photo=gererPhoto($donnees,'photo',"/images/logement_default.png");
     ?>
-
+    <?php
+      if (isset($_GET['logementEnregistre'])){
+        afficherMessageSucces("Votre logement a bien été enregistré!");
+      }
+    ?>
     <div id="container">
       <div class="ligne">
         <div class="colonne" >
@@ -133,6 +137,11 @@
         </div>
         <div class="colonne" >
           <div id="div_commentaire">
+            <?php
+              if (isset($_GET['commentaireEnregistre'])){
+                afficherMessageSucces("Votre commentaire a bien été enregistré!");
+              }
+             ?>
             <h2>Commentaires</h2>
             <div class="commentaire">
               <table id="tableaux">
@@ -225,7 +234,7 @@
       <div class="colonne" style="margin-top:30px">
         <img src=<?php echo $donneesProprietaire["photoProfil"] ?> style="float:right;margin-left:15%;" class="photo" alt="photo de profil du proprietaire"/>
       </div>
-      
+
     </div>
 
 
