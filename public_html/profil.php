@@ -26,6 +26,10 @@
     if (isset($_GET['telError'])){
       afficherMessageErreur("numero de telephone non valide");
     }
+    if (isset($_GET['suppressionLogementSucces'])){
+      afficherMessageSucces("Votre logement a bien été supprimé");
+    }
+
     ?>
     <!--la partie pour modifier le profil de l'utilisateur -->
     <form  method="post" enctype="multipart/form-data">

@@ -59,7 +59,7 @@ session_start();
 
       if(file_exists($_FILES['photo']['tmp_name']) || is_uploaded_file($_FILES['photo']['tmp_name'])) {
         // supprimer l'image précédente
-        if (file_exists($donnees['photo'])){
+        if (file_exists($donnees['photo']) && $donnees['photo']!='./images/logement_default.png'){
 
           unlink($donnees['photo']);
         }
@@ -113,7 +113,11 @@ session_start();
     }
 
     if(isset($_POST['supprimer'])){
-
+      $reponse1 = $bd->query('DELETE FROM reserver where idLogement="'.$_POST['idLogement'].'"');
+      $reponse2 = $bd->query('DELETE FROM commentaire where idLogement="'.$_POST['idLogement'].'"');
+      $reponse3 = $bd->query('DELETE FROM logement where idLogement="'.$_POST['idLogement'].'"');
+      echo '<script>window.location.replace("./profil.php?suppressionLogementSucces");</script>';
+      die();
     }
 
     $photo=gererPhoto($donnees,'photo',"/images/logement_default.png");

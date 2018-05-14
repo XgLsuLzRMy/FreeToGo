@@ -92,7 +92,7 @@ CREATE TABLE `logement` (
   `nomLogement` varchar(30) NOT NULL,
   `effectif` int(11) DEFAULT NULL,
   `adresse` varchar(90) DEFAULT NULL,
-  `photo` varchar(30) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL,
   `description` varchar(240) DEFAULT NULL,
   `ville` varchar(30) DEFAULT NULL,
   `pays` varchar(30) DEFAULT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE `logement` (
 
 LOCK TABLES `logement` WRITE;
 /*!40000 ALTER TABLE `logement` DISABLE KEYS */;
-INSERT INTO `logement` VALUES (1,45,'appartement',2,'Appartement en bord de mer',1,'Ventanilla de Beas 43 27880','./images/logement_default.png','Petit appartement pour une personne.\r\nTrÃ¨s agrÃ©able et vue sur la mer.','Burela','Espagne',0,0,1),(2,49,'maison',9,'petite maison proche du centre',4,'Jalonkatu 70 90240','./images/logement_default.png','Maison trÃ¨s confortable. Proche du centre de Oulu et de la mer.\r\nLa gare est Ã  10 minutes Ã  pieds.','Oulu','Finlande',1,1,1),(3,25,'appartement',3,'apart\' vintage',2,'ul GÃ³rna 21 71-803','./images/logement_default.png','Petite appartement au style vintage.\r\nSituÃ© au bord d\'un lac et Ã  la frontiÃ¨re avec l\'Allemagne.','Szczecin','Pologne',1,0,1),(4,55,'appartement',14,'appart\' fraÃ®cheur',2,'89 Gordon Terrace','./images/logement_default.png','Cet appartement a pour objectif de vous faire passer des vacances rafraichissante et calmes.','Bawburgh','Angleterre',0,1,1),(5,48,'maison',15,'maison chic',3,'8 Netherpark Crescent','./images/logement_default.png','Petite maison bien situÃ©e et agrÃ©able.','Bawburgh','Angleterre',1,1,1),(6,132,'appartement',14,'appartement de luxe',2,'26 Newgate Street','./images/logement_default.png','Cet appartement moderne et luxueux est parfait pour un voyage pour le travail ou prendre des vacances reposantes.','Bawburgh','Angleterre',1,1,1),(7,56,'Appartement',2,'Apartement Ã  Paris',7,'Rue de Hollande','./images/logement_default.png','Appartement agrÃ©able.','Paris','France',1,1,1),(9,58,'Maison',3,'La maison de vos rÃªves',10,'Rue de la Fiesta','./images/logement1.jpg','Vous n\'aurez pas mieux!','Nice','France',1,1,1),(10,91,'Maison',4,'Simple et basique',5,'Rua de la Concordia','./images/log.jpg','Une maison simple et basique qui va vous faire aimer l\'Italie.','Rome','Italie',0,0,1);
+INSERT INTO `logement` VALUES (1,45,'appartement',2,'Appartement en bord de mer',1,'Ventanilla de Beas 43 27880','./images/logements/logement_default.png','Petit appartement pour une personne.\r\nTrÃ¨s agrÃ©able et vue sur la mer.','Burela','Espagne',0,0,1),(2,49,'maison',9,'petite maison proche du centre',4,'Jalonkatu 70 90240','./images/logements/logement_default.png','Maison trÃ¨s confortable. Proche du centre de Oulu et de la mer.\r\nLa gare est Ã  10 minutes Ã  pieds.','Oulu','Finlande',1,1,1),(3,25,'appartement',3,'apart\' vintage',2,'ul GÃ³rna 21 71-803','./images/logements/logement_default.png','Petite appartement au style vintage.\r\nSituÃ© au bord d\'un lac et Ã  la frontiÃ¨re avec l\'Allemagne.','Szczecin','Pologne',1,0,1),(4,55,'appartement',14,'appart\' fraÃ®cheur',2,'89 Gordon Terrace','./images/logements/logement_default.png','Cet appartement a pour objectif de vous faire passer des vacances rafraichissante et calmes.','Bawburgh','Angleterre',0,1,1),(5,48,'maison',15,'maison chic',3,'8 Netherpark Crescent','./images/logements/logement_default.png','Petite maison bien situÃ©e et agrÃ©able.','Bawburgh','Angleterre',1,1,1),(6,132,'appartement',14,'appartement de luxe',2,'26 Newgate Street','./images/logements/logement_default.png','Cet appartement moderne et luxueux est parfait pour un voyage pour le travail ou prendre des vacances reposantes.','Bawburgh','Angleterre',1,1,1),(7,56,'Appartement',2,'Apartement Ã  Paris',7,'Rue de Hollande','./images/logements/logement_default.png','Appartement agrÃ©able.','Paris','France',1,1,1),(9,58,'Maison',3,'La maison de vos rÃªves',10,'Rue de la Fiesta','./images/logements/photo_9.jpg','Vous n\'aurez pas mieux!','Nice','France',1,1,1),(10,91,'Maison',4,'Simple et basique',5,'Rua de la Concordia','./images/logements/photo_10.jpg','Une maison simple et basique qui va vous faire aimer l\'Italie.','Rome','Italie',0,0,1);
 /*!40000 ALTER TABLE `logement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,4 +182,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-14 23:26:05
+-- Dump completed on 2018-05-15  1:11:14

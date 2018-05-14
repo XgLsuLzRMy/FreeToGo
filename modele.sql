@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `logement` (
 	`nomLogement` varchar(30) NOT NULL,
 	`effectif` int(11) DEFAULT NULL,
 	`adresse` varchar(90) DEFAULT NULL,
-	`photo` varchar(30) DEFAULT NULL,
+	`photo` varchar(50) DEFAULT NULL,
 	`description` varchar(240) DEFAULT NULL,
 	`ville` varchar(30) DEFAULT NULL,
 	`pays` varchar(30) DEFAULT NULL,

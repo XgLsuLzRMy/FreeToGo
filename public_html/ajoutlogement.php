@@ -70,7 +70,7 @@
       $reponse=$bd->query('SELECT * FROM client WHERE idClient ="'.$_SESSION['idClient'].'";');
       $donnees = $reponse->fetch();
       $name="";
-      $dossier = './images';
+      $dossier = './images/logements';
       if(!empty($_FILES)){
         //copier l'image chargée dans le dossier image
         $tmp_name = $_FILES['photoLogement']["tmp_name"];
