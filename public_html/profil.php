@@ -121,7 +121,7 @@
           die();
         }
       }
-
+      
       if(file_exists($_FILES['photoProfil']['tmp_name']) || is_uploaded_file($_FILES['photoProfil']['tmp_name'])) {
         // supprimer l'image précédente
         if (file_exists($donnees['photoProfil'])){

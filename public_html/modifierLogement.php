@@ -13,18 +13,17 @@ session_start();
 <body>
   <?php include('include/header.html'); require_once('include/fonctions.php'); ?>
   <div class="main">
-
+    
     <?php
-
     if (isset($_GET['succes'])){
       afficherMessageSucces("Les modifications ont bien été enregistrées!");
     }
 
     if (isset($_GET["idLogement"])){
       // si on ne modifie pas le logement
-        $bd = seConnecterABD();
-        $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
-        $donnees = $reponse->fetch();
+      $bd = seConnecterABD();
+      $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
+      $donnees = $reponse->fetch();
     }elseif(isset($_POST["idLogement"])){
       $bd = seConnecterABD();
       $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_POST["idLogement"].'";');
@@ -77,20 +76,6 @@ session_start();
       }elseif($donnees["photo"]!=NULL){
         $photo=$donnees["photo"];
       }
-
-    /*  echo '<script>alert("prix=-'.$prix.'-");</script>';
-      echo '<script>alert("type=-'.$type.'-");</script>';
-      echo '<script>alert("nomLogement=-'.$nomLogement.'-");</script>';
-      echo '<script>alert("adresse=-'.$adresse.'-");</script>';
-      echo '<script>alert("effectif=-'.$effectif.'-");</script>';
-      echo '<script>alert("photo=-'.$photo.'-");</script>';
-      echo '<script>alert("description=-'.$description.'-");</script>';
-      echo '<script>alert("ville=-'.$ville.'-");</script>';
-      echo '<script>alert("pays=-'.$pays.'-");</script>';
-      echo '<script>alert("wifi=-'.$wifi.'-");</script>';
-      echo '<script>alert("cuisine=-'.$cuisine.'-");</script>';
-      echo '<script>alert("salledebain=-'.$salledebain.'-");</script>';
-      echo '<script>alert("idLogement=-'.$_POST['idLogement'].'-");</script>';*/
 
       $requete = $bd->prepare('UPDATE logement SET prix = :prix, type = :type, nomLogement = :nomLogement, adresse = :adresse, effectif = :effectif, photo =:photo, description = :description, ville = :ville, pays = :pays, wifi = :wifi, cuisine = :cuisine, salledebain = :salledebain WHERE idLogement = :idLogement');
       $requete->execute(array(

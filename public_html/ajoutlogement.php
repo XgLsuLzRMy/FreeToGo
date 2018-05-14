@@ -60,10 +60,7 @@
         <input type="checkbox" name="cuisine" value="Cuisine" id="cuisine" /> <label for="cuisine">Cuisine</label><br/>
       </p>
       <input type="submit" class="bouton" name="Enregistrer_Logement" value ="Enregistrer" />
-
-
-
-
+      
       <?php
       session_start();
       $bd = seConnecterABD();
