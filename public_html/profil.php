@@ -74,9 +74,9 @@
           }else{
             $data=NULL;
           }
-          $photo=gererPhoto($data, 'photoProfil', "/images/profil_default.png");
+          $photo=gererPhoto($data, 'photoProfil', "./images/profil_default.png");
           echo '<input type="file" name="photoProfil" id="photo"/>';
-          echo '<img alt="photo de profil" class="photo"  src="'.$photo.'"/>';
+          echo '<img alt="photo de profil" class="photo_profil"  src="'.$photo.'"/>';
           ?>
           <br/>
         </div>

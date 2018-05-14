@@ -1,14 +1,14 @@
 <?php
-function gererPhoto($donnees, $attribut, $imageParDefaut)
-{
+function gererPhoto($donnees, $attribut, $imageParDefaut){
   if($donnees[$attribut]==NULL){
     $photo=$imageParDefaut;
-  }else{$photo=$donnees[$attribut];}
+  }else{
+    $photo=$donnees[$attribut];
+  }
   return $photo;
 }
 
-function seConnecterABD()
-{
+function seConnecterABD(){
   $nomserveur='localhost'; //nom du seveur
   $nombd='freetogo'; //nom de la base de données
   $login='userfreetogo'; //login de l'utilisateur

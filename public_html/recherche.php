@@ -12,6 +12,7 @@
   <?php include('include/header.html');  require_once('include/fonctions.php'); ?>
   <div class="main">
     <div id="container">
+      <!-- Gère l'affichage des champs que l'utilisateur peut remplir pour effectuer une recherche -->
       <div id="recherche">
         <h2>Recherche de logements</h2>
         <form action="recherche.php" method="get">
@@ -38,6 +39,7 @@
           <input type="submit" name="rechercher" class="bouton" value="Rechercher" />
         </form>
       </div>
+      <!-- Gère l'affichage du profil de l'utilisateur -->
       <div id="profil">
         <?php
         $bd = seConnecterABD();
