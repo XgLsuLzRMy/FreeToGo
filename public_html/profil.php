@@ -189,7 +189,7 @@
           <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees["idLogement"].'\'" type="button" class="bouton">Voir</button>
           </td>
           <td>
-          <button onclick="location.href=\'modifierLogement.php?idLogement='.(string)$donnees["idLogement"].'\'" type="button" class="bouton">Voir</button>
+          <button onclick="location.href=\'modifierLogement.php?idLogement='.(string)$donnees["idLogement"].'\'" type="button" class="bouton">modifier</button>
           </td>
           </tr>';
           $num = $num + 1;
