@@ -16,67 +16,86 @@ session_start();
 
     <?php
     if (isset($_GET["idLogement"])){
-      if(isset($_POST["idLogement"])){
-        $bd = seConnecterABD();
-        $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_POST["idLogement"].'";');
-        $donnees = $reponse->fetch();
-
-        $prix = calculChamps("prix", $donnees);
-        $type = calculChamps("type", $donnees);
-        $nomLogement = calculChamps("nomLogement", $donnees);
-        $effectif = calculChamps("effectif", $donnees);
-        $adresse = calculChamps("adresse", $donnees);
-        $description = calculChamps("description", $donnees);
-        $ville = calculChamps("ville", $donnees);
-        $pays = calculChamps("pays", $donnees);
-        $wifi = (bool)calculChamps("wifi", $donnees);
-        $cuisine = (bool)calculChamps("cuisine", $donnees);
-        $salledebain = (bool)calculChamps("salledebain", $donnees);
-
-        $name = "";
-
-        if(file_exists($_FILES['photo']['tmp_name']) || is_uploaded_file($_FILES['photo']['tmp_name'])) {
-          // supprimer l'image précédente
-          if (file_exists($donnees['photo'])){
-            unlink($donnees['photo']);
-          }
-          //copier l'image chargée dans le dossier image
-          $dossier = './images/logements';
-          $tmp_name = $_FILES['photo']["tmp_name"];
-          $name = "photo_".$_POST['idLogement'].".".pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
-          move_uploaded_file($tmp_name, "$dossier/$name");
-          if($name==""){
-            $name="logement_default.png";
-            $photo="$dossier/$name";
-          }
-          $photo="$dossier/$name";
-        }elseif($donnees["photo"]!=NULL){
-          $photo=$donnees["photo"];
-        }
-        $requete = $bd->prepare('UPDATE logement SET prix = :prix, type = :type, nomLogement = :nomLogement, adresse = :adresse, effectif = :effectif, photo =:photo, description = :description, ville = :ville, pays = :pays, wifi = :wifi, cuisine = :cuisine, salledebain = :salledebain WHERE idLogement = :idLogement');
-        $requete->execute(array(
-          'prix' => $prix,
-          'type' => $type,
-          'nomLogement' => $nomLogement,
-          'adresse' => $adresse,
-          'effectif' => $effectif,
-          'photo' =>  $photo,
-          'description' => $description,
-          'ville' => $ville,
-          'pays' => $pays,
-          'wifi' => $wifi,
-          'salledebain' => $salledebain,
-          'cuisine' => $cuisine,
-          'idLogement' => $_POST['idLogement']
-        ));
-        echo '<script>window.location.replace("./logement.php?idLogement='.$_POST['idLogement'].'&succes");</script>';
-        die();
-      }else{ // si on ne modifie pas le logement
+      // si on ne modifie pas le logement
         $bd = seConnecterABD();
         $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_GET["idLogement"].'";');
         $donnees = $reponse->fetch();
-      }
+    }elseif(isset($_POST["idLogement"])){
+      $bd = seConnecterABD();
+      $reponse=$bd->query('SELECT * FROM logement WHERE idLogement ="'.$_POST["idLogement"].'";');
+      $donnees = $reponse->fetch();
+    }else{
+      die();
     }
+    if (isset($_POST['enregistrer'])){
+      $prix = calculChamps("prix", $donnees);
+      $type = calculChamps("type", $donnees);
+      $nomLogement = calculChamps("nomLogement", $donnees);
+      $effectif = calculChamps("effectif", $donnees);
+      $adresse = calculChamps("adresse", $donnees);
+      $description = calculChamps("description", $donnees);
+      $ville = calculChamps("ville", $donnees);
+      $pays = calculChamps("pays", $donnees);
+      $wifi = calculChamps("wifi", $donnees);
+      $cuisine = calculChamps("cuisine", $donnees);
+      $salledebain = calculChamps("salledebain", $donnees);
+
+      $name = "";
+      $dossier = './images';
+
+      if(file_exists($_FILES['photo']['tmp_name']) || is_uploaded_file($_FILES['photo']['tmp_name'])) {
+        // supprimer l'image précédente
+        if (file_exists($donnees['photo'])){
+          unlink($donnees['photo']);
+        }
+        //copier l'image chargée dans le dossier image
+        $dossier = './images/logements';
+        $tmp_name = $_FILES['photo']["tmp_name"];
+        $name = "photo_".$_POST['idLogement'].".".pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+        move_uploaded_file($tmp_name, "$dossier/$name");
+        if($name==""){
+          $name="logement_default.png";
+          $photo="$dossier/$name";
+        }
+        $photo="$dossier/$name";
+      }elseif($donnees["photo"]!=NULL){
+        $photo=$donnees["photo"];
+      }
+
+      echo '<script>alert("prix=-'.$prix.'-");</script>';
+      echo '<script>alert("type=-'.$type.'-");</script>';
+      echo '<script>alert("nomLogement=-'.$nomLogement.'-");</script>';
+      echo '<script>alert("adresse=-'.$adresse.'-");</script>';
+      echo '<script>alert("effectif=-'.$effectif.'-");</script>';
+      echo '<script>alert("photo=-'.$photo.'-");</script>';
+      echo '<script>alert("description=-'.$description.'-");</script>';
+      echo '<script>alert("ville=-'.$ville.'-");</script>';
+      echo '<script>alert("pays=-'.$pays.'-");</script>';
+      echo '<script>alert("wifi=-'.$wifi.'-");</script>';
+      echo '<script>alert("cuisine=-'.$cuisine.'-");</script>';
+      echo '<script>alert("salledebain=-'.$salledebain.'-");</script>';
+      echo '<script>alert("idLogement=-'.$_POST['idLogement'].'-");</script>';
+
+      $requete = $bd->prepare('UPDATE logement SET prix = :prix, type = :type, nomLogement = :nomLogement, adresse = :adresse, effectif = :effectif, photo =:photo, description = :description, ville = :ville, pays = :pays, wifi = :wifi, cuisine = :cuisine, salledebain = :salledebain WHERE idLogement = :idLogement');
+      $requete->execute(array(
+        'prix' => $prix,
+        'type' => $type,
+        'nomLogement' => $nomLogement,
+        'adresse' => $adresse,
+        'effectif' => $effectif,
+        'photo' =>  $photo,
+        'description' => $description,
+        'ville' => $ville,
+        'pays' => $pays,
+        'wifi' => $wifi,
+        'salledebain' => $salledebain,
+        'cuisine' => $cuisine,
+        'idLogement' => $_POST['idLogement']
+      ));
+      //echo '<script>window.location.replace("./logement.php?idLogement='.$_POST['idLogement'].'&succes");</script>';
+      //die();
+    }
+
     $photo=gererPhoto($donnees,'photo',"/images/logement_default.png");
 
     if (isset($_GET['logementEnregistre'])){
@@ -87,7 +106,7 @@ session_start();
       <div class="ligne">
         <div class="colonne" >
           <div id="div_logement" >
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
               <?php
               echo '  <h2>Logement '.$donnees["nomLogement"].'</h2>';
               echo '<input type="file" name="photo" id="photo" />';
@@ -120,13 +139,13 @@ session_start();
 
               <div class="attribut">
                 <label>Prix</label> :
-                <input type="text" name="prix" class="champLogement" value="<?php echo htmlspecialchars($donnees["prix"]).'€';?>" />
+                <input type="text" name="prix" class="champLogement" value="<?php echo htmlspecialchars($donnees["prix"]);?>" />
               </div>
               <input type="hidden" name="idLogement" value="<?php echo $_GET['idLogement'];?>" />
               <input type="hidden" name="wifi" value="<?php echo $donnees['wifi'];?>" />
               <input type="hidden" name="salledebain" value="<?php echo $donnees['salledebain'];?>" />
               <input type="hidden" name="cuisine" value="<?php echo $donnees['cuisine'];?>" />
-              <input type="submit" class="bouton" value="enregistrer" />
+              <input type="submit" name="enregistrer" class="bouton" value="enregistrer" />
 
             </form>
           </div> <!-- Fin de la div_logement -->
