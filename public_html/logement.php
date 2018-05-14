@@ -38,6 +38,9 @@ session_start();
         afficherMessageErreur( 'erreur 3');
       }
     }
+    if (isset($_GET['commentaireEnregistre'])){
+      afficherMessageSucces("Votre commentaire a bien été enregistré!");
+    }
 
     //ouvrirSession(); // a enlever car cela redirige vers connexion.php si l'utilisateur qui souhaite regarder ce logement n'est pas connecté
     if (isset($_GET["idLogement"])){
@@ -131,11 +134,6 @@ session_start();
         </div>
         <div class="colonne">
           <div id="div_commentaire">
-            <?php
-            if (isset($_GET['commentaireEnregistre'])){
-              afficherMessageSucces("Votre commentaire a bien été enregistré!");
-            }
-            ?>
             <h2>Commentaires</h2>
             <div class="commentaire">
               <table class="tableaux">
