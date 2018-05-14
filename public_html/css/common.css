@@ -232,7 +232,7 @@ passe la souris dessus*/
   padding: 5px;
 }
 
-
+/*classe pour afficher des messages d'alerte*/
 #alertErreur {
   padding: 15px;
   background-color: #F12525;
@@ -261,7 +261,8 @@ passe la souris dessus*/
   color: var(--main-bleuFonce);
 }
 
-
+/*classe utilisé pour la disposition d'éléments sur une même ligne avec
+plusieurs colonnes*/
 .ligne {
   display: flex;
 }

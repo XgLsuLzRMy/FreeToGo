@@ -1,4 +1,6 @@
 <?php
+//fonction qui permet de retourner la valeur de la photo (retourne la valeur
+//de l 'attribut dans la BD ou une valeur par défaut)
 function gererPhoto($donnees, $attribut, $imageParDefaut){
   if($donnees[$attribut]==NULL){
     $photo=$imageParDefaut;
@@ -72,6 +74,8 @@ function ouvrirSession(){
   }
 }
 
+//permet de retourner l'attribut $champs de $données si le POST de celui-ci
+//n'a pas été utilisé. Cette fonction permet de modifier le profil.
 function calculChamps($champ,$donnees){
   if (isset($_POST[$champ])) {
     return $_POST[$champ];

@@ -41,14 +41,14 @@
           <br/>
           <label>Adresse : </label>
           <input type="text" name="adresse" id="adresse" placeholder="saisissez l'adresse"/>
-            <br/>
+          <br/>
           <label> Prix (pour une nuit) : </label>
           <input type="number" name="prixNuit" id="prixNuit" value="5" min="5" placeholder="saisissez le prix pour une nuit" required />
           <br/>
         </div>
         <div class="column" style="margin-top: 50px;margin-left: 50px;">
           <label>Description : </label>
-            <br/>
+          <br/>
           <textarea name="description" rows="10" cols="80" placeholder="saisissez la description du logement"></textarea>
         </div>
       </div>
