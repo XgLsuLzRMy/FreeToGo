@@ -179,9 +179,10 @@ function reserver(){
 }
 
 function loginExiste($login){
-  $con = mysqli_connect("localhost", "userfreetogo", "", "freetogo");
-  $reponseLogin = mysqli_query($con, 'SELECT * FROM session WHERE login="'.$login.'"'); // verifier que le login n'existe pas deja
-  if(mysqli_num_rows($reponseLogin) == 0){
+  $bd = seConnecterABD();
+  $rep = $bd->query('select count(*) FROM session WHERE login="'.$login.'"');
+  $rep = $rep->fetch();
+  if($rep["count(*)"]==0){
     return false;
   }else{
     return true;
@@ -189,17 +190,18 @@ function loginExiste($login){
 }
 
 function mailExiste($mail){
-  $con = mysqli_connect("localhost", "userfreetogo", "", "freetogo");
-  $reponseMail = mysqli_query($con, 'SELECT * FROM client WHERE mail="'.$mail.'"'); // verifier que le mail n'existe pas deja
-  if(mysqli_num_rows($reponseMail) == 0){
+  $bd = seConnecterABD();
+  $rep = $bd->query('select count(*) FROM client WHERE mail="'.$mail.'"');
+  $rep = $rep->fetch();
+  if($rep["count(*)"]==0){
     return false;
   }else{
     return true;
   }
 }
 
+// Verifie que le client a bien reserver le logement
 function verifierReservation(){
-  $con = mysqli_connect("localhost", "userfreetogo", "", "freetogo");
   if (isset($_GET['idLogement'])){
     $idL = $_GET['idLogement'];
   }elseif (isset($_POST['idLogement'])){
@@ -208,9 +210,10 @@ function verifierReservation(){
     echo '<script>alert("ERREUR AUCUN idLogement DANS POST OU GET");</script>';
     return false;
   }
-  $requete3 = 'SELECT * FROM reserver where idLogement="'.$idL.'" AND idClient="'.$_SESSION['idClient'].'"';
-  $reponse = mysqli_query($con, $requete3); // verifier que l'utilisateur a deja reserver le logement'
-  if(mysqli_num_rows($reponse) != 0){
+  $bd = seConnecterABD();
+  $rep = $bd->query('select count(*) FROM reserver where idLogement="'.$idL.'" AND idClient="'.$_SESSION['idClient'].'"');
+  $rep = $rep->fetch();
+  if($rep["count(*)"]!=0){
     return true;
   }else{
     return false;
