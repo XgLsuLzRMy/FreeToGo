@@ -15,6 +15,11 @@ session_start();
   <div class="main">
 
     <?php
+
+    if (isset($_GET['succes'])){
+      afficherMessageSucces("Les modifications ont bien été enregistrées!");
+    }
+
     if (isset($_GET["idLogement"])){
       // si on ne modifie pas le logement
         $bd = seConnecterABD();
@@ -27,7 +32,15 @@ session_start();
     }else{
       die();
     }
+
     if (isset($_POST['enregistrer'])){
+
+      $idProprietaire = $donnees["idClient"];
+
+      if($_SESSION['idClient'] != $idProprietaire){
+        die();
+      }
+
       $prix = calculChamps("prix", $donnees);
       $type = calculChamps("type", $donnees);
       $nomLogement = calculChamps("nomLogement", $donnees);
@@ -61,7 +74,7 @@ session_start();
       }elseif($donnees["photo"]!=NULL){
         $photo=$donnees["photo"];
       }
-
+/*
       echo '<script>alert("prix=-'.$prix.'-");</script>';
       echo '<script>alert("type=-'.$type.'-");</script>';
       echo '<script>alert("nomLogement=-'.$nomLogement.'-");</script>';
@@ -75,7 +88,7 @@ session_start();
       echo '<script>alert("cuisine=-'.$cuisine.'-");</script>';
       echo '<script>alert("salledebain=-'.$salledebain.'-");</script>';
       echo '<script>alert("idLogement=-'.$_POST['idLogement'].'-");</script>';
-
+*/
       $requete = $bd->prepare('UPDATE logement SET prix = :prix, type = :type, nomLogement = :nomLogement, adresse = :adresse, effectif = :effectif, photo =:photo, description = :description, ville = :ville, pays = :pays, wifi = :wifi, cuisine = :cuisine, salledebain = :salledebain WHERE idLogement = :idLogement');
       $requete->execute(array(
         'prix' => $prix,
@@ -92,8 +105,8 @@ session_start();
         'cuisine' => $cuisine,
         'idLogement' => $_POST['idLogement']
       ));
-      //echo '<script>window.location.replace("./logement.php?idLogement='.$_POST['idLogement'].'&succes");</script>';
-      //die();
+      echo '<script>window.location.replace("./modifierLogement.php?idLogement='.$_POST['idLogement'].'&succes");</script>';
+      die();
     }
 
     $photo=gererPhoto($donnees,'photo',"/images/logement_default.png");
@@ -167,11 +180,13 @@ session_start();
               $cuisine = "checked";
             }
             echo '
+            <form method="post" enctype="multipart/form-data">
             <input type="checkbox" '.$sdb.'/>Salle de bain
             <br/>
             <input type="checkbox" '.$wifi.'/>Wifi
             <br/>
-            <input type="checkbox" '.$cuisine.'/>Cuisine';
+            <input type="checkbox" '.$cuisine.'/>Cuisine
+            </form>';
             ?>
           </ul>
         </div>

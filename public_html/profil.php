@@ -175,6 +175,7 @@
         <th>Localisation</th>
         <th>Prix</th>
         <th>Voir</th>
+        <th>Modifier</th>
         </tr>';
         while ($donnees = $reponse->fetch()) //tant qu'il y a des lignes de logements
         {
@@ -186,6 +187,9 @@
           <td>'.$donnees["prix"].'</td>
           <td>
           <button onclick="location.href=\'pageLogement.php?idLogement='.(string)$donnees["idLogement"].'\'" type="button" class="bouton">Voir</button>
+          </td>
+          <td>
+          <button onclick="location.href=\'modifierLogement.php?idLogement='.(string)$donnees["idLogement"].'\'" type="button" class="bouton">Voir</button>
           </td>
           </tr>';
           $num = $num + 1;
