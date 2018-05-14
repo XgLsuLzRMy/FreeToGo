@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" type="text/css" href="css/ajoutLogement.css" />
   <link rel="stylesheet" type="text/css" href="css/common.css" />
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
   <title>FreeToGo</title>
